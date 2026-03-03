@@ -1,0 +1,6 @@
+@BackendParaPlataforma_HostAddress = http://localhost:5169
+
+GET {{BackendParaPlataforma_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
