@@ -1,9 +1,70 @@
 ﻿namespace BackendParaPlataforma.Entities
 {
-    public class usuario
+    public class Usuario
     {
-        public int id_usuario { get; set; }
-        public string nombre { get; set; }
-        public string email { get; set; }
+        public int Id { get; private set; }
+
+        public string Nombre { get; private set; }
+
+        public string Email { get; private set; }
+
+        public string PasswordHash { get; private set; }
+
+        public DateTime FechaRegistro { get; private set; }
+
+        public DateTime? UltimoLogin { get; private set; }
+
+        public string? EstadoActual { get; private set; }
+
+        public string? ConfiguracionVoz { get; private set; }
+
+        public bool Activo { get; private set; }
+
+        // Constructor principal
+        public Usuario(string nombre, string email, string passwordHash)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+                throw new ArgumentException("El nombre es obligatorio");
+
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("El email es obligatorio");
+
+            if (string.IsNullOrWhiteSpace(passwordHash))
+                throw new ArgumentException("La contraseña es obligatoria");
+
+            Nombre = nombre;
+            Email = email;
+            PasswordHash = passwordHash;
+            FechaRegistro = DateTime.UtcNow;
+            Activo = true;
+        }
+
+        // Constructor vacío requerido por EF Core
+        private Usuario() { }
+
+        public void RegistrarLogin()
+        {
+            UltimoLogin = DateTime.UtcNow;
+        }
+
+        public void CambiarEstado(string nuevoEstado)
+        {
+            EstadoActual = nuevoEstado;
+        }
+
+        public void CambiarConfiguracionVoz(string configuracion)
+        {
+            ConfiguracionVoz = configuracion;
+        }
+
+        public void Desactivar()
+        {
+            Activo = false;
+        }
+
+        public void Activar()
+        {
+            Activo = true;
+        }
     }
 }
