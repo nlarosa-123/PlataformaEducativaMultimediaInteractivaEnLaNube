@@ -1,14 +1,41 @@
-# Visual Studio
-.vs/
+# Node/npm
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# TypeScript/Build output
+dist/
+*.js
+*.js.map
+out-tsc/
+
+# IDE/Editors
+.vscode/
+.idea/
+*.sublime-workspace
 *.user
 *.suo
+.vs/
+.DS_Store
+Thumbs.db
 
-# Build folders
-bin/
-obj/
+# Angular
+.angular/
+.angular/cache/
+
+# Environment files
+.env
+.env.local
+.env.*.local
 
 # Logs
 *.log
+npm-debug.log*
 
-# ASP.NET
-appsettings.Development.json
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing
+/coverage
