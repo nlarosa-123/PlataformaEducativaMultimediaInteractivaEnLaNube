@@ -8,9 +8,9 @@
 
         public string Email { get; private set; }
 
-        public string PasswordHash { get; private set; }
+        public string PasswordHash { get; set; }
 
-        public DateTime FechaRegistro { get; private set; }
+        public DateTime FechaRegistro { get; set; }
 
         public DateTime? UltimoLogin { get; private set; }
 
@@ -18,7 +18,7 @@
 
         public string? ConfiguracionVoz { get; private set; }
 
-        public bool Activo { get; private set; }
+        public bool Activo { get; set; }
 
         // Constructor principal
         public Usuario(string nombre, string email, string passwordHash)
