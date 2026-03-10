@@ -9,7 +9,7 @@
         public string Emoji { get; set; } = string.Empty;
 
         // Valor para estadísticas (-2 a +2)
-        public int Valor { get; set; }
+        public decimal? Valor { get; set; }
 
         // Relaciones
         //public ICollection<DiarioEmocional> DiariosEmocionales { get; set; } = new List<DiarioEmocional>();

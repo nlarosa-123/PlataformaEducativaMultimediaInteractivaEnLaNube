@@ -6,6 +6,6 @@
 
         public string Emoji { get; set; } = string.Empty;
 
-        public int Valor { get; set; }
+        public decimal? Valor { get; set; }
     }
 }
