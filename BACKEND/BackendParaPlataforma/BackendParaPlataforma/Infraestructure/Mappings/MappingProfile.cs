@@ -14,6 +14,11 @@ namespace BackendParaPlataforma.Infraestructure.Mappings
             CreateMap<CrearUsuarioCommand, Usuario>()
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            CreateMap<Emociones, EmocionesDto>();
+
+            CreateMap<CrearEmocionCommand, Emociones>();
+
         }
     }
 }
