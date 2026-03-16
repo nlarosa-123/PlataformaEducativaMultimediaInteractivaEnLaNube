@@ -17,11 +17,26 @@ public class Estadisticas
 
     public DateTime UltimaAct { get,  set;  }
     
-    //Constructor principal 
+    //Constructor principal (Preguntar) 
     public Estadisticas(int id, int idUsuario )
-    {
-        Id = id;
+    { 
         IdUsuario = idUsuario; 
     }
 
+    private Estadisticas() { } //Constructor vacio 
+
+    public void ActualizarFecha()
+    {
+        UltimoAct = DateTime.UtcNow;
+    }
+
+    public void ActualizarRacha ()
+    {
+       RachaDias++;
+    }
+
+    public void CambiarEmocion (string nuevaEmocion)
+    {
+        EmocionFrecuente = nuevaEmocion; 
+    }
 }
