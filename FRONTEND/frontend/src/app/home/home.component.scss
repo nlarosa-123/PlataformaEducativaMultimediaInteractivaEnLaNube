@@ -1,34 +1,170 @@
-.home{
-    margin-top: 0;
-    padding-top: 50px;
-    background-color: #E5F9E0;
-    height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Inter:wght@300;500&display=swap');
+
+/* Reset y Base */
+.home {
+    margin: 0;
+    padding: 0;
+    background-color: #F9F3E9 !important; /* Crema de fondo */
+    min-height: 100dvh;
+    font-family: 'Inter', sans-serif;
+    color: #4A4A4A;
+    overflow-x: hidden;
+    transform: translateY(65px);
 }
-.section-1{
-    border: 1px solid black;
+
+/* Top Bar */
+.top-bar {
+    background-color: #E8C4A0;
+    text-align: center;
+    padding: 8px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #C38D9E;
+    font-weight: bold;
+}
+
+.nav-links a {
+    margin: 0 1.5rem;
+    text-decoration: none;
+    color: #4A4A4A;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.nav-btn {
+    border: 1px solid #C38D9E;
+    background: transparent;
+    color: #C38D9E;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: #C38D9E;
+    color: white;
+}
+
+/* Sección 1: El Maquetado que pediste */
+.section-1 {
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 5rem; /* Espacio entre columnas */
+    height: 75vh;
+}
+
+.column-1 {
+    width: 45%;
+    height: 100%;
+    background-color: #E8A87C !important; /* Naranja suave */
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dotted-frame {
     position: absolute;
-    top: 120px;
-    left: 0;
-    right: 0;
-    margin: 1rem;
-    width: calc(100% - 2rem);
-    height: 35rem;
-    z-index: 1;
+    top: 25px; left: 25px; right: 25px; bottom: 25px;
+    border: 2px dotted #F9F3E9;
+    pointer-events: none;
 }
 
-.column-1{
-    border: 1px solid black;
-    width: 50%;
-    margin: 2px;
+.column-1 img {
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: 2;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-.column-2{
-    border: 1px solid black;
-    width: 30%;
+.column-2 {
+    width: 40%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start !important;
-    order: 0;
+    align-items: center;
+    text-align: center;
+   // background-color: #C38D9E !important; /* Rosa editorial */
+   background-color: #ADC178 !important; /* Verde suave */
+    padding: 4rem 2rem;
+    border-radius: 30px;
+    color: #F9F3E9;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 1.1;
+    margin: 1.5rem 0;
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.cta-btn {
+    background-color: #E8C4A0;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: transform 0.2s;
+}
+
+.cta-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Sección 2: El Marquee */
+.section-2 {
+    background-color: #E8C4A0;
+    padding: 1rem 0;
+    margin-top: 3rem;
+}
+
+.marquee-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: scroll 30s linear infinite;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
