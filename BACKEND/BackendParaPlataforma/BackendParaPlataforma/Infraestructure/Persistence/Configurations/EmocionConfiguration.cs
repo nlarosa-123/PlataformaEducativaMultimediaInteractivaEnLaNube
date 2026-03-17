@@ -21,7 +21,8 @@ namespace BackendParaPlataforma.Infraestructure.Persistence.Configurations
                 .HasMaxLength(10);
 
             builder.Property(e => e.Valor)
-                .IsRequired();
+                .IsRequired()
+                .HasPrecision(5, 2);
         }
     }
 }
