@@ -12,7 +12,7 @@ Desarrollo de una plataforma web educativa para el desarrollo personal y bienest
 - A modern web browser (Chrome, Firefox, Edge, etc.)
 
 - Backend:
-- npm install recorder-js
+- npm install recordrtc
 - Servicios de Azure AI
 - dotnet run
 ---
