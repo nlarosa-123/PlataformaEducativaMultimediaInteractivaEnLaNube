@@ -2,17 +2,20 @@ namespace BackendParaPlataforma.Entities
 {
     public class Modulos
     {
-        public int Id { get; set; }
+        // Clave primaria
+        public int IdModulo { get; set; }
 
-        public string Nombre { get; set; }
+        // Título del módulo
+        public string Titulo { get; set; }
 
+        // Descripción del módulo
         public string Descripcion { get; set; }
 
         //Constructor principal 
         public Modulos(int id, string nombre, string descr)
         {
-            Id = id;
-            Nombre = nombre;
+            IdModulo = id;
+            Titulo = nombre;
             Descripcion = descr;
         }
 
