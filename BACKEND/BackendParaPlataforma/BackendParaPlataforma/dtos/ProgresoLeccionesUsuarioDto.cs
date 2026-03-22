@@ -1,6 +1,6 @@
 namespace BackendParaPlataforma.dtos
 {
-    class ProgresoLeccionesDto
+    class ProgresoLeccionesUsuarioDto
     {
         public int Id { get; set; }
         public int IdUsuario { get; set; }
