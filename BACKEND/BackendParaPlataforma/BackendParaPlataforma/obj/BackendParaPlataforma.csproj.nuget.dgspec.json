@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {}
+    "C:\\Users\\natal\\Documents\\PROYECTOMULTI\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {}
   },
   "projects": {
-    "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {
+    "C:\\Users\\natal\\Documents\\PROYECTOMULTI\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
+        "projectUniqueName": "C:\\Users\\natal\\Documents\\PROYECTOMULTI\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
         "projectName": "BackendParaPlataforma",
-        "projectPath": "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
+        "projectPath": "C:\\Users\\natal\\Documents\\PROYECTOMULTI\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
         "packagesPath": "C:\\Users\\natal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\obj\\",
+        "outputPath": "C:\\Users\\natal\\Documents\\PROYECTOMULTI\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
