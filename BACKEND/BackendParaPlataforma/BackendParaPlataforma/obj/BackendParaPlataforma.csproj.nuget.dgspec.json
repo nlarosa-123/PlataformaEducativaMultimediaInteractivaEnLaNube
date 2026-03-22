@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {}
+    "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {}
   },
   "projects": {
-    "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {
+    "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
+        "projectUniqueName": "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
         "projectName": "BackendParaPlataforma",
-        "projectPath": "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
-        "packagesPath": "C:\\Users\\natal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\natal\\Documents\\ATecnologiasmultimediaeinteraccion\\PRACTICA\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\obj\\",
+        "projectPath": "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
+        "packagesPath": "C:\\Users\\garci\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\natal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\garci\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -112,7 +112,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< Updated upstream
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+>>>>>>> Stashed changes
         }
       }
     }

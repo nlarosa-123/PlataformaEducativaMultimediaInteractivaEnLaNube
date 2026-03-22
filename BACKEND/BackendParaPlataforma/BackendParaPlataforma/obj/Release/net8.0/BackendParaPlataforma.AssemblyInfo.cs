@@ -12,9 +12,9 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("BackendParaPlataforma")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08bd5b3539062b9cfba0c0565a8144f42a73441a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21b050fb8397fcd74459a547ab976616ed924269")]
 [assembly: System.Reflection.AssemblyProductAttribute("BackendParaPlataforma")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BackendParaPlataforma")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
