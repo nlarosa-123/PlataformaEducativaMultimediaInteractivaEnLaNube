@@ -13,7 +13,8 @@ Desarrollo de una plataforma web educativa para el desarrollo personal y bienest
 
 - Backend:
 - npm install recorder-js
-
+- Servicios de Azure AI
+- dotnet run
 ---
 
 ## 🚀 Getting Started
