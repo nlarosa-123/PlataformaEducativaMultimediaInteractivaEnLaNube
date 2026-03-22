@@ -2,7 +2,8 @@ namespace BackendParaPlataforma.cmds
 {
     public class CrearLeccionCommand
     {
-        public string Titulo { get; set; } = string.Empty;  
+        public string Titulo { get; set; } = string.Empty;
+        public string TipoContenido { get; set; } = string.Empty;
 
         public string ContenidoTxt { get; set; } = string.Empty;
 
