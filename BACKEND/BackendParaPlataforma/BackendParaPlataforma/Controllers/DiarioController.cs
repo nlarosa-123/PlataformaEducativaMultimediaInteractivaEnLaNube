@@ -3,15 +3,13 @@ using BackendParaPlataforma.Repositories;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Dtos;
 
-namespace BackendParaPlataforma.Controllers
-{
+namespace BackendParaPlataforma.Controllers {
     [ApiController]
     [Route("api/[controller]")]
     public class DiarioController : ControllerBase {
         private readonly IDiarioRepository _diarioRepository;
 
-        public DiarioController(IDiarioRepository diarioRepository)
-        {
+        public DiarioController(IDiarioRepository diarioRepository) {
             _diarioRepository = diarioRepository;
         }
 
