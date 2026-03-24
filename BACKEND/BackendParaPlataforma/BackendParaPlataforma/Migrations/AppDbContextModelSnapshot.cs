@@ -42,11 +42,43 @@ namespace BackendParaPlataforma.Migrations
 
                     b.Property<decimal?>("Valor")
                         .IsRequired()
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("IdEmocion");
 
                     b.ToTable("Emociones", (string)null);
+                });
+
+            modelBuilder.Entity("BackendParaPlataforma.Entities.ProgresoModuloUsuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Completado")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("IdModulo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Porcentaje")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<int?>("UltimaLeccion")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdUsuario", "IdModulo")
+                        .IsUnique();
+
+                    b.ToTable("ProgresoModuloUsuario", (string)null);
                 });
 
             modelBuilder.Entity("BackendParaPlataforma.Entities.Usuario", b =>
@@ -104,6 +136,22 @@ namespace BackendParaPlataforma.Migrations
                         .IsUnique();
 
                     b.ToTable("usuarios", (string)null);
+                });
+
+            modelBuilder.Entity("BackendParaPlataforma.Entities.ProgresoModuloUsuario", b =>
+                {
+                    b.HasOne("BackendParaPlataforma.Entities.Usuario", "Usuario")
+                        .WithMany("ProgresosModulos")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("BackendParaPlataforma.Entities.Usuario", b =>
+                {
+                    b.Navigation("ProgresosModulos");
                 });
 #pragma warning restore 612, 618
         }

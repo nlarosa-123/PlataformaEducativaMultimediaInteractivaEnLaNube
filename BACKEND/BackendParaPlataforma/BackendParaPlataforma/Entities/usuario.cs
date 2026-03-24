@@ -19,6 +19,8 @@
         public string? ConfiguracionVoz { get; private set; }
 
         public bool Activo { get; set; }
+        public ICollection<ProgresoModuloUsuario> ProgresosModulos { get; set; }
+        = new List<ProgresoModuloUsuario>();
 
         // Constructor principal
         public Usuario(string nombre, string email, string passwordHash)
