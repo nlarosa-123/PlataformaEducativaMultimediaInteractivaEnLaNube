@@ -1,14 +1,4 @@
-import { Component } from '@angular/core';
 
-@Component({
-  selector: 'app-diario-emocional',
-  imports: [],
-  templateUrl: './diario-emocional.component.html',
-  styleUrl: './diario-emocional.component.scss'
-})
-export class DiarioEmocionalComponent {
-
-}
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import RecordRTC from 'recordrtc';
