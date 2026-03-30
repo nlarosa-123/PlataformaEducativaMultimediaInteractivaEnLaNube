@@ -525,4 +525,3 @@ C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\B
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendP.6D30E791.Up2Date
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.genruntimeconfig.cache
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\ref\BackendParaPlataforma.dll
-C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
