@@ -24,17 +24,8 @@ namespace BackendParaPlataforma.Infraestructure.Persistence {
             public string TextoUsuario { get; set; }
             public string? AudioUrl { get; set; }
         }
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-
-        public DbSet<DiarioEmocional> DiariosEmocionales { get; set; }
-        public DbSet<AnalisisIA> AnalisisIA { get; set; }
-        public DbSet<ReflexionMejora> ReflexionesMejora { get; set; }
-        public DbSet<ProgresoUsuario> ProgresoUsuarios { get; set; }*/
-        //public DbSet<Auditoria> Auditorias { get; set; }
+        
+        //public DbSet<Auditoria> Auditorias { get; set; } */
 
     }
 }
