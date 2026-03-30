@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using BackendParaPlataforma.Entities;
-using BackendParaPlataforma.Repositories;
+using BackendParaPlataforma.Infraestructure.Repositories;
 
 [ApiController]
 [Route("api/reflexion")]

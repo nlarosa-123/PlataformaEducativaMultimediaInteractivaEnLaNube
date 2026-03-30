@@ -12,7 +12,7 @@ namespace BackendParaPlataforma.Entities {
 
         public int Id_Emocion_Usuario  { get; set; }
 
-        public Emocion Emocion { get; set; }
+        public Emociones Emocion { get; set; }
 
         public string Texto_Usuario { get; set; }
 

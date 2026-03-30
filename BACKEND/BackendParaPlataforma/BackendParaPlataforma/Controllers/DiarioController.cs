@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using BackendParaPlataforma.Repositories;
+using BackendParaPlataforma.Infraestructure.Repositories;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Dtos;
 

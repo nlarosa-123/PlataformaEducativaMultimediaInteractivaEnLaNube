@@ -253,8 +253,6 @@ C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaE
 C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\ref\BackendParaPlataforma.dll
 <<<<<<< Updated upstream
 =======
-<<<<<<< Updated upstream
-=======
 <<<<<<< HEAD
 >>>>>>> Stashed changes
 C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
@@ -263,13 +261,10 @@ C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaE
 C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
->>>>>>> Stashed changes
 C:\Users\natal\Documents\ATecnologiasmultimediaeinteraccion\PRACTICA\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Usuario\source\repos\nlarosa-123\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.dll
 C:\Users\Usuario\source\repos\nlarosa-123\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\refint\BackendParaPlataforma.dll
 C:\Users\Usuario\source\repos\nlarosa-123\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.pdb
-<<<<<<< Updated upstream
-=======
 >>>>>>> Shoma
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.csproj.AssemblyReference.cache
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\rpswa.dswa.cache.json
@@ -530,4 +525,4 @@ C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\B
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendP.6D30E791.Up2Date
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.genruntimeconfig.cache
 C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\ref\BackendParaPlataforma.dll
->>>>>>> Stashed changes
+C:\Users\Usuario\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

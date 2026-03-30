@@ -22,6 +22,8 @@
         public ICollection<ProgresoModuloUsuario> ProgresosModulos { get; set; }
         = new List<ProgresoModuloUsuario>();
 
+        public ICollection<DiarioEmocional> Diarios { get; set; }
+
         // Constructor principal
         public Usuario(string nombre, string email, string passwordHash)
         {
