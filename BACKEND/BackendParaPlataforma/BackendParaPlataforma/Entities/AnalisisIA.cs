@@ -6,7 +6,7 @@ public class AnalisisIA {
 
     public int Emocion_Detectada_IA { get; set; }
 
-    public string Tono_Detectado { get; set; }
+    public string? Tono_Detectado { get; set; }
 
     public decimal Confianza { get; set; }
 
