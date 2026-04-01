@@ -6,7 +6,7 @@ namespace BackendParaPlataforma.Entities {
 
         public int Id_Usuario { get; set; }
 
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
         public DateTime Fecha { get; set; }
 
