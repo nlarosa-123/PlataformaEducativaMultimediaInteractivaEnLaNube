@@ -13,10 +13,16 @@ namespace BackendParaPlataforma.Infraestructure.Persistence {
         public DbSet<ReflexionMejora> ReflexionesMejora => Set<ReflexionMejora>();
         public DbSet<ProgresoUsuario> ProgresoUsuarios => Set<ProgresoUsuario>();
         //public DbSet<Auditoria> Auditorias { get; set; }
+        public DbSet<EstadisticaUsuario> EstadisticaUsuario => Set<EstadisticaUsuario>(); 
+        public DbSet<Modulos> Modulos => Set<Modulos>(); 
+        public DbSet<Lecciones> Lecciones => Set<Lecciones>(); 
+        public DbSet<ProgresoLeccionUsuario> ProgresoLeccionUsuario => Set<ProgresoLeccionUsuario>(); 
+
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

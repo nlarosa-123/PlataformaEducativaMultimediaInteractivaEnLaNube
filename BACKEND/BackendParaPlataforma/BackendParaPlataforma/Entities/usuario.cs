@@ -25,6 +25,8 @@
         = new List<ProgresoUsuario>();
 
         public ICollection<DiarioEmocional> Diarios { get; set; }
+        public ICollection<ProgresoLeccionUsuario> ProgresosLecciones { get; set; }
+        public EstadisticaUsuario EstadisticaUsuario { get; set; }
 
         // Constructor principal
         public Usuario(string nombre, string email, string passwordHash)

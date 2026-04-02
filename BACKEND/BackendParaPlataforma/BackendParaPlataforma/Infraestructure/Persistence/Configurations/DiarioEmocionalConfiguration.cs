@@ -1,6 +1,6 @@
+using BackendParaPlataforma.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using BackendParaPlataforma.Entities;
 
 public class DiarioEmocionalConfiguration : IEntityTypeConfiguration<DiarioEmocional> {
 
@@ -16,8 +16,7 @@ public class DiarioEmocionalConfiguration : IEntityTypeConfiguration<DiarioEmoci
         builder.Property(d => d.Audio_Url)
                .IsRequired(false);
 
-        builder.Property(d => d.Fecha_Creacion)
-               .HasDefaultValueSql("GETDATE()");
+        builder.Property(d => d.Fecha_Creacion);
 
         builder.HasOne(d => d.Usuario)
        .WithMany(u => u.Diarios)
