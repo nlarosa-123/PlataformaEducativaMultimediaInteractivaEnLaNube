@@ -39,3 +39,5 @@ Thumbs.db
 
 # Testing
 /coverage
+/BACKEND/BackendParaPlataforma/BackendParaPlataforma/obj/Debug/net8.0/BackendParaPlataforma.AssemblyInfo.cs
+/BACKEND/BackendParaPlataforma/BackendParaPlataforma/Entities/DiarioEmocional.cs
