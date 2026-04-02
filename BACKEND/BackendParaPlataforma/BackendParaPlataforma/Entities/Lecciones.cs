@@ -22,6 +22,7 @@ namespace BackendParaPlataforma.Entities
 		public int Duracion { get; set; } //En minutos 
         public ICollection<ProgresoLeccionUsuario> ProgresosUsuarios { get; set; }
 		public Modulos Modulos { get; set; }
+		public Quiz Quiz { get; set; }
 
         public Lecciones(string titulo, string texto, string urlV, string urlA, int duracion)
 		{

@@ -11,6 +11,7 @@ namespace BackendParaPlataforma.Entities
         // Descripción del módulo
         public string Descripcion { get; set; }
         public List<Lecciones> Lecciones { get; set; }
+        public List<ProgresoModuloUsuario> ProgresoModuloUsuarios { get; set; }
 
         //Constructor principal 
         public Modulos(int id, string nombre, string descr)

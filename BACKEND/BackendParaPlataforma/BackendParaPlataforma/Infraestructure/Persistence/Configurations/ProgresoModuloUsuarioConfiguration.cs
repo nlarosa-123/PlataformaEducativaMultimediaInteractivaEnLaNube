@@ -12,14 +12,7 @@ namespace BackendParaPlataforma.Infraestructure.Persistence.Configurations
 
             builder.HasKey(x => x.Id);
 
-            // índice único: un usuario solo puede tener un progreso por módulo
-            builder.HasIndex(x => new { x.IdUsuario, x.IdModulo })
-                   .IsUnique();
-
             builder.Property(x => x.IdUsuario)
-                   .IsRequired();
-
-            builder.Property(x => x.IdModulo)
                    .IsRequired();
 
             builder.Property(x => x.Porcentaje)
@@ -33,13 +26,17 @@ namespace BackendParaPlataforma.Infraestructure.Persistence.Configurations
 
             #region usuario
 
-            // relación con Usuario
             builder.HasOne(x => x.Usuario)
                    .WithMany(u => u.ProgresosModulos)
                    .HasForeignKey(x => x.IdUsuario)
                    .OnDelete(DeleteBehavior.Cascade);
 
             #endregion
+
+            builder.HasOne(p => p.Modulos)
+                .WithMany(p => p.ProgresoModuloUsuarios)
+                .HasForeignKey(p => p.IdModulo)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -14,6 +14,7 @@
 
         public int? UltimaLeccion { get; set; }
         public Usuario Usuario { get; set; }
+        public Modulos Modulos { get; set; }
 
         public ProgresoModuloUsuario() { }
 

@@ -1,20 +1,24 @@
-using BackendParaPlataforma.Entities;
+namespace BackendParaPlataforma.Entities
+{
 
-public class AnalisisIA {
 
-    public int Id_Analisis { get; set; }
+    public class AnalisisIA
+    {
 
-    public int Id_Diario { get; set; }
+        public int Id_Analisis { get; set; }
 
-    public int Emocion_Detectada_IA { get; set; }
+        public int Id_Diario { get; set; }
 
-    public string? Tono_Detectado { get; set; }
+        public int Emocion_Detectada_IA { get; set; }
 
-    public decimal Confianza { get; set; }
+        public string? Tono_Detectado { get; set; }
 
-    public bool Coincide_Usuario { get; set; }
+        public decimal Confianza { get; set; }
 
-    public DateTime Fecha_Analisis { get; set; }
-    public DiarioEmocional? DiarioEmocional { get; set; }
-    public Emociones? Emociones { get; set; }
+        public bool Coincide_Usuario { get; set; }
+
+        public DateTime Fecha_Analisis { get; set; }
+        public DiarioEmocional? DiarioEmocional { get; set; }
+        public Emociones? Emociones { get; set; }
+    }
 }

@@ -6,6 +6,8 @@ namespace BackendParaPlataforma.Infraestructure.Persistence {
     {
         public DbSet<Usuario> Usuarios => Set<Usuario>();
         public DbSet<Emociones> Emociones => Set<Emociones>();
+        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<PreguntaQuiz> PreguntasQuiz { get; set; }
         public DbSet<ProgresoModuloUsuario> ProgresoModuloUsuarios => Set<ProgresoModuloUsuario>();
 
         public DbSet<DiarioEmocional> DiariosEmocionales => Set<DiarioEmocional>();
