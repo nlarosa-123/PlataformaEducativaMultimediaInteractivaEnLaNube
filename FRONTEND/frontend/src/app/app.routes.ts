@@ -5,11 +5,13 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MiespacioComponent } from './pages/miespacio/miespacio.component';
 import { authGuard } from './guards/auth.guard';
+import { DiarioEmocionalComponent } from './pages/diario-emocional/diario-emocional.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'diary', component: DiaryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'miespacio', component: MiespacioComponent, canActivate: [authGuard] }
+  { path: 'miespacio', component: MiespacioComponent, canActivate: [authGuard] },
+  { path: 'diarioemocional', component: DiarioEmocionalComponent, canActivate: [authGuard] }
 ];

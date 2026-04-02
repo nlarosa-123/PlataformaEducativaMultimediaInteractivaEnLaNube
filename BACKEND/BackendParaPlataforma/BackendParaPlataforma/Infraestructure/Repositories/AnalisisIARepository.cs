@@ -23,4 +23,29 @@ public class AnalisisIARepository : IAnalisisIARepository {
         return await _context.AnalisisIA
             .FirstOrDefaultAsync(a => a.Id_Diario == idDiario);
     }
+
+    public async Task<bool> ActualizarAnalisis(AnalisisIA analisis) {
+        var existente = await _context.AnalisisIA.FindAsync(analisis.Id_Analisis);
+
+        if (existente == null)
+            return false;
+
+        existente.Tono_Detectado = analisis.Tono_Detectado;
+        existente.Confianza = analisis.Confianza;
+        existente.Coincide_Usuario = analisis.Coincide_Usuario;
+
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> EliminarAnalisis(int id) {
+        var analisis = await _context.AnalisisIA.FindAsync(id);
+
+        if (analisis == null)
+            return false;
+
+        _context.AnalisisIA.Remove(analisis);
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }

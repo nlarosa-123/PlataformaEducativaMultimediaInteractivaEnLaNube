@@ -31,16 +31,6 @@ namespace BackendParaPlataforma.Controllers {
             return Ok(resultado);
         }
 
-        /*var userId = int.Parse(User.FindFirst("id")!.Value);
-
-        _context.Auditorias.Add(new Auditoria {
-            IdUsuario = userId,
-            Accion = "CREAR_DIARIO",
-            Entidad = "DiarioEmocional",
-            Detalle = "Usuario creó un diario",
-            Fecha = DateTime.UtcNow
-        });*/
-
         // Obtener todos los diarios de un usuario
         [HttpGet("usuario/{idUsuario}")]
         public async Task<IActionResult> ObtenerDiariosUsuario(int idUsuario) {
@@ -60,48 +50,39 @@ namespace BackendParaPlataforma.Controllers {
             return Ok(diario);
         }
 
+        // Actualizar Diario
+        [HttpPut("{idDiario}")]
+        public async Task<IActionResult> ActualizarDiario(int idDiario, [FromBody] CreateDiarioDto dto) {
+
+            var diario = new DiarioEmocional
+            {
+                Id_Diario = idDiario,
+                Id_Usuario = dto.IdUsuario,
+                Fecha = dto.Fecha,
+                Id_Emocion_Usuario = dto.IdEmocionUsuario,
+                Texto_Usuario = dto.TextoUsuario,
+                Audio_Url = dto.AudioUrl
+            };
+
+            var actualizado = await _diarioRepository.ActualizarDiario(diario);
+
+            if (!actualizado)
+                return NotFound("No se pudo actualizar");
+
+            return Ok("Diario actualizado");
+        }
+
+        // Eliminar Diario
+        [HttpDelete("{idDiario}")]
+        public async Task<IActionResult> EliminarDiario(int idDiario) {
+
+            var eliminado = await _diarioRepository.EliminarDiario(idDiario);
+
+            if (!eliminado)
+                return NotFound("No se pudo eliminar");
+
+            return Ok("Diario eliminado");
+        }
+
     }
 }
-
-/**
-using Microsoft.AspNetCore.Mvc;
-using BackendParaPlataforma.Entities;
-using BackendParaPlataforma.Repositories;
-
-[ApiController]
-[Route("api/diario")]
-public class DiarioController : ControllerBase {
-
-    private readonly IDiarioRepository _diarioRepository;
-
-    public DiarioController(IDiarioRepository diarioRepository) {
-
-        _diarioRepository = diarioRepository;
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> CrearDiario([FromBody] DiarioEmocional diario) {
-
-        var resultado = await _diarioRepository.CrearDiario(diario);
-        return Ok(resultado);
-    }
-
-    [HttpGet("usuario/{idUsuario}")]
-    public async Task<IActionResult> ObtenerDiariosUsuario(int idUsuario) {
-
-        var diarios = await _diarioRepository.ObtenerDiariosUsuario(idUsuario);
-        return Ok(diarios);
-    }
-
-    [HttpGet("{idDiario}")]
-    public async Task<IActionResult> ObtenerDiario(int idDiario) {
-
-        var diario = await _diarioRepository.ObtenerDiarioPorId(idDiario);
-
-        if (diario == null)
-            return NotFound();
-
-        return Ok(diario);
-    }
-
-}   */
