@@ -27,6 +27,8 @@ export class LoginComponent {
 
           // guardar token
           localStorage.setItem('token', res.token);
+          //guardar usuario
+          localStorage.setItem('user', JSON.stringify(res.user));
 
           alert("Login correcto");
 

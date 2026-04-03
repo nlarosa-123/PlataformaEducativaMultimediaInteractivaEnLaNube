@@ -69,7 +69,14 @@ namespace BackendParaPlataforma.Controllers
 
             var token = _jwtService.GenerateToken(usuario);
 
-            return Ok(new { token });
+            return Ok(new { token,
+                user = new
+                {
+                    id = usuario.Id,
+                    nombre = usuario.Nombre,
+                    email = usuario.Email
+                }
+            });
         }
     }
 }

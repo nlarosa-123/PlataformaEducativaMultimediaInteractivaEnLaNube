@@ -3,7 +3,32 @@
 <p>miespacio works!</p>
 <p>miespacio works!</p>
 <p>miespacio works!</p>
+<textarea [(ngModel)]="textoUsuario" placeholder="Escribe cómo te sientes..."></textarea>
+
+
+<br><br>
+
+<label>Selecciona tu emoción:</label>
+
+<select [(ngModel)]="emocionSeleccionada" class="form-select">
+  <option *ngFor="let emocion of emociones" [value]="emocion.idEmocion">
+    {{ emocion.emoji }} {{ emocion.nombre }} ({{ emocion.valor }})
+  </option>
+</select>
+
+<br><br>
+
+
 <button (click)="startRecording()">🎤 Grabar</button>
 <button (click)="stopRecording()">⏹ Detener</button>
 
 <p>{{ transcription }}</p>
+
+
+<br><br>
+
+
+
+<button (click)="guardarDiario()" [disabled]="!textoUsuario && !transcription">
+  💾 Guardar
+</button>
