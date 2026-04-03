@@ -35,11 +35,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IEmocionesRepository, EmocionesRepository>();
-builder.Services.AddScoped<IProgresoModuloUsuarioRepository, ProgresoModuloUsuarioRepository>();
-builder.Services.AddScoped<IDiarioRepository, DiarioRepository>();
-builder.Services.AddScoped<IAnalisisIARepository, AnalisisIARepository>();
-builder.Services.AddScoped<IReflexionRepository, ReflexionRepository>();
-builder.Services.AddScoped<IProgresoRepository, ProgresoRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 

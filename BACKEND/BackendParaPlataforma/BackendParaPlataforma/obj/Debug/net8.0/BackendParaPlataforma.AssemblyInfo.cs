@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BackendParaPlataforma")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bc7be6e14ae2bb69abe6f30e0c14ada2c9f34d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b419cb1be5b1af47860e3221a86430be2228f22b")]
 [assembly: System.Reflection.AssemblyProductAttribute("BackendParaPlataforma")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BackendParaPlataforma")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

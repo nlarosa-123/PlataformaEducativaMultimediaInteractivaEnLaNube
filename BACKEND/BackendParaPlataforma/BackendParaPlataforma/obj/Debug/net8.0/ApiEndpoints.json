@@ -17,6 +17,43 @@
   },
   {
     "ContainingType": "AnalisisIAController",
+    "Method": "ActualizarAnalisis",
+    "RelativePath": "api/analisis/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "analisis",
+        "Type": "AnalisisIA",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AnalisisIAController",
+    "Method": "EliminarAnalisis",
+    "RelativePath": "api/analisis/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AnalisisIAController",
     "Method": "ObtenerAnalisis",
     "RelativePath": "api/analisis/{idDiario}",
     "HttpMethod": "GET",
@@ -94,6 +131,43 @@
     "Method": "ObtenerDiario",
     "RelativePath": "api/Diario/{idDiario}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idDiario",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.DiarioController",
+    "Method": "ActualizarDiario",
+    "RelativePath": "api/Diario/{idDiario}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idDiario",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BackendParaPlataforma.Dtos.CreateDiarioDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.DiarioController",
+    "Method": "EliminarDiario",
+    "RelativePath": "api/Diario/{idDiario}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -231,6 +305,43 @@
       {
         "Name": "progreso",
         "Type": "ProgresoUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProgresoController",
+    "Method": "ActualizarProgreso",
+    "RelativePath": "api/progreso/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "progreso",
+        "Type": "ProgresoUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProgresoController",
+    "Method": "EliminarProgreso",
+    "RelativePath": "api/progreso/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -451,6 +562,43 @@
   },
   {
     "ContainingType": "ReflexionController",
+    "Method": "ActualizarReflexion",
+    "RelativePath": "api/reflexion/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "reflexion",
+        "Type": "ReflexionMejora",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ReflexionController",
+    "Method": "EliminarReflexion",
+    "RelativePath": "api/reflexion/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ReflexionController",
     "Method": "ObtenerReflexiones",
     "RelativePath": "api/reflexion/{idDiario}",
     "HttpMethod": "GET",
@@ -461,6 +609,22 @@
         "Name": "idDiario",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.SpeechController",
+    "Method": "SpeechToText",
+    "RelativePath": "api/Speech",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
