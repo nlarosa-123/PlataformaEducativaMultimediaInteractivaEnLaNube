@@ -1,0 +1,28 @@
+<p>diario-emocional-animo works!</p>
+<p>diario-emocional-animo works!</p>
+<p>diario-emocional-animo works!</p>
+<p>diario-emocional-animo works!</p>
+<p>diario-emocional-animo works!</p>
+<p>diario-emocional-animo works!</p>
+
+<label>
+  Añade qué te sirvió para seguir sintiéndote bien hoy o qué te hizo mejorar tu estado de ánimo.
+</label>
+
+<br><br>
+
+<textarea [(ngModel)]="textoUsuario" placeholder="Escribe cómo te sientes..."></textarea>
+
+<br><br>
+
+<button (click)="startRecording()">🎤 Grabar</button>
+<button (click)="stopRecording()">⏹ Detener</button>
+
+<p>{{ transcription }}</p>
+
+<br><br>
+
+<button (click)="guardarReflexion()" 
+        [disabled]="!textoUsuario && !transcription">
+  💾 Guardar reflexión
+</button>
