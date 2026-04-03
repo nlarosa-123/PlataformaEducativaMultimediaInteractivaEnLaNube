@@ -85,10 +85,16 @@ export class DiarioEmocionalComponent implements OnInit {
       audio_Url: null
     };
 
-    this.http.post('http://localhost:5169/api/DiarioEmocional', payload)
+    this.http.post<DiarioResponse>('http://localhost:5169/api/DiarioEmocional', payload)
       .subscribe({
         next: (res) => {
           console.log('✅ Diario guardado', res);
+
+          // 🔥 GUARDAR ID DEL DIARIO
+        const idDiario = res.id_Diario;
+
+        // opción 1: localStorage
+        localStorage.setItem('idDiario', idDiario.toString());
 
           // limpiar campos
           this.textoUsuario = '';
@@ -123,4 +129,13 @@ export class DiarioEmocionalComponent implements OnInit {
     });
 }
   //endregion emociones
+}
+
+export interface DiarioResponse {
+  id_Diario: number;
+  id_Usuario: number;
+  fecha: string;
+  id_Emocion_Usuario: number;
+  texto_Usuario: string;
+  audio_Url: string | null;
 }

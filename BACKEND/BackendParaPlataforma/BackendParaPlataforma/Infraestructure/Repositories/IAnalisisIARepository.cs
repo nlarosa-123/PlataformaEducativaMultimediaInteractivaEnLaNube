@@ -1,3 +1,4 @@
+using BackendParaPlataforma.Dtos;
 using BackendParaPlataforma.Entities;
 
 namespace BackendParaPlataforma.Infraestructure.Repositories
@@ -6,7 +7,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
     {
         Task<List<AnalisisIA>> GetAllAsync();
         Task<AnalisisIA?> GetByIdAsync(int id);
-        Task<List<AnalisisIA>> GetByDiarioIdAsync(int diarioId);
+        Task<List<AnalisisIADto>> GetByDiarioIdAsync(int diarioId);
 
         Task<AnalisisIA> CreateAsync(AnalisisIA analisis);
         Task<bool> UpdateAsync(AnalisisIA analisis);

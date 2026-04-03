@@ -1,3 +1,4 @@
+using BackendParaPlataforma.Dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -32,11 +33,21 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         }
 
         // ?? Obtener por Diario
-        public async Task<List<AnalisisIA>> GetByDiarioIdAsync(int diarioId)
+        public async Task<List<AnalisisIADto>> GetByDiarioIdAsync(int diarioId)
         {
             return await _context.AnalisisIA
                 .Where(a => a.Id_Diario == diarioId)
                 .Include(a => a.Emociones)
+                .Select(a => new AnalisisIADto
+                {
+                    Id_Analisis = a.Id_Analisis,
+                    Id_Diario = a.Id_Diario,
+                    Emocion_Detectada_IA = a.Emocion_Detectada_IA,
+                    Tono_Detectado = a.Tono_Detectado,
+                    Confianza = a.Confianza,
+                    NombreEmocion = a.Emociones.Nombre,
+                    Emoji = a.Emociones.Emoji
+                })
                 .ToListAsync();
         }
 

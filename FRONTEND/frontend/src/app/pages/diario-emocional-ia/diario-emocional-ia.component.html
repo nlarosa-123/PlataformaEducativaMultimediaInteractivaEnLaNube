@@ -1,0 +1,32 @@
+<p>diario-emocional-ia works!</p>
+<p>diario-emocional-ia works!</p>
+<p>diario-emocional-ia works!</p>
+<p>diario-emocional-ia works!</p>
+<p>diario-emocional-ia works!</p>
+<p>diario-emocional-ia works!</p>
+
+
+<div class="container text-center mt-5" *ngIf="analisis">
+
+  <h2>Progreso personal / Recomendaciones automáticas</h2>
+
+  <p class="mt-4 texto-ia">
+    El sistema detecta que el texto tiene un tono algo 
+    <strong>{{ getTextoTono() }}</strong>.
+    ¿Crees que refleja cómo te sientes?
+  </p>
+
+  <div class="mt-4">
+    <button class="btn btn-success me-3" (click)="responder(true)">Sí</button>
+    <button class="btn btn-outline-danger" (click)="responder(false)">No</button>
+    </div>
+
+    <p *ngIf="analisis.coincide_Usuario === true" class="text-success">
+  👍 Coincide contigo
+</p>
+
+<p *ngIf="analisis.coincide_Usuario === false" class="text-danger">
+  👎 No coincide contigo
+</p>
+
+</div>

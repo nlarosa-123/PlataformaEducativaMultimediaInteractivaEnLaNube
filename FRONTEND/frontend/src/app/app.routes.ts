@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MiespacioComponent } from './pages/miespacio/miespacio.component';
 import { authGuard } from './guards/auth.guard';
 import { DiarioEmocionalComponent } from './pages/diario-emocional/diario-emocional.component';
+import { DiarioEmocionalIAComponent } from './pages/diario-emocional-ia/diario-emocional-ia.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'miespacio', component: MiespacioComponent, canActivate: [authGuard] },
-  { path: 'diarioemocional', component: DiarioEmocionalComponent, canActivate: [authGuard] }
+  { path: 'diarioemocional', component: DiarioEmocionalComponent, canActivate: [authGuard] },
+  { path: 'diarioemocionalia', component: DiarioEmocionalIAComponent, canActivate: [authGuard] }
 ];

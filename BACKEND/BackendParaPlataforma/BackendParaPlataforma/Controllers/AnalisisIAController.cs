@@ -1,3 +1,4 @@
+using BackendParaPlataforma.Dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +38,7 @@ namespace BackendParaPlataforma.API.Controllers
 
         // ?? GET: api/AnalisisIA/diario/10
         [HttpGet("diario/{diarioId}")]
-        public async Task<ActionResult<IEnumerable<AnalisisIA>>> GetByDiario(int diarioId)
+        public async Task<ActionResult<IEnumerable<AnalisisIADto>>> GetByDiario(int diarioId)
         {
             var result = await _repository.GetByDiarioIdAsync(diarioId);
             return Ok(result);
