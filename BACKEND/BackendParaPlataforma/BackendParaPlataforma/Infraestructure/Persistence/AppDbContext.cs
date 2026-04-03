@@ -10,6 +10,8 @@ namespace BackendParaPlataforma.Infraestructure.Persistence
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<PreguntaQuiz> PreguntasQuiz { get; set; }
         public DbSet<ProgresoModuloUsuario> ProgresoModuloUsuarios => Set<ProgresoModuloUsuario>();
+        public DbSet<OpcionRespuesta> OpcionesRespuesta { get; set; }
+        public DbSet<RespuestaUsuarioQuiz> RespuestasUsuarioQuiz { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

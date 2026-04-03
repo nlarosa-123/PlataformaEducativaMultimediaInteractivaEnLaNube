@@ -273,3 +273,7 @@ C:\Users\garci\OneDrive\Desktop\PlataformaEducativaMultimediaInteractivaEnLaNube
 C:\Users\garci\OneDrive\Desktop\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\garci\OneDrive\Desktop\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.sourcelink.json
 >>>>>>> Stashed changes
+C:\Users\garci\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.csproj.AssemblyReference.cache
+C:\Users\garci\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.dll
+C:\Users\garci\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\refint\BackendParaPlataforma.dll
+C:\Users\garci\source\repos\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.pdb

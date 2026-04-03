@@ -7691,11 +7691,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
+      "projectUniqueName": "C:\\Users\\garci\\Source\\Repos\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
       "projectName": "BackendParaPlataforma",
-      "projectPath": "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
+      "projectPath": "C:\\Users\\garci\\Source\\Repos\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
       "packagesPath": "C:\\Users\\garci\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\garci\\OneDrive\\Desktop\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\obj\\",
+      "outputPath": "C:\\Users\\garci\\source\\repos\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7796,11 +7796,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< Updated upstream
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
->>>>>>> Stashed changes
       }
     }
   },
