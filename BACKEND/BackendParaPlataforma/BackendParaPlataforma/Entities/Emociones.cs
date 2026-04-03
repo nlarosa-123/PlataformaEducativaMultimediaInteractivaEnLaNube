@@ -14,6 +14,5 @@
         // Relaciones
         public ICollection<DiarioEmocional> DiariosEmocionales { get; set; } = new List<DiarioEmocional>();
         public ICollection<AnalisisIA> AnalisisIAs { get; set; } = new List<AnalisisIA>();
-        //public AnalisisIA AnalisisIA { get; set; } = null!;
     }
 }

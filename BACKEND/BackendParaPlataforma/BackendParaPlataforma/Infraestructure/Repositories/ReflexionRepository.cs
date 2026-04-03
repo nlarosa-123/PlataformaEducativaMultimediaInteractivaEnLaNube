@@ -2,26 +2,81 @@ using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-public class ReflexionRepository : IReflexionRepository {
+namespace BackendParaPlataforma.Infraestructure.Repositories
+{
+    public class ReflexionMejoraRepository : IReflexionMejoraRepository
+    {
+        private readonly AppDbContext _context;
 
-    private readonly AppDbContext _context;
+        public ReflexionMejoraRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
-    public ReflexionRepository(AppDbContext context) {
+        // ?? Obtener todas
+        public async Task<List<ReflexionMejora>> GetAllAsync()
+        {
+            return await _context.ReflexionesMejora
+                .Include(r => r.DiarioEmocional)
+                .AsNoTracking()
+                .ToListAsync();
+        }
 
-        _context = context;
-    }
+        // ?? Obtener por ID
+        public async Task<ReflexionMejora?> GetByIdAsync(int id)
+        {
+            return await _context.ReflexionesMejora
+                .Include(r => r.DiarioEmocional)
+                .FirstOrDefaultAsync(r => r.Id_Reflexion == id);
+        }
 
-    public async Task<ReflexionMejora> CrearReflexion(ReflexionMejora reflexion) {
+        // ?? Obtener reflexión por diario (clave en tu app)
+        public async Task<ReflexionMejora?> GetByDiarioIdAsync(int diarioId)
+        {
+            return await _context.ReflexionesMejora
+                .Where(r => r.Id_Diario == diarioId)
+                .OrderByDescending(r => r.Fecha_Creacion)
+                .FirstOrDefaultAsync();
+        }
 
-        _context.ReflexionesMejora.Add(reflexion);
-        await _context.SaveChangesAsync();
-        return reflexion;
-    }
+        // ?? Crear
+        public async Task<ReflexionMejora> CreateAsync(ReflexionMejora reflexion)
+        {
+            reflexion.Fecha_Creacion = DateTime.UtcNow;
 
-    public async Task<List<ReflexionMejora>> ObtenerReflexionesPorDiario(int idDiario) {
+            await _context.ReflexionesMejora.AddAsync(reflexion);
+            await _context.SaveChangesAsync();
 
-        return await _context.ReflexionesMejora
-            .Where(r => r.Id_Diario == idDiario)
-            .ToListAsync();
+            return reflexion;
+        }
+
+        // ?? Actualizar
+        public async Task<bool> UpdateAsync(ReflexionMejora reflexion)
+        {
+            var existing = await _context.ReflexionesMejora
+                .FirstOrDefaultAsync(r => r.Id_Reflexion == reflexion.Id_Reflexion);
+
+            if (existing == null)
+                return false;
+
+            existing.Texto_Reflexion = reflexion.Texto_Reflexion;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        // ?? Eliminar
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var reflexion = await _context.ReflexionesMejora.FindAsync(id);
+
+            if (reflexion == null)
+                return false;
+
+            _context.ReflexionesMejora.Remove(reflexion);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

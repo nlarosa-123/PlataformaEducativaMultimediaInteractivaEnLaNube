@@ -1,10 +1,20 @@
 using BackendParaPlataforma.Entities;
 
-public interface IDiarioRepository {
+namespace BackendParaPlataforma.Infraestructure.Repositories
+{
+    public interface IDiarioEmocionalRepository
+    {
+        Task<List<DiarioEmocional>> GetAllAsync();
+        Task<DiarioEmocional?> GetByIdAsync(int id);
 
-    Task<DiarioEmocional> CrearDiario(DiarioEmocional diario);
+        Task<List<DiarioEmocional>> GetByUsuarioAsync(int usuarioId);
+        Task<List<DiarioEmocional>> GetByFechaAsync(int usuarioId, DateTime fecha);
 
-    Task<List<DiarioEmocional>> ObtenerDiariosUsuario(int idUsuario);
+        Task<DiarioEmocional> CreateAsync(DiarioEmocional diario);
+        Task<bool> UpdateAsync(DiarioEmocional diario);
+        Task<bool> DeleteAsync(int id);
 
-    Task<DiarioEmocional?> ObtenerDiarioPorId(int idDiario);
+        // ?? Extras clave para tu app
+        Task<DiarioEmocional?> GetLatestByUsuarioAsync(int usuarioId);
+    }
 }

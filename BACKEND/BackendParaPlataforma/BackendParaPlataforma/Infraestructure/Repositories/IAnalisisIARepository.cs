@@ -1,8 +1,16 @@
 using BackendParaPlataforma.Entities;
 
-public interface IAnalisisIARepository {
+namespace BackendParaPlataforma.Infraestructure.Repositories
+{
+    public interface IAnalisisIARepository
+    {
+        Task<List<AnalisisIA>> GetAllAsync();
+        Task<AnalisisIA?> GetByIdAsync(int id);
+        Task<List<AnalisisIA>> GetByDiarioIdAsync(int diarioId);
 
-    Task<AnalisisIA> GuardarAnalisis(AnalisisIA analisis);
-
-    Task<AnalisisIA?> ObtenerAnalisisPorDiario(int idDiario);
+        Task<AnalisisIA> CreateAsync(AnalisisIA analisis);
+        Task<bool> UpdateAsync(AnalisisIA analisis);
+        Task<bool> DeleteAsync(int id);
+        Task<AnalisisIA?> GetLatestByDiarioAsync(int diarioId);
+    }
 }

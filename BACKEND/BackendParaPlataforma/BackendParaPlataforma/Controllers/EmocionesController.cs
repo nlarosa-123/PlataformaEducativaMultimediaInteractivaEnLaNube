@@ -1,105 +1,95 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using BackendParaPlataforma.Entities;
-using BackendParaPlataforma.dtos;
-using BackendParaPlataforma.cmds;
+﻿using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BackendParaPlataforma.Controllers
+namespace BackendParaPlataforma.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class EmocionesController : ControllerBase
     {
-        private readonly IEmocionesRepository _emocionesRepository;
+        private readonly IEmocionesRepository _repository;
 
-        public EmocionesController(IEmocionesRepository emocionesRepository)
+        public EmocionesController(IEmocionesRepository repository)
         {
-            _emocionesRepository = emocionesRepository;
+            _repository = repository;
         }
 
-        // GET: api/emociones
+        // 📌 GET: api/Emociones
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EmocionesDto>>> Get()
+        public async Task<ActionResult<IEnumerable<Emociones>>> GetAll()
         {
-            var emociones = await _emocionesRepository.GetAllAsync();
-
-            var emocionesDto = emociones.Select(e => new EmocionesDto
-            {
-                IdEmocion = e.IdEmocion,
-                Nombre = e.Nombre,
-                Emoji = e.Emoji,
-                Valor = e.Valor
-            });
-
-            return Ok(emocionesDto);
+            var emociones = await _repository.GetAllAsync();
+            return Ok(emociones);
         }
 
-        // GET api/emociones/5
+        // 📌 GET: api/Emociones/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<EmocionesDto>> Get(int id)
+        public async Task<ActionResult<Emociones>> GetById(int id)
         {
-            var emocion = await _emocionesRepository.GetByIdAsync(id);
+            var emocion = await _repository.GetByIdAsync(id);
 
             if (emocion == null)
-                return NotFound();
+                return NotFound($"No se encontró la emoción con ID {id}");
 
-            var dto = new EmocionesDto
-            {
-                IdEmocion = emocion.IdEmocion,
-                Nombre = emocion.Nombre,
-                Emoji = emocion.Emoji,
-                Valor = emocion.Valor
-            };
-
-            return Ok(dto);
+            return Ok(emocion);
         }
 
-        // POST api/emociones
+        // 🔍 GET: api/Emociones/nombre/feliz
+        [HttpGet("nombre/{nombre}")]
+        public async Task<ActionResult<Emociones>> GetByNombre(string nombre)
+        {
+            var emocion = await _repository.GetByNombreAsync(nombre);
+
+            if (emocion == null)
+                return NotFound($"No se encontró la emoción '{nombre}'");
+
+            return Ok(emocion);
+        }
+
+        // 🔥 GET: api/Emociones/rango?min=-1&max=2
+        [HttpGet("rango")]
+        public async Task<ActionResult<IEnumerable<Emociones>>> GetByRango([FromQuery] decimal min, [FromQuery] decimal max)
+        {
+            var emociones = await _repository.GetByRangoValorAsync(min, max);
+            return Ok(emociones);
+        }
+
+        // 📌 POST: api/Emociones
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CrearEmocionCommand command)
+        public async Task<ActionResult<Emociones>> Create([FromBody] Emociones emocion)
         {
-            var emocion = new Emociones
-            {
-                Nombre = command.Nombre,
-                Emoji = command.Emoji,
-                Valor = command.Valor
-            };
+            if (emocion == null)
+                return BadRequest("Datos inválidos");
 
-            await _emocionesRepository.AddAsync(emocion);
-            await _emocionesRepository.SaveChangesAsync();
+            var created = await _repository.CreateAsync(emocion);
 
-            return CreatedAtAction(nameof(Get), new { id = emocion.IdEmocion }, emocion);
+            return CreatedAtAction(nameof(GetById), new { id = created.IdEmocion }, created);
         }
 
-        // PUT api/emociones/5
+        // 📌 PUT: api/Emociones/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] CrearEmocionCommand command)
+        public async Task<IActionResult> Update(int id, [FromBody] Emociones emocion)
         {
-            var emocion = await _emocionesRepository.GetByIdAsync(id);
+            if (id != emocion.IdEmocion)
+                return BadRequest("El ID no coincide");
 
-            if (emocion == null)
-                return NotFound();
+            var updated = await _repository.UpdateAsync(emocion);
 
-            emocion.Nombre = command.Nombre;
-            emocion.Emoji = command.Emoji;
-            emocion.Valor = command.Valor;
-
-            await _emocionesRepository.SaveChangesAsync();
+            if (!updated)
+                return NotFound($"No se encontró la emoción con ID {id}");
 
             return NoContent();
         }
 
-        // DELETE api/emociones/5
+        // 📌 DELETE: api/Emociones/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var emocion = await _emocionesRepository.GetByIdAsync(id);
+            var deleted = await _repository.DeleteAsync(id);
 
-            if (emocion == null)
-                return NotFound();
-
-            await _emocionesRepository.DeleteAsync(emocion);
-            await _emocionesRepository.SaveChangesAsync();
+            if (!deleted)
+                return NotFound($"No se encontró la emoción con ID {id}");
 
             return NoContent();
         }

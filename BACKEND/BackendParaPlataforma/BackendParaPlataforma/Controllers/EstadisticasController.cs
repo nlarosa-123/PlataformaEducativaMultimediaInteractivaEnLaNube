@@ -1,97 +1,101 @@
-using AutoMapper;
-using BackendParaPlataforma.cmds;
-using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Scripting;
 
-
-namespace BackendParaPlataforma.Controllers
+namespace BackendParaPlataforma.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EstadisticasController : ControllerBase
+    public class EstadisticaUsuarioController : ControllerBase
     {
-        private readonly IEstadisticasRepository _statsRepository;
+        private readonly IEstadisticaUsuarioRepository _repository;
 
-        public EstadisticasController(IEstadisticasRepository statsRepo)
+        public EstadisticaUsuarioController(IEstadisticaUsuarioRepository repository)
         {
-            _statsRepository = statsRepo;
+            _repository = repository;
         }
 
-
-        // POST api/estadisticas (Create) 
-        [HttpPost]
-        public async Task<ActionResult<EstadisticaUsuarioDto>> Post([FromBody] CrearEstadisticaUsuarioCommand command)
+        // ?? GET: api/EstadisticaUsuario
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<EstadisticaUsuario>>> GetAll()
         {
-
-            //Esto habra que actualizarlo supongo
-            var stats = new EstadisticaUsuario(command.IdUsuario);
-
-
-            await _statsRepository.AddAsync(stats);
-            await _statsRepository.SaveChangesAsync();
-
-
-            return CreatedAtAction(nameof(Get), new { id = stats.IdEstadistica }, stats);
+            var result = await _repository.GetAllAsync();
+            return Ok(result);
         }
 
-
-
-        // Get api/estadisticas/userId (Read) 
-
+        // ?? GET: api/EstadisticaUsuario/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<EstadisticaUsuarioDto>> Get(int userId)
+        public async Task<ActionResult<EstadisticaUsuario>> GetById(int id)
         {
-            var estadisticas = await _statsRepository.GetAllAsync();
+            var estadistica = await _repository.GetByIdAsync(id);
 
-            var estadisticasDto = estadisticas.Select(e => new EstadisticaUsuarioDto
-            {
-                //Id = e.Id,
-                //IdUsuario = e.IdUsuario,
-                //CoincidenciaIa = e.CoincidenciaIa,
-                //EmocionFrecuente = e.EmocionFrecuente,
-                //RachaDias = e.RachaDias,
-                //UltimaAct = e.UltimaAct
-            });
+            if (estadistica == null)
+                return NotFound($"No se encontró la estadística con ID {id}");
 
-            return Ok(estadisticasDto);
+            return Ok(estadistica);
         }
 
-        //PUT api/estadisticas/id (Update) 
-        [HttpPut("{id}")]
-
-        public async Task<ActionResult> Put(int id, [FromBody] CrearEstadisticaUsuarioCommand command)
+        // ?? GET: api/EstadisticaUsuario/usuario/1
+        [HttpGet("usuario/{usuarioId}")]
+        public async Task<ActionResult<EstadisticaUsuario>> GetByUsuario(int usuarioId)
         {
-            var stats = await _statsRepository.GetByIdAsync(id);
-            if (stats == null)
-                return NotFound();
+            var estadistica = await _repository.GetByUsuarioIdAsync(usuarioId);
 
-            //stats.ActualizarRacha(command.RachaDias);
-            //stats.ActualizarFecha(command.UltimaAct);
+            if (estadistica == null)
+                return NotFound("El usuario aún no tiene estadísticas");
 
+            return Ok(estadistica);
+        }
 
-            await _statsRepository.SaveChangesAsync();
+        // ?? POST: api/EstadisticaUsuario
+        [HttpPost]
+        public async Task<ActionResult<EstadisticaUsuario>> Create([FromBody] EstadisticaUsuario estadistica)
+        {
+            if (estadistica == null)
+                return BadRequest("Datos inválidos");
+
+            var created = await _repository.CreateAsync(estadistica);
+
+            return CreatedAtAction(nameof(GetById), new { id = created.IdEstadistica }, created);
+        }
+
+        // ?? PUT: api/EstadisticaUsuario/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] EstadisticaUsuario estadistica)
+        {
+            if (id != estadistica.IdEstadistica)
+                return BadRequest("El ID no coincide");
+
+            var updated = await _repository.UpdateAsync(estadistica);
+
+            if (!updated)
+                return NotFound($"No se encontró la estadística con ID {id}");
+
             return NoContent();
         }
 
-        // DELETE api/estadisticas/id (Delete) 
-        [HttpDelete("{id}")]
-
-        public async Task<ActionResult> Delete(int id)
+        // ?? POST: api/EstadisticaUsuario/upsert
+        [HttpPost("upsert")]
+        public async Task<IActionResult> Upsert([FromBody] EstadisticaUsuario estadistica)
         {
+            if (estadistica == null)
+                return BadRequest("Datos inválidos");
 
-            var stats = await _statsRepository.GetByIdAsync(id);
+            await _repository.UpsertAsync(estadistica);
 
-            if (stats == null)
-                return NotFound();
+            return Ok("Estadísticas actualizadas correctamente");
+        }
 
-            await _statsRepository.DeleteAsync(stats);
-            await _statsRepository.SaveChangesAsync();
+        // ?? DELETE: api/EstadisticaUsuario/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _repository.DeleteAsync(id);
+
+            if (!deleted)
+                return NotFound($"No se encontró la estadística con ID {id}");
 
             return NoContent();
         }
     }
-
 }
