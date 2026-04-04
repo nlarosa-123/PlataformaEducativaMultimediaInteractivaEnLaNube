@@ -11,5 +11,5 @@ export const routes: Routes = [
   { path: 'diary', component: DiaryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'miespacio', component: MiespacioComponent, canActivate: [authGuard] }
+  //{ path: 'miespacio', component: MiespacioComponent, canActivate: [authGuard] }
 ];

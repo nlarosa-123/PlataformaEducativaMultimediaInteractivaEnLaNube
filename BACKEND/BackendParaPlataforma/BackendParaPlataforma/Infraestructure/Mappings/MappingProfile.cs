@@ -19,6 +19,11 @@ namespace BackendParaPlataforma.Infraestructure.Mappings
 
             CreateMap<CrearEmocionCommand, Emociones>();
 
+            CreateMap<DiarioEmocional, DiarioEmocionalDto>();
+
+            CreateMap<CrearDiarioDto, DiarioEmocional>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Fecha, opt => opt.Ignore());
         }
     }
 }
