@@ -18,5 +18,6 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         // ?? Extras clave para tu app
         Task<DiarioEmocionalDto?> GetLatestByUsuarioAsync(int usuarioId);
         Task<DiarioEmocionalDto?> GetHoyByUsuarioAsync(int usuarioId);
+        Task<List<DiarioListaDto>> GetByUsuarioYFechaAsync(int usuarioId, DateTime fecha);
     }
 }

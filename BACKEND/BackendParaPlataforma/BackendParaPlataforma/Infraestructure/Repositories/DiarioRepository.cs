@@ -157,5 +157,21 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
                 })
                 .FirstOrDefaultAsync();
         }
+        public async Task<List<DiarioListaDto>> GetByUsuarioYFechaAsync(int usuarioId, DateTime fecha)
+        {
+            return await _context.DiariosEmocionales
+                .Where(d => d.Id_Usuario == usuarioId
+                         && d.Fecha.Date == fecha.Date)
+                .OrderByDescending(d => d.Fecha)
+                .Select(d => new DiarioListaDto
+                {
+                    Id_Diario = d.Id_Diario,
+                    Fecha = d.Fecha,
+                    Texto_Usuario = d.Texto_Usuario,
+                    NombreEmocion = d.Emocion.Nombre,
+                    Emoji = d.Emocion.Emoji
+                })
+                .ToListAsync();
+        }
     }
 }

@@ -44,13 +44,13 @@ namespace BackendParaPlataforma.API.Controllers
             return Ok(diarios);
         }
 
-        // 📅 GET: api/DiarioEmocional/usuario/1/fecha?fecha=2026-04-03
+        // 📅 GET: api/DiarioEmocional/usuario/1/fecha/2026-04-03
         [HttpGet("usuario/{usuarioId}/fecha")]
-        public async Task<ActionResult<IEnumerable<DiarioEmocional>>> GetByFecha(
-            int usuarioId,
-            [FromQuery] DateTime fecha)
+        public async Task<ActionResult<List<DiarioListaDto>>> GetByFecha(
+    int usuarioId,
+    [FromQuery] DateTime fecha)
         {
-            var result = await _repository.GetByFechaAsync(usuarioId, fecha);
+            var result = await _repository.GetByUsuarioYFechaAsync(usuarioId, fecha);
             return Ok(result);
         }
 
@@ -114,5 +114,6 @@ namespace BackendParaPlataforma.API.Controllers
 
             return Ok(diario);
         }
+        
     }
 }
