@@ -1,1 +1,25 @@
 <p>inteligencia-artificial works!</p>
+<p>inteligencia-artificial works!</p>
+<p>inteligencia-artificial works!</p>
+<p>inteligencia-artificial works!</p>
+<p>inteligencia-artificial works!</p>
+
+<div *ngIf="estadistica" class="card">
+
+  <h2>
+    🤖 La IA coincide contigo el 
+    <strong>{{ estadistica.porcentajeCoincidenciaIA }}%</strong>
+    de los días
+  </h2>
+
+  <p>
+    Emoción más frecuente: 
+    <strong>{{ estadistica.emocionMasFrecuente }}</strong>
+  </p>
+
+  <p>
+    🔥 Llevas una racha de 
+    <strong>{{ estadistica.rachaDiasRegistrados }}</strong> días
+  </p>
+
+</div>

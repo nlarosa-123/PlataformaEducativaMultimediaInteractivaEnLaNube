@@ -15,7 +15,7 @@ namespace BackendParaPlataforma.Entities
         public int RachaDiasRegistrados { get; set; }
 
         public DateTime UltimaActualizacion { get; set; }
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
         // Constructor opcional
         public EstadisticaUsuario() { }
