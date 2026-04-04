@@ -40,8 +40,8 @@ Thumbs.db
 # Testing
 /coverage
 /BACKEND/BackendParaPlataforma/BackendParaPlataforma/obj/Debug/net8.0/BackendParaPlataforma.AssemblyInfo.cs
-/BACKEND/BackendParaPlataforma/BackendParaPlataforma/appsettings.json
+#/BACKEND/BackendParaPlataforma/BackendParaPlataforma/appsettings.json
 
 # SQL Configurations
 /BACKEND/BackendParaPlataforma/BackEndParaPlataforma/Migrations
-/BACKEND/BackendParaPlataforma/BackendParaPlataforma/Program.cs
+#/BACKEND/BackendParaPlataforma/BackendParaPlataforma/Program.cs
