@@ -1,3 +1,4 @@
+using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -37,10 +38,10 @@ namespace BackendParaPlataforma.API.Controllers
 
         // 📊 GET: api/DiarioEmocional/usuario/1
         [HttpGet("usuario/{usuarioId}")]
-        public async Task<ActionResult<IEnumerable<DiarioEmocional>>> GetByUsuario(int usuarioId)
+        public async Task<ActionResult<List<DiarioListaDto>>> GetByUsuario(int usuarioId)
         {
-            var result = await _repository.GetByUsuarioAsync(usuarioId);
-            return Ok(result);
+            var diarios = await _repository.GetByUsuarioAsync(usuarioId);
+            return Ok(diarios);
         }
 
         // 📅 GET: api/DiarioEmocional/usuario/1/fecha?fecha=2026-04-03
@@ -55,12 +56,12 @@ namespace BackendParaPlataforma.API.Controllers
 
         // 🚀 GET: api/DiarioEmocional/usuario/1/latest
         [HttpGet("usuario/{usuarioId}/latest")]
-        public async Task<ActionResult<DiarioEmocional>> GetLatest(int usuarioId)
+        public async Task<ActionResult<DiarioEmocionalDto>> GetLatest(int usuarioId)
         {
             var diario = await _repository.GetLatestByUsuarioAsync(usuarioId);
 
             if (diario == null)
-                return NotFound("El usuario no tiene diarios registrados");
+                return NotFound();
 
             return Ok(diario);
         }
@@ -102,6 +103,16 @@ namespace BackendParaPlataforma.API.Controllers
                 return NotFound($"No se encontró el diario con ID {id}");
 
             return NoContent();
+        }
+        [HttpGet("usuario/{usuarioId}/hoy")]
+        public async Task<ActionResult<DiarioEmocionalDto>> GetHoy(int usuarioId)
+        {
+            var diario = await _repository.GetHoyByUsuarioAsync(usuarioId);
+
+            if (diario == null)
+                return NotFound("No hay registro hoy");
+
+            return Ok(diario);
         }
     }
 }

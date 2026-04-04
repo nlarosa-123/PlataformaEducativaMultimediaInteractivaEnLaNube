@@ -1,3 +1,4 @@
+using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 
 namespace BackendParaPlataforma.Infraestructure.Repositories
@@ -7,7 +8,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         Task<List<DiarioEmocional>> GetAllAsync();
         Task<DiarioEmocional?> GetByIdAsync(int id);
 
-        Task<List<DiarioEmocional>> GetByUsuarioAsync(int usuarioId);
+        Task<List<DiarioListaDto>> GetByUsuarioAsync(int usuarioId);
         Task<List<DiarioEmocional>> GetByFechaAsync(int usuarioId, DateTime fecha);
 
         Task<DiarioEmocional> CreateAsync(DiarioEmocional diario);
@@ -15,6 +16,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         Task<bool> DeleteAsync(int id);
 
         // ?? Extras clave para tu app
-        Task<DiarioEmocional?> GetLatestByUsuarioAsync(int usuarioId);
+        Task<DiarioEmocionalDto?> GetLatestByUsuarioAsync(int usuarioId);
+        Task<DiarioEmocionalDto?> GetHoyByUsuarioAsync(int usuarioId);
     }
 }

@@ -1,3 +1,4 @@
+using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -36,13 +37,19 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         }
 
         // ?? Obtener diarios por usuario
-        public async Task<List<DiarioEmocional>> GetByUsuarioAsync(int usuarioId)
+        public async Task<List<DiarioListaDto>> GetByUsuarioAsync(int usuarioId)
         {
             return await _context.DiariosEmocionales
                 .Where(d => d.Id_Usuario == usuarioId)
-                .Include(d => d.Emocion)
-                .Include(d => d.AnalisisIA)
                 .OrderByDescending(d => d.Fecha)
+                .Select(d => new DiarioListaDto
+                {
+                    Id_Diario = d.Id_Diario,
+                    Fecha = d.Fecha,
+                    Texto_Usuario = d.Texto_Usuario,
+                    NombreEmocion = d.Emocion.Nombre,
+                    Emoji = d.Emocion.Emoji
+                })
                 .ToListAsync();
         }
 
@@ -100,14 +107,54 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         }
 
         // ?? Obtener último diario del usuario (clave para dashboard)
-        public async Task<DiarioEmocional?> GetLatestByUsuarioAsync(int usuarioId)
+        public async Task<DiarioEmocionalDto?> GetLatestByUsuarioAsync(int usuarioId)
         {
             return await _context.DiariosEmocionales
                 .Where(d => d.Id_Usuario == usuarioId)
-                .Include(d => d.Emocion)
-                .Include(d => d.AnalisisIA)
-                .Include(d => d.ReflexionMejora)
                 .OrderByDescending(d => d.Fecha)
+                .Select(d => new DiarioEmocionalDto
+                {
+                    Id_Diario = d.Id_Diario,
+                    Id_Usuario = d.Id_Usuario,
+                    Fecha = d.Fecha,
+                    Texto_Usuario = d.Texto_Usuario,
+
+                    NombreEmocion = d.Emocion.Nombre,
+                    Emoji = d.Emocion.Emoji,
+
+                    // ? ya no lista
+                    Tono = d.AnalisisIA.Tono_Detectado,
+
+                    // ? ya no lista
+                    Reflexion = d.ReflexionMejora.Texto_Reflexion
+                })
+                .FirstOrDefaultAsync();
+        }
+        public async Task<DiarioEmocionalDto?> GetHoyByUsuarioAsync(int usuarioId)
+        {
+            var hoy = DateTime.UtcNow.Date;
+
+            return await _context.DiariosEmocionales
+                .Where(d => d.Id_Usuario == usuarioId
+                         && d.Fecha.Date == hoy)
+                .Select(d => new DiarioEmocionalDto
+                {
+                    Id_Diario = d.Id_Diario,
+                    Id_Usuario = d.Id_Usuario,
+                    Fecha = d.Fecha,
+                    Texto_Usuario = d.Texto_Usuario,
+
+                    NombreEmocion = d.Emocion.Nombre,
+                    Emoji = d.Emocion.Emoji,
+
+                    Tono = d.AnalisisIA != null
+                        ? d.AnalisisIA.Tono_Detectado
+                        : null,
+
+                    Reflexion = d.ReflexionMejora != null
+                        ? d.ReflexionMejora.Texto_Reflexion
+                        : null
+                })
                 .FirstOrDefaultAsync();
         }
     }

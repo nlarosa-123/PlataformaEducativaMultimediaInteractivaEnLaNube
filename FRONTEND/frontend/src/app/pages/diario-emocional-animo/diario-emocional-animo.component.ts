@@ -78,8 +78,6 @@ export class DiarioEmocionalAnimoComponent {
       texto_Reflexion: this.transcription || this.textoUsuario,
       fecha_Creacion: new Date().toISOString()
     };
-    console.log("hola")
-    console.log(payload.texto_Reflexion);
 
     this.http.post('http://localhost:5169/api/ReflexionMejora', payload)
       .subscribe({
