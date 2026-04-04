@@ -1,5 +1,4 @@
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\appsettings.json
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\BackendParaPlataforma.staticwebassets.endpoints.json
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\BackendParaPlataforma.exe
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\bin\Debug\net8.0\BackendParaPlataforma.deps.json
@@ -330,7 +329,6 @@ C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteract
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\swae.build.ex.cache
-C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendP.6D30E791.Up2Date
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\BackendParaPlataforma.dll
 C:\Users\irema\Documents\MyRepo\UniAccount\PlataformaEducativaMultimediaInteractivaEnLaNube\BACKEND\BackendParaPlataforma\BackendParaPlataforma\obj\Debug\net8.0\refint\BackendParaPlataforma.dll

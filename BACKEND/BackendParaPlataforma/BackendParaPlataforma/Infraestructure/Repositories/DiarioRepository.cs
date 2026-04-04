@@ -54,7 +54,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
                 .ToListAsync();
         }
 
-        // ?? Obtener diarios por fecha (ej: un día específico)
+        // ?? Obtener diarios por fecha (ej: un d�a espec�fico)
         public async Task<List<DiarioEmocional>> GetByFechaAsync(int usuarioId, DateTime fecha)
         {
             return await _context.DiariosEmocionales
@@ -107,7 +107,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
             return true;
         }
 
-        // ?? Obtener �ltimo diario del usuario (clave para dashboard)
+        // ?? Obtener último diario del usuario (clave para dashboard)
         public async Task<DiarioEmocionalDto?> GetLatestByUsuarioAsync(int usuarioId)
         {
             return await _context.DiariosEmocionales

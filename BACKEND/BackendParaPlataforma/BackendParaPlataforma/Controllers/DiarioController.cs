@@ -1,4 +1,3 @@
-using AutoMapper;
 using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;

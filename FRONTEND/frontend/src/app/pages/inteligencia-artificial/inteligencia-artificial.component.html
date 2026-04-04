@@ -1,25 +1,51 @@
-<p>inteligencia-artificial works!</p>
-<p>inteligencia-artificial works!</p>
-<p>inteligencia-artificial works!</p>
-<p>inteligencia-artificial works!</p>
-<p>inteligencia-artificial works!</p>
+<div class="ia-page">
+  <div class="container">
 
-<div *ngIf="estadistica" class="card">
+    <!-- Cabecera -->
+    <section class="cabecera">
+      <p class="eyebrow">Análisis con IA</p>
+      <h1>Tu resumen emocional inteligente</h1>
+      <p class="descripcion">
+        Nuestro modelo analiza tus registros y te ofrece una visión objetiva de tu estado emocional.
+      </p>
+    </section>
 
-  <h2>
-    🤖 La IA coincide contigo el 
-    <strong>{{ estadistica.porcentajeCoincidenciaIA }}%</strong>
-    de los días
-  </h2>
+    <!-- Estado de carga -->
+    <div *ngIf="!estadistica" class="placeholder-card">
+      <span class="placeholder-icono">🤖</span>
+      <p>Cargando tu análisis de IA...</p>
+    </div>
 
-  <p>
-    Emoción más frecuente: 
-    <strong>{{ estadistica.emocionMasFrecuente }}</strong>
-  </p>
+    <!-- Cards de estadísticas -->
+    <div *ngIf="estadistica" class="cards-grid">
 
-  <p>
-    🔥 Llevas una racha de 
-    <strong>{{ estadistica.rachaDiasRegistrados }}</strong> días
-  </p>
+      <!-- Coincidencia IA -->
+      <div class="stat-card card-coincidencia">
+        <div class="card-icono">🤖</div>
+        <p class="card-label">Coincidencia con la IA</p>
+        <p class="card-valor">{{ estadistica.porcentajeCoincidenciaIA }}<span class="unidad">%</span></p>
+        <p class="card-descripcion">de los días, la IA acertó con tu estado emocional</p>
+        <div class="barra-progreso">
+          <div class="barra-relleno" [style.width.%]="estadistica.porcentajeCoincidenciaIA"></div>
+        </div>
+      </div>
 
+      <!-- Emoción más frecuente -->
+      <div class="stat-card card-emocion">
+        <div class="card-icono">💜</div>
+        <p class="card-label">Emoción más frecuente</p>
+        <p class="card-valor card-valor--texto">{{ estadistica.emocionMasFrecuente }}</p>
+        <p class="card-descripcion">Es la emoción que más veces has registrado en tu diario</p>
+      </div>
+
+      <!-- Racha de días -->
+      <div class="stat-card card-racha">
+        <div class="card-icono">🔥</div>
+        <p class="card-label">Racha actual</p>
+        <p class="card-valor">{{ estadistica.rachaDiasRegistrados }}<span class="unidad"> días</span></p>
+        <p class="card-descripcion">consecutivos registrando tu estado emocional</p>
+      </div>
+
+    </div>
+  </div>
 </div>

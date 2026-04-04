@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Inter:wght@300;500&display=swap');
+
+.espacio-page {
+    min-height: 100vh;
+    padding: 96px 20px 40px;
+    background-color: #f9f3e9;
+    font-family: 'Inter', sans-serif;
+    color: #4a4a4a;
+
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+}
+
+.cabecera {
+    margin-bottom: 28px;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 2px solid #e8c4a0;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+
+    .saludo-texto {
+        flex: 1;
+        background-color: #e8a87c;
+        padding: 3rem 2.5rem;
+        color: #f9f3e9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px dotted rgba(249, 243, 233, 0.45);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.22);
+            color: #f9f3e9;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin: 0 0 14px;
+            width: fit-content;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 10px;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            color: #f9f3e9;
+            line-height: 1.15;
+        }
+
+        .subtitulo {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .acciones-diario {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .btn-diario {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+
+            &--primario {
+                background: #f9f3e9;
+                color: #7a4c24;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+            }
+
+            &--secundario {
+                border: 1px solid rgba(249, 243, 233, 0.55);
+                color: #f9f3e9;
+                background: rgba(255, 255, 255, 0.12);
+            }
+        }
+    }
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.stat-card {
+    background: #fffaf4;
+    border-radius: 24px;
+    padding: 32px 28px;
+    border: 2px solid #e8c4a0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-icono {
+        font-size: 2.8rem;
+        width: 68px;
+        height: 68px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+    }
+
+    .card-label {
+        margin: 0 0 8px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .card-valor {
+        font-family: 'Playfair Display', serif;
+        margin: 0 0 8px;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #4a4a4a;
+        line-height: 1.2;
+
+        &.card-valor--vacio {
+            font-family: 'Inter', sans-serif;
+            color: #b0a89c;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+
+    .card-tono {
+        margin: 8px 0 0;
+        font-size: 0.9rem;
+        color: #6c584c;
+    }
+
+    .card-descripcion {
+        margin: 6px 0 0;
+        font-size: 0.9rem;
+        color: #6c584c;
+        line-height: 1.5;
+    }
+}
+
+.card-emocion {
+    border-color: #e8a87c;
+
+    .card-icono {
+        background: rgba(232, 168, 124, 0.14);
+    }
+
+    .card-label {
+        color: #c07d4a;
+    }
+}
+
+.card-sin-datos {
+    border-color: #c38d9e;
+
+    .card-icono {
+        background: rgba(195, 141, 158, 0.12);
+    }
+
+    .card-label {
+        color: #c38d9e;
+    }
+}
+
+@media (max-width: 768px) {
+    .espacio-page {
+        padding: 84px 12px 28px;
+    }
+
+    .cabecera {
+        border-radius: 22px;
+
+        .saludo-texto {
+            padding: 24px 20px;
+
+            .acciones-diario {
+                flex-direction: column;
+            }
+
+            .btn-diario {
+                width: 100%;
+            }
+        }
+    }
+
+    .stat-card {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 16px 40px rgba(100, 80, 90, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 50px rgba(100, 80, 90, 0.16);
+    }
+
+    .card-icono {
+        font-size: 2.8rem;
+        width: 68px;
+        height: 68px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+    }
+
+    .card-label {
+        margin: 0 0 8px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .card-valor {
+        margin: 0 0 8px;
+        font-size: 1.9rem;
+        font-weight: 800;
+        color: #4a4a4a;
+        line-height: 1.2;
+
+        &.card-valor--vacio {
+            color: #b0a89c;
+            font-size: 1.3rem;
+        }
+    }
+
+    .card-tono {
+        margin: 8px 0 0;
+        font-size: 0.9rem;
+        color: #7a6d5d;
+    }
+
+    .card-descripcion {
+        margin: 6px 0 0;
+        font-size: 0.9rem;
+        color: #7a6d5d;
+        line-height: 1.5;
+    }
+}
+
+.card-emocion {
+    border-top: 4px solid #C38D9E;
+
+    .card-icono { background: rgba(195, 141, 158, 0.12); }
+    .card-label { color: #C38D9E; }
+}
+
+.card-sin-datos {
+    border-top: 4px solid #E8C4A0;
+
+    .card-icono { background: rgba(232, 196, 160, 0.16); }
+    .card-label { color: #c07d4a; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+}
+
+@media (max-width: 768px) {
+    .espacio-page {
+        padding: 84px 12px 28px;
+    }
+
+    .cabecera {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 24px 20px;
+        border-radius: 22px;
+
+        .saludo-decoracion {
+            align-self: center;
+        }
+    }
+
+    .stat-card {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+}
