@@ -66,6 +66,10 @@
               "target": "Package",
               "version": "[8.0.24, )"
             },
+            "Microsoft.CognitiveServices.Speech": {
+              "target": "Package",
+              "version": "[1.46.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.24, )"

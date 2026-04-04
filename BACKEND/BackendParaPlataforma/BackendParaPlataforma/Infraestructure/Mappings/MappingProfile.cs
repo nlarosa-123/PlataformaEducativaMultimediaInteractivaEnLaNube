@@ -22,7 +22,7 @@ namespace BackendParaPlataforma.Infraestructure.Mappings
             CreateMap<DiarioEmocional, DiarioEmocionalDto>();
 
             CreateMap<CrearDiarioDto, DiarioEmocional>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Id_Diario, opt => opt.Ignore())
                 .ForMember(dest => dest.Fecha, opt => opt.Ignore());
         }
     }

@@ -11,6 +11,10 @@ Desarrollo de una plataforma web educativa para el desarrollo personal y bienest
 - **Git** (for version control)
 - A modern web browser (Chrome, Firefox, Edge, etc.)
 
+- Backend:
+- npm install recordrtc
+- Servicios de Azure AI
+- dotnet run
 ---
 
 ## 🚀 Getting Started

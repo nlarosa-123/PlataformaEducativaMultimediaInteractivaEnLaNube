@@ -1,0 +1,34 @@
+<p>historial-emocional works!</p>
+<p>historial-emocional works!</p>
+<p>historial-emocional works!</p>
+<p>historial-emocional works!</p>
+<p>historial-emocional works!</p>
+
+<h2>Historial emocional</h2>
+
+<!-- selector de fecha -->
+<input type="date" [(ngModel)]="fechaSeleccionada">
+
+<button (click)="buscar()">Ver ese día</button>
+
+<!-- resultado -->
+<div *ngIf="resultado" class="card">
+
+  <h3>
+    {{ resultado.fecha | date:'fullDate' }}
+  </h3>
+
+  <h2>
+    Te sentiste {{ resultado.emoji }}
+  </h2>
+
+  <p>
+    {{ resultado.texto_Usuario }}
+  </p>
+
+</div>
+
+<!-- sin datos -->
+<div *ngIf="resultado === null && fechaSeleccionada">
+  <p>No hay registro para ese día 😢</p>
+</div>

@@ -2,19 +2,24 @@ namespace BackendParaPlataforma.Entities
 {
     public class DiarioEmocional
     {
-        public int Id { get; set; }
+        public int Id_Diario { get; set; }
 
-        public int UsuarioId { get; set; }
-
-        public int EmocionId { get; set; }
-
-        public string Contenido { get; set; } = string.Empty;
+        public int Id_Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
         public DateTime Fecha { get; set; }
 
-        // Relaciones
-        public Usuario? Usuario { get; set; }
-
+        public int Id_Emocion_Usuario { get; set; }
         public Emociones? Emocion { get; set; }
+
+        public string? Texto_Usuario { get; set; }
+
+        public string? Audio_Url { get; set; }
+
+        public DateTime Fecha_Creacion { get; set; }
+
+        public AnalisisIA? AnalisisIA { get; set; }
+
+        public ReflexionMejora? ReflexionMejora { get; set; }
     }
 }
