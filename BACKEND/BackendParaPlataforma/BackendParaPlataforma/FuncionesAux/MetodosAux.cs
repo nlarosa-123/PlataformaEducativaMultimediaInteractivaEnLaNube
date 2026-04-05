@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Persistence;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -100,8 +101,20 @@ namespace BackendParaPlataforma.FuncionesAux
                 .OrderByDescending(f => f)
                 .ToList();
 
-            int racha = 0;
-            DateTime hoy = DateTime.Today;
+            if (!fechas.Any()) return 0;
+
+            int racha = 1;
+            DateTime fechaBase = fechas[0];
+
+            for (int i = 1; i < fechas.Count; i++)
+            {
+                if (fechas[i] == fechaBase.AddDays(-racha))
+                    racha++;
+                else
+                    break;
+            }
+
+            /*DateTime hoy = DateTime.Today;
 
             foreach (var fecha in fechas)
             {
@@ -109,7 +122,7 @@ namespace BackendParaPlataforma.FuncionesAux
                     racha++;
                 else
                     break;
-            }
+            }*/
 
             return racha;
         }

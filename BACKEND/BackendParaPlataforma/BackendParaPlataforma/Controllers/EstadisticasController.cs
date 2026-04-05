@@ -49,6 +49,8 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpGet("usuario/{usuarioId}")]
         public async Task<ActionResult<EstadisticaUsuario>> GetByUsuario(int usuarioId)
         {
+            await _metodosAux.CrearActualizarEstUsuario(usuarioId);
+
             var estadistica = await _repository.GetByUsuarioIdAsync(usuarioId);
 
             if (estadistica == null)
