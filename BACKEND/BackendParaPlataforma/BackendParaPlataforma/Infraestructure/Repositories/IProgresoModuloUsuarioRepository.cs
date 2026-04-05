@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 
 namespace BackendParaPlataforma.Infraestructure.Repositories
 {
@@ -6,7 +7,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
     {
         Task<IEnumerable<ProgresoModuloUsuario>> GetAllAsync();
         Task<ProgresoModuloUsuario?> GetByIdAsync(int id);
-        Task<IEnumerable<ProgresoModuloUsuario>> GetByUsuarioIdAsync(int usuarioId);
+        Task<IEnumerable<ProgresoModuloUsuarioDto>> GetByUsuarioIdAsync(int usuarioId);
         Task<ProgresoModuloUsuario?> GetByUsuarioModuloAsync(int usuarioId, int moduloId);
 
         Task<ProgresoModuloUsuario> CreateAsync(ProgresoModuloUsuario progreso);

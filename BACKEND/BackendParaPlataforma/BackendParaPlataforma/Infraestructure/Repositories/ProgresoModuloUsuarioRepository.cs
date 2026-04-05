@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,12 +33,21 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         }
 
         // 🔹 Obtener progreso por usuario
-        public async Task<IEnumerable<ProgresoModuloUsuario>> GetByUsuarioIdAsync(int usuarioId)
+        public async Task<IEnumerable<ProgresoModuloUsuarioDto>> GetByUsuarioIdAsync(int usuarioId)
         {
             return await _context.ProgresoModuloUsuarios
-                .Include(p => p.Modulos)
-                .Where(p => p.IdUsuario == usuarioId)
-                .ToListAsync();
+        .Where(p => p.IdUsuario == usuarioId)
+        .Select(p => new ProgresoModuloUsuarioDto
+        {
+            IdUsuario = p.IdUsuario,
+            NombreUsuario = p.Usuario.Nombre,
+            IdModulo = p.IdModulo,
+            Porcentaje = p.Porcentaje,
+            Completado = p.Completado,
+            UltimaLeccion = p.UltimaLeccion,
+            TituloModulo = p.Modulos.Titulo
+        })
+        .ToListAsync();
         }
 
         // 🔹 Obtener progreso específico (usuario + módulo)
