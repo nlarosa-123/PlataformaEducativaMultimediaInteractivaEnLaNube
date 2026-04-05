@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +41,14 @@ namespace BackendParaPlataforma.Controllers
         public async Task<IActionResult> GetByQuiz(int quizId)
         {
             var preguntas = await _repository.GetByQuizIdAsync(quizId);
-            return Ok(preguntas);
+
+            var dto = preguntas.Select(p => new PreguntaQuizDto
+            {
+                IdPregunta = p.IdPregunta,
+                Pregunta = p.Pregunta
+            });
+
+            return Ok(dto);
         }
 
         // 🔹 POST: api/preguntaquiz

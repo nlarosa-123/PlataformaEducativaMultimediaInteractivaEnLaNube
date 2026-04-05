@@ -1,6 +1,8 @@
+using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Quic;
 
 namespace BackendParaPlataforma.API.Controllers
 {
@@ -42,9 +44,21 @@ namespace BackendParaPlataforma.API.Controllers
             var quiz = await _repository.GetByLeccionIdAsync(leccionId);
 
             if (quiz == null)
-                return NotFound(new { message = "No existe quiz para esta lección" });
+                return NotFound();
 
-            return Ok(quiz);
+            var dto = new QuizDto
+            {
+                IdQuiz = quiz.IdQuiz,
+                Titulo = quiz.Titulo,
+                Descripcion = quiz.Descripcion,
+                Preguntas = quiz.PreguntaQuizzes.Select(p => new PreguntaQuizDto
+                {
+                    IdPregunta = p.IdPregunta,
+                    IdQuiz = p.IdQuiz
+                }).ToList()
+            };
+
+            return Ok(dto);
         }
 
         // ?? POST: api/quiz

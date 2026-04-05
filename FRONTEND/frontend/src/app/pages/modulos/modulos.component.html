@@ -1,0 +1,13 @@
+<p>modulos works!</p>
+<p>modulos works!</p>
+<p>modulos works!</p>
+<p>modulos works!</p>
+<p>modulos works!</p>
+
+<div *ngFor="let modulo of modulos">
+  <h2>{{ modulo.titulo }}</h2>
+  <h3>{{ modulo.descripcion }}</h3>
+  <button [routerLink]="['/modulos', modulo.idModulo]">
+    Ver lecciones
+  </button>
+</div>
