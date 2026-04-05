@@ -1,9 +1,10 @@
+using BackendParaPlataforma.FuncionesAux;
 using BackendParaPlataforma.Infraestructure.Mappings;
-using BackendParaPlataforma.Infraestructure.Repositories;
 using BackendParaPlataforma.Infraestructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using BackendParaPlataforma.Infraestructure.Repositories;
 using BackendParaPlataforma.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
@@ -49,6 +50,7 @@ builder.Services.AddScoped<IProgresoLeccionUsuarioRepository, ProgresoLeccionUsu
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
 builder.Services.AddScoped<IOpcionRespuestaRepository, OpcionRespuestaRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+builder.Services.AddScoped<MetodosAux>();
 
 builder.Services.AddCors(options =>
 {

@@ -4,7 +4,6 @@ namespace BackendParaPlataforma.Entities
 
     public class AnalisisIA
     {
-
         public int Id_Analisis { get; set; }
 
         public int Id_Diario { get; set; }
@@ -16,7 +15,6 @@ namespace BackendParaPlataforma.Entities
         public decimal Confianza { get; set; }
 
         public bool Coincide_Usuario { get; set; }
-
         public DateTime Fecha_Analisis { get; set; }
         public DiarioEmocional? DiarioEmocional { get; set; }
         public Emociones? Emociones { get; set; }
