@@ -17,10 +17,17 @@
 
       <!-- OPCIONES -->
       <div *ngFor="let op of opciones[pregunta.idPregunta]">
-        <button>
-          {{ op.textoOpcion }}
-        </button>
-      </div>
+  <button 
+  (click)="responder(pregunta, op)"
+  [disabled]="yaRespondida(pregunta.idPregunta)"
+  [ngClass]="{
+    'correcta': op.esCorrecta && yaRespondida(pregunta.idPregunta),
+    'incorrecta': respuestas[pregunta.idPregunta] === op.idOpcion && !op.esCorrecta
+  }"
+>
+  {{ op.textoOpcion }}
+</button>
+</div>
 
     </div>
   </div>

@@ -61,19 +61,19 @@ namespace BackendParaPlataforma.Controllers
 
             try
             {
-                var created = await _repository.CreateAsync(respuesta);
+                var result = await _repository.UpsertAsync(respuesta);
 
                 var dto = new RespuestaUsuarioQuizDto
                 {
-                    IdRespuesta = created.IdRespuesta,
-                    IdUsuario = created.IdUsuario,
-                    IdPregunta = created.IdPregunta,
-                    IdOpcionElegida = created.IdOpcionElegida,
-                    Correcta = created.Correcta,
-                    FechaRespuesta = created.FechaRespuesta
+                    IdRespuesta = result.IdRespuesta,
+                    IdUsuario = result.IdUsuario,
+                    IdPregunta = result.IdPregunta,
+                    IdOpcionElegida = result.IdOpcionElegida,
+                    Correcta = result.Correcta,
+                    FechaRespuesta = result.FechaRespuesta
                 };
 
-                return CreatedAtAction(nameof(GetById), new { id = dto.IdRespuesta }, dto);
+                return Ok(dto); // 👈 ya no usamos Created siempre
             }
             catch (Exception ex)
             {

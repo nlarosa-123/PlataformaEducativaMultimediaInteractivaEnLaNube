@@ -20,6 +20,7 @@ export class ModuloDetalleComponent implements OnInit {
   idModulo!: number;
   preguntas: { [key: number]: any[] } = {}; 
   opciones: { [key: number]: any[] } = {};
+  respuestas: { [key: number]: number } = {};
 
   constructor(
     private http: HttpClient,
@@ -71,5 +72,32 @@ export class ModuloDetalleComponent implements OnInit {
     .subscribe(data => {
       this.opciones[idPregunta] = data;
     });
+}
+  esSeleccionada(idPregunta: number, idOpcion: number): boolean {
+  return this.respuestas[idPregunta] === idOpcion;
+}
+  responder(pregunta: any, opcion: any) {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+  const payload = {
+    idUsuario: user.id,
+    idPregunta: pregunta.idPregunta,
+    idOpcionElegida: opcion.idOpcion,
+    correcta: opcion.esCorrecta // 👈 importante
+  };
+
+  this.http.post(`http://localhost:5169/api/RespuestaUsuarioQuiz`, payload)
+    .subscribe({
+      next: () => {
+        console.log('✅ Respuesta guardada');
+
+        // guardar localmente selección
+        this.respuestas[pregunta.idPregunta] = opcion.idOpcion;
+      },
+      error: (err) => console.error(err)
+    });
+}
+  yaRespondida(idPregunta: number): boolean {
+  return this.respuestas[idPregunta] !== undefined;
 }
 }

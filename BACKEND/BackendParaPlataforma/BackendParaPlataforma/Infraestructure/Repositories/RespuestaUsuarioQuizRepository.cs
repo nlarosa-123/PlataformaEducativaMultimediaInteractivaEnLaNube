@@ -13,6 +13,33 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
             _context = context;
         }
 
+        public async Task<RespuestaUsuarioQuiz> UpsertAsync(RespuestaUsuarioQuiz respuesta)
+        {
+            var existente = await _context.RespuestaUsuarioQuizzes
+                .FirstOrDefaultAsync(r =>
+                    r.IdUsuario == respuesta.IdUsuario &&
+                    r.IdPregunta == respuesta.IdPregunta);
+
+            if (existente != null)
+            {
+                // 🔥 UPDATE
+                existente.IdOpcionElegida = respuesta.IdOpcionElegida;
+                existente.Correcta = respuesta.Correcta;
+                existente.FechaRespuesta = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
+                return existente;
+            }
+
+            // 🔥 CREATE
+            respuesta.FechaRespuesta = DateTime.UtcNow;
+
+            await _context.RespuestaUsuarioQuizzes.AddAsync(respuesta);
+            await _context.SaveChangesAsync();
+
+            return respuesta;
+        }
+
         // 🔹 Obtener todas
         public async Task<IEnumerable<RespuestaUsuarioQuiz>> GetAllAsync()
         {

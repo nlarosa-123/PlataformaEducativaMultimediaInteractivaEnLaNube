@@ -15,5 +15,6 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         Task<RespuestaUsuarioQuiz> CreateAsync(RespuestaUsuarioQuiz respuesta);
         Task<bool> UpdateAsync(RespuestaUsuarioQuiz respuesta);
         Task<bool> DeleteAsync(int id);
+        Task<RespuestaUsuarioQuiz> UpsertAsync(RespuestaUsuarioQuiz respuesta);
     }
 }
