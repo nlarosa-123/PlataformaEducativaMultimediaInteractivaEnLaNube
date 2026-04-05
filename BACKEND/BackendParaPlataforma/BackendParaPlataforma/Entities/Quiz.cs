@@ -9,7 +9,7 @@ namespace BackendParaPlataforma.Entities
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
 
-        public Lecciones Lecciones { get; set; }
-        public ICollection<PreguntaQuiz> PreguntaQuizzes { get; set; }
+        public Lecciones? Lecciones { get; set; }
+        public ICollection<PreguntaQuiz>? PreguntaQuizzes { get; set; }
     }
 }

@@ -4,21 +4,13 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
 {
     public interface IProgresoModuloUsuarioRepository
     {
-        Task<List<ProgresoModuloUsuario>> ObtenerTodosAsync();
+        Task<IEnumerable<ProgresoModuloUsuario>> GetAllAsync();
+        Task<ProgresoModuloUsuario?> GetByIdAsync(int id);
+        Task<IEnumerable<ProgresoModuloUsuario>> GetByUsuarioIdAsync(int usuarioId);
+        Task<ProgresoModuloUsuario?> GetByUsuarioModuloAsync(int usuarioId, int moduloId);
 
-        Task<ProgresoModuloUsuario?> ObtenerPorIdAsync(int id);
-
-        Task<ProgresoModuloUsuario?> ObtenerAsync(int idUsuario, int idModulo);
-
-        Task<ProgresoModuloUsuario> CrearAsync(ProgresoModuloUsuario progreso);
-
-        void Actualizar(ProgresoModuloUsuario progreso);
-
-        void Eliminar(ProgresoModuloUsuario progreso);
-
-        Task SaveChangesAsync();
-        #region usuario
-        Task<List<ProgresoModuloUsuario>> ObtenerPorUsuarioAsync(int idUsuario);
-        #endregion
+        Task<ProgresoModuloUsuario> CreateAsync(ProgresoModuloUsuario progreso);
+        Task<bool> UpdateAsync(ProgresoModuloUsuario progreso);
+        Task<bool> DeleteAsync(int id);
     }
 }
