@@ -65,6 +65,8 @@ namespace BackendParaPlataforma.API.Controllers
 
             var created = await _repository.CreateAsync(analisis);
 
+            //CrearActualizarEstUsuario(analisis.Id_Diario);
+
             return CreatedAtAction(nameof(GetById), new { id = created.Id_Analisis }, created);
         }
 

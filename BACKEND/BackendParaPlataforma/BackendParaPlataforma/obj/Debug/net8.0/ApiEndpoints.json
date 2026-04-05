@@ -1,0 +1,2045 @@
+[
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.AnalisisIAController",
+    "Method": "GetAll",
+    "RelativePath": "api/AnalisisIA",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.Entities.AnalisisIA, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.AnalisisIAController",
+    "Method": "Create",
+    "RelativePath": "api/AnalisisIA",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "analisis",
+        "Type": "BackendParaPlataforma.Entities.AnalisisIA",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.AnalisisIA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.AnalisisIAController",
+    "Method": "GetById",
+    "RelativePath": "api/AnalisisIA/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.AnalisisIA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.AnalisisIAController",
+    "Method": "Update",
+    "RelativePath": "api/AnalisisIA/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "analisis",
+        "Type": "BackendParaPlataforma.Entities.AnalisisIA",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.AnalisisIAController",
+    "Method": "Delete",
+    "RelativePath": "api/AnalisisIA/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.AnalisisIAController",
+    "Method": "GetByDiario",
+    "RelativePath": "api/AnalisisIA/diario/{diarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "diarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.Dtos.AnalisisIADto, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.AnalisisIAController",
+    "Method": "GetLatestByDiario",
+    "RelativePath": "api/AnalisisIA/diario/{diarioId}/latest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "diarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.AnalisisIA",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "BackendParaPlataforma.dtos.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BackendParaPlataforma.cmds.CrearUsuarioCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.dtos.UsuarioDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "GetAll",
+    "RelativePath": "api/DiarioEmocional",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.Entities.DiarioEmocional, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "Create",
+    "RelativePath": "api/DiarioEmocional",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "diario",
+        "Type": "BackendParaPlataforma.Entities.DiarioEmocional",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.DiarioEmocional",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "GetById",
+    "RelativePath": "api/DiarioEmocional/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.DiarioEmocional",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "Update",
+    "RelativePath": "api/DiarioEmocional/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "diario",
+        "Type": "BackendParaPlataforma.Entities.DiarioEmocional",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "Delete",
+    "RelativePath": "api/DiarioEmocional/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "GetByUsuario",
+    "RelativePath": "api/DiarioEmocional/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BackendParaPlataforma.dtos.DiarioListaDto, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "GetByFecha",
+    "RelativePath": "api/DiarioEmocional/usuario/{usuarioId}/fecha",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "fecha",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BackendParaPlataforma.dtos.DiarioListaDto, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "GetHoy",
+    "RelativePath": "api/DiarioEmocional/usuario/{usuarioId}/hoy",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.dtos.DiarioEmocionalDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.DiarioEmocionalController",
+    "Method": "GetLatest",
+    "RelativePath": "api/DiarioEmocional/usuario/{usuarioId}/latest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.dtos.DiarioEmocionalDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EmocionesController",
+    "Method": "GetAll",
+    "RelativePath": "api/Emociones",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.Entities.Emociones, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EmocionesController",
+    "Method": "Create",
+    "RelativePath": "api/Emociones",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emocion",
+        "Type": "BackendParaPlataforma.Entities.Emociones",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.Emociones",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EmocionesController",
+    "Method": "GetById",
+    "RelativePath": "api/Emociones/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.Emociones",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EmocionesController",
+    "Method": "Update",
+    "RelativePath": "api/Emociones/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "emocion",
+        "Type": "BackendParaPlataforma.Entities.Emociones",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EmocionesController",
+    "Method": "Delete",
+    "RelativePath": "api/Emociones/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EmocionesController",
+    "Method": "GetByNombre",
+    "RelativePath": "api/Emociones/nombre/{nombre}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nombre",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.Emociones",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EmocionesController",
+    "Method": "GetByRango",
+    "RelativePath": "api/Emociones/rango",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "min",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "max",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.Entities.Emociones, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "GetAll",
+    "RelativePath": "api/EstadisticaUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.Entities.EstadisticaUsuario, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "Create",
+    "RelativePath": "api/EstadisticaUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "estadistica",
+        "Type": "BackendParaPlataforma.Entities.EstadisticaUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.EstadisticaUsuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "GetById",
+    "RelativePath": "api/EstadisticaUsuario/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.EstadisticaUsuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "Update",
+    "RelativePath": "api/EstadisticaUsuario/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "estadistica",
+        "Type": "BackendParaPlataforma.Entities.EstadisticaUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "Delete",
+    "RelativePath": "api/EstadisticaUsuario/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "ActualizarEstadisticas",
+    "RelativePath": "api/EstadisticaUsuario/actualizar/{idUsuario}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "Upsert",
+    "RelativePath": "api/EstadisticaUsuario/upsert",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "estadistica",
+        "Type": "BackendParaPlataforma.Entities.EstadisticaUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.EstadisticaUsuarioController",
+    "Method": "GetByUsuario",
+    "RelativePath": "api/EstadisticaUsuario/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.EstadisticaUsuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.LeccionesController",
+    "Method": "GetAll",
+    "RelativePath": "api/Lecciones",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.LeccionesController",
+    "Method": "Create",
+    "RelativePath": "api/Lecciones",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leccion",
+        "Type": "BackendParaPlataforma.Entities.Lecciones",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.LeccionesController",
+    "Method": "GetById",
+    "RelativePath": "api/Lecciones/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.LeccionesController",
+    "Method": "Update",
+    "RelativePath": "api/Lecciones/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "leccion",
+        "Type": "BackendParaPlataforma.Entities.Lecciones",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.LeccionesController",
+    "Method": "Delete",
+    "RelativePath": "api/Lecciones/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.LeccionesController",
+    "Method": "GetSiguiente",
+    "RelativePath": "api/Lecciones/{id}/siguiente",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.LeccionesController",
+    "Method": "GetByModulo",
+    "RelativePath": "api/Lecciones/modulo/{moduloId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "moduloId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ModulosController",
+    "Method": "GetAll",
+    "RelativePath": "api/Modulos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ModulosController",
+    "Method": "Create",
+    "RelativePath": "api/Modulos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modulo",
+        "Type": "BackendParaPlataforma.Entities.Modulos",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ModulosController",
+    "Method": "GetById",
+    "RelativePath": "api/Modulos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ModulosController",
+    "Method": "Update",
+    "RelativePath": "api/Modulos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "modulo",
+        "Type": "BackendParaPlataforma.Entities.Modulos",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ModulosController",
+    "Method": "Delete",
+    "RelativePath": "api/Modulos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.OpcionRespuestaController",
+    "Method": "GetAll",
+    "RelativePath": "api/OpcionRespuesta",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.OpcionRespuestaController",
+    "Method": "Create",
+    "RelativePath": "api/OpcionRespuesta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "opcion",
+        "Type": "BackendParaPlataforma.Entities.OpcionRespuesta",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.OpcionRespuestaController",
+    "Method": "GetById",
+    "RelativePath": "api/OpcionRespuesta/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.OpcionRespuestaController",
+    "Method": "Update",
+    "RelativePath": "api/OpcionRespuesta/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "opcion",
+        "Type": "BackendParaPlataforma.Entities.OpcionRespuesta",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.OpcionRespuestaController",
+    "Method": "Delete",
+    "RelativePath": "api/OpcionRespuesta/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.OpcionRespuestaController",
+    "Method": "GetByPregunta",
+    "RelativePath": "api/OpcionRespuesta/pregunta/{preguntaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "preguntaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.OpcionRespuestaController",
+    "Method": "GetCorrecta",
+    "RelativePath": "api/OpcionRespuesta/pregunta/{preguntaId}/correcta",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "preguntaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.PreguntaQuizController",
+    "Method": "GetAll",
+    "RelativePath": "api/PreguntaQuiz",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.PreguntaQuizController",
+    "Method": "Create",
+    "RelativePath": "api/PreguntaQuiz",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pregunta",
+        "Type": "BackendParaPlataforma.Entities.PreguntaQuiz",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.PreguntaQuizController",
+    "Method": "GetById",
+    "RelativePath": "api/PreguntaQuiz/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.PreguntaQuizController",
+    "Method": "Update",
+    "RelativePath": "api/PreguntaQuiz/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pregunta",
+        "Type": "BackendParaPlataforma.Entities.PreguntaQuiz",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.PreguntaQuizController",
+    "Method": "Delete",
+    "RelativePath": "api/PreguntaQuiz/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.PreguntaQuizController",
+    "Method": "GetByQuiz",
+    "RelativePath": "api/PreguntaQuiz/quiz/{quizId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "quizId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.PreguntaQuizController",
+    "Method": "Reordenar",
+    "RelativePath": "api/PreguntaQuiz/reordenar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "preguntas",
+        "Type": "System.Collections.Generic.List\u00601[[BackendParaPlataforma.Entities.PreguntaQuiz, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "GetAll",
+    "RelativePath": "api/ProgresoLeccionUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "Create",
+    "RelativePath": "api/ProgresoLeccionUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "progreso",
+        "Type": "BackendParaPlataforma.Entities.ProgresoLeccionUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "GetById",
+    "RelativePath": "api/ProgresoLeccionUsuario/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "Update",
+    "RelativePath": "api/ProgresoLeccionUsuario/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "progreso",
+        "Type": "BackendParaPlataforma.Entities.ProgresoLeccionUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "Delete",
+    "RelativePath": "api/ProgresoLeccionUsuario/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "CompletarLeccion",
+    "RelativePath": "api/ProgresoLeccionUsuario/completar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "leccionId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "tiempoVisualizado",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "GetByLeccion",
+    "RelativePath": "api/ProgresoLeccionUsuario/leccion/{leccionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leccionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "GetByUsuario",
+    "RelativePath": "api/ProgresoLeccionUsuario/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoLeccionUsuarioController",
+    "Method": "GetByUsuarioLeccion",
+    "RelativePath": "api/ProgresoLeccionUsuario/usuario/{usuarioId}/leccion/{leccionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "leccionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "GetAll",
+    "RelativePath": "api/ProgresoModuloUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "Create",
+    "RelativePath": "api/ProgresoModuloUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "progreso",
+        "Type": "BackendParaPlataforma.Entities.ProgresoModuloUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "GetById",
+    "RelativePath": "api/ProgresoModuloUsuario/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "Update",
+    "RelativePath": "api/ProgresoModuloUsuario/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "progreso",
+        "Type": "BackendParaPlataforma.Entities.ProgresoModuloUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "Delete",
+    "RelativePath": "api/ProgresoModuloUsuario/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "ActualizarProgreso",
+    "RelativePath": "api/ProgresoModuloUsuario/actualizar-progreso",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "moduloId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "porcentaje",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "ultimaLeccion",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "GetByUsuario",
+    "RelativePath": "api/ProgresoModuloUsuario/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoModuloUsuarioController",
+    "Method": "GetByUsuarioModulo",
+    "RelativePath": "api/ProgresoModuloUsuario/usuario/{usuarioId}/modulo/{moduloId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "moduloId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoUsuarioController",
+    "Method": "GetAll",
+    "RelativePath": "api/ProgresoUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoUsuarioController",
+    "Method": "Create",
+    "RelativePath": "api/ProgresoUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "progreso",
+        "Type": "BackendParaPlataforma.Entities.ProgresoUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoUsuarioController",
+    "Method": "GetById",
+    "RelativePath": "api/ProgresoUsuario/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoUsuarioController",
+    "Method": "Update",
+    "RelativePath": "api/ProgresoUsuario/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "progreso",
+        "Type": "BackendParaPlataforma.Entities.ProgresoUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoUsuarioController",
+    "Method": "Delete",
+    "RelativePath": "api/ProgresoUsuario/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.ProgresoUsuarioController",
+    "Method": "GetByUsuario",
+    "RelativePath": "api/ProgresoUsuario/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.QuizController",
+    "Method": "GetAll",
+    "RelativePath": "api/Quiz",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.QuizController",
+    "Method": "Create",
+    "RelativePath": "api/Quiz",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "quiz",
+        "Type": "BackendParaPlataforma.Entities.Quiz",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.QuizController",
+    "Method": "GetById",
+    "RelativePath": "api/Quiz/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.QuizController",
+    "Method": "Update",
+    "RelativePath": "api/Quiz/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "quiz",
+        "Type": "BackendParaPlataforma.Entities.Quiz",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.QuizController",
+    "Method": "Delete",
+    "RelativePath": "api/Quiz/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.QuizController",
+    "Method": "GetByLeccion",
+    "RelativePath": "api/Quiz/leccion/{leccionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leccionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.QuizController",
+    "Method": "ResolverQuiz",
+    "RelativePath": "api/Quiz/resolver",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "quizId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "respuestas",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.ReflexionMejoraController",
+    "Method": "GetAll",
+    "RelativePath": "api/ReflexionMejora",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.Entities.ReflexionMejora, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.ReflexionMejoraController",
+    "Method": "Create",
+    "RelativePath": "api/ReflexionMejora",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reflexion",
+        "Type": "BackendParaPlataforma.Entities.ReflexionMejora",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.ReflexionMejora",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.ReflexionMejoraController",
+    "Method": "GetById",
+    "RelativePath": "api/ReflexionMejora/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.ReflexionMejora",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.ReflexionMejoraController",
+    "Method": "Update",
+    "RelativePath": "api/ReflexionMejora/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "reflexion",
+        "Type": "BackendParaPlataforma.Entities.ReflexionMejora",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.ReflexionMejoraController",
+    "Method": "Delete",
+    "RelativePath": "api/ReflexionMejora/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.API.Controllers.ReflexionMejoraController",
+    "Method": "GetByDiario",
+    "RelativePath": "api/ReflexionMejora/diario/{diarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "diarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.Entities.ReflexionMejora",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "GetAll",
+    "RelativePath": "api/RespuestaUsuarioQuiz",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "Create",
+    "RelativePath": "api/RespuestaUsuarioQuiz",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "respuesta",
+        "Type": "BackendParaPlataforma.Entities.RespuestaUsuarioQuiz",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "GetById",
+    "RelativePath": "api/RespuestaUsuarioQuiz/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "Update",
+    "RelativePath": "api/RespuestaUsuarioQuiz/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "respuesta",
+        "Type": "BackendParaPlataforma.Entities.RespuestaUsuarioQuiz",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "Delete",
+    "RelativePath": "api/RespuestaUsuarioQuiz/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "GetByPregunta",
+    "RelativePath": "api/RespuestaUsuarioQuiz/pregunta/{preguntaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "preguntaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "ResolverQuiz",
+    "RelativePath": "api/RespuestaUsuarioQuiz/resolver",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "quizId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "respuestas",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.RespuestaUsuarioQuizController",
+    "Method": "GetByUsuario",
+    "RelativePath": "api/RespuestaUsuarioQuiz/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.SpeechController",
+    "Method": "SpeechToText",
+    "RelativePath": "api/Speech",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.UsuariosController",
+    "Method": "CrearUsuario",
+    "RelativePath": "api/Usuarios",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "BackendParaPlataforma.cmds.CrearUsuarioCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.dtos.UsuarioDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.UsuariosController",
+    "Method": "GetById",
+    "RelativePath": "api/Usuarios/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BackendParaPlataforma.dtos.UsuarioDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BackendParaPlataforma.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BackendParaPlataforma.WeatherForecast, BackendParaPlataforma, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]
