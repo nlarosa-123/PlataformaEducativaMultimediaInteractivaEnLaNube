@@ -1,0 +1,29 @@
+<p>modulo-detalle works!</p>
+<p>modulo-detalle works!</p>
+<p>modulo-detalle works!</p>
+<p>modulo-detalle works!</p>
+<p>modulo-detalle works!</p>
+
+<div *ngFor="let leccion of lecciones">
+  <h3>{{ leccion.titulo }}</h3>
+  <p>{{ leccion.contenidoTxt }}</p>
+
+  <!-- QUIZ -->
+  <div *ngIf="quizzes[leccion.id] as quiz">
+    <h4>{{ quiz.titulo }}</h4>
+
+    <div *ngFor="let pregunta of preguntas[quiz.idQuiz]">
+      <p><strong>{{ pregunta.pregunta }}</strong></p>
+
+      <!-- OPCIONES -->
+      <div *ngFor="let op of opciones[pregunta.idPregunta]">
+        <button>
+          {{ op.textoOpcion }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+</div>

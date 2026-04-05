@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,11 +15,19 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         }
 
         // 🔹 Obtener todos los módulos
-        public async Task<IEnumerable<Modulos>> GetAllAsync()
+        public async Task<IEnumerable<ModuloDto>> GetAllAsync()
         {
             return await _context.Modulos
-                .Include(m => m.Lecciones)
-                .Include(m => m.ProgresoModuloUsuarios)
+                .Select(m => new ModuloDto
+                {
+                    IdModulo = m.IdModulo,
+                    Titulo = m.Titulo,
+                    Descripcion = m.Descripcion,
+                    Lecciones = m.Lecciones.Select(l => new LeccionDto
+                    {
+                        IdLeccion = l.Id
+                    }).ToList()
+                })
                 .ToListAsync();
         }
 

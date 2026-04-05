@@ -10,6 +10,8 @@ import { DiarioEmocionalAnimoComponent } from './pages/diario-emocional-animo/di
 import { MiEspacioComponent } from './pages/mi-espacio/mi-espacio.component';
 import { HistorialEmocionalComponent } from './pages/historial-emocional/historial-emocional.component';
 import { InteligenciaArtificialComponent } from './pages/inteligencia-artificial/inteligencia-artificial.component';
+import { ModulosComponent } from './pages/modulos/modulos.component';
+import { ModuloDetalleComponent } from './pages/modulo-detalle/modulo-detalle.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,5 +23,7 @@ export const routes: Routes = [
   { path: 'diarioemocionalia', component: DiarioEmocionalIAComponent, canActivate: [authGuard] },
   { path: 'diarioemocionalanimo', component: DiarioEmocionalAnimoComponent, canActivate: [authGuard] },
   { path: 'historialemocional', component: HistorialEmocionalComponent, canActivate: [authGuard] },
-  { path: 'inteligenciaartificial', component: InteligenciaArtificialComponent, canActivate: [authGuard] }
+  { path: 'inteligenciaartificial', component: InteligenciaArtificialComponent, canActivate: [authGuard] },
+  { path: 'modulos', component: ModulosComponent, canActivate: [authGuard]},
+  { path: 'modulos/:id', component: ModuloDetalleComponent }
 ];

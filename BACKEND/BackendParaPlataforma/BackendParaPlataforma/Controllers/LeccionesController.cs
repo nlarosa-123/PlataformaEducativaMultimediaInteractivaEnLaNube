@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,9 +31,22 @@ namespace BackendParaPlataforma.Controllers
             var leccion = await _repository.GetByIdAsync(id);
 
             if (leccion == null)
-                return NotFound(new { message = "Lección no encontrada" });
+                return NotFound();
 
-            return Ok(leccion);
+            var dto = new LeccionesDto
+            {
+                Id = leccion.Id,
+                IdModulo = leccion.IdModulo,
+                Titulo = leccion.Titulo,
+                TipoContenido = leccion.TipoContenido,
+                ContenidoTxt = leccion.ContenidoTxt,
+                UrlVideo = leccion.UrlVideo,
+                UrlAudio = leccion.UrlAudio,
+                Orden = leccion.Orden,
+                Duracion = leccion.Duracion
+            };
+
+            return Ok(dto);
         }
 
         // 🔹 GET: api/lecciones/modulo/{moduloId}
