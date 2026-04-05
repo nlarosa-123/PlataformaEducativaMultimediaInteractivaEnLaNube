@@ -1,5 +1,88 @@
-
 <div class="diary">
-    <p>diary works!</p>
-</div>
+    <div class="container">
+        <h1>Mi Diario Emocional</h1>
+        
+        <!-- Selector de emociones -->
+        <div class="seccion-emociones">
+            <h2>¿Cómo te sientes hoy?</h2>
+            <div class="selector-emocion">
+                <select 
+                    [(ngModel)]="formulario.emocionId"
+                    (change)="seleccionarEmocion(obtenerEmocionPorId(formulario.emocionId))"
+                    class="select-emocion">
+                    <option value="0" disabled selected>Selecciona una emoción...</option>
+                    <option *ngFor="let emocion of emociones" [value]="obtenerIdEmocion(emocion)">
+                        {{ emocion.emoji }} {{ emocion.nombre }}
+                    </option>
+                </select>
+            </div>
+        </div>
 
+        <!-- Formulario de entrada -->
+        <div class="seccion-formulario">
+            <h2>Comparte tus sentimientos</h2>
+            
+            <!-- Mensaje de emoción seleccionada -->
+            <div *ngIf="emocionSeleccionada" class="emocion-seleccionada">
+                <span class="emoji-grande">{{ emocionSeleccionada.emoji }}</span>
+                <p>Has seleccionado: <strong>{{ emocionSeleccionada.nombre }}</strong></p>
+            </div>
+
+            <!-- Textarea para escribir -->
+            <div class="textarea-container">
+                <textarea
+                    [(ngModel)]="formulario.contenido"
+                    placeholder="Escribe cómo te sientes, qué pasó hoy, tus pensamientos, miedos o alegrías..."
+                    class="textarea-contenido"
+                    rows="8"></textarea>
+                
+                <!-- Botón de micrófono -->
+                <button 
+                    *ngIf="soportaVoz"
+                    (click)="toggleMicrofono()"
+                    [class.grabando]="grabando"
+                    class="btn-microfono"
+                    [title]="grabando ? 'Detener grabación' : 'Iniciar grabación'"
+                    type="button">
+                    <span class="icono-microfono">🎤</span>
+                </button>
+            </div>
+
+            <!-- Botón guardar -->
+            <div class="botones-container">
+                <button 
+                    (click)="guardarEntrada()"
+                    [disabled]="cargando"
+                    class="btn-guardar">
+                    <span *ngIf="!cargando">Guardar Entrada</span>
+                    <span *ngIf="cargando">Guardando...</span>
+                </button>
+            </div>
+
+            <!-- Mensaje de resultado -->
+            <div *ngIf="mensaje" [class]="'mensaje ' + tipoMensaje">
+                {{ mensaje }}
+            </div>
+        </div>
+
+        <!-- Historial de entradas -->
+        <div class="seccion-historial">
+            <h2>Mis Entradas</h2>
+            
+            <div *ngIf="entradas.length === 0" class="sin-entradas">
+                <p>Aún no tienes entradas. ¡Comienza a escribir cómo te sientes!</p>
+            </div>
+
+            <div *ngFor="let entrada of entradas" class="entrada">
+                <div class="entrada-header">
+                    <span class="emoji-entrada">{{ entrada.emocion?.emoji }}</span>
+                    <div class="info-entrada">
+                        <h3>{{ entrada.emocion?.nombre }}</h3>
+                        <p class="fecha">{{ formatearFecha(entrada.fecha) }}</p>
+                    </div>
+                </div>
+                <p class="contenido-entrada">{{ entrada.contenido }}</p>
+            </div>
+        </div>
+    </div>
+</div>

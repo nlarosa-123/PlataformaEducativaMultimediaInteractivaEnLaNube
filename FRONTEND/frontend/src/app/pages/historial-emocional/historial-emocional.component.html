@@ -1,34 +1,82 @@
-<p>historial-emocional works!</p>
-<p>historial-emocional works!</p>
-<p>historial-emocional works!</p>
-<p>historial-emocional works!</p>
-<p>historial-emocional works!</p>
+<div class="historial-page">
+  <div class="container">
 
-<h2>Historial emocional</h2>
+    <section class="cabecera">
+      <p class="eyebrow">Historial emocional</p>
+      <h1>Consulta cómo te sentiste en cada día</h1>
+    </section>
 
-<!-- selector de fecha -->
-<input type="date" [(ngModel)]="fechaSeleccionada">
+    <div class="layout-grid">
 
-<button (click)="buscar()">Ver ese día</button>
+      <!-- ===== IZQUIERDA: Calendario ===== -->
+      <div class="panel-calendario">
 
-<!-- resultado -->
-<div *ngIf="resultado" class="card">
+        <!-- Navegación de mes -->
+        <div class="mes-nav">
+          <button class="btn-nav" (click)="mesAnterior()">&#8249;</button>
+          <h2 class="nombre-mes">{{ nombreMes }}</h2>
+          <button class="btn-nav" (click)="mesSiguiente()">&#8250;</button>
+        </div>
 
-  <h3>
-    {{ resultado.fecha | date:'fullDate' }}
-  </h3>
+        <!-- Cabecera días de la semana -->
+        <div class="dias-semana">
+          <span *ngFor="let d of cabeceraDias">{{ d }}</span>
+        </div>
 
-  <h2>
-    Te sentiste {{ resultado.emoji }}
-  </h2>
+        <!-- Cuadrícula de días -->
+        <div class="dias-grid">
+          <div *ngFor="let v of celdasVacias" class="celda-vacia"></div>
+          <button
+            *ngFor="let dia of diasDelMes"
+            class="celda-dia"
+            [class.con-entrada]="dia.entrada"
+            [class.seleccionado]="dia.fechaStr === fechaSeleccionada"
+            (click)="seleccionarDia(dia)">
+            <span class="numero-dia">{{ dia.dia }}</span>
+            <span *ngIf="dia.entrada" class="emoji-dia">{{ dia.entrada.emoji }}</span>
+          </button>
+        </div>
 
-  <p>
-    {{ resultado.texto_Usuario }}
-  </p>
+      </div>
 
-</div>
+      <!-- ===== DERECHA: Panel de detalle ===== -->
+      <div class="panel-detalle">
 
-<!-- sin datos -->
-<div *ngIf="resultado === null && fechaSeleccionada">
-  <p>No hay registro para ese día 😢</p>
+        <!-- Placeholder inicial -->
+        <div *ngIf="fechaSeleccionada === ''" class="detalle-placeholder">
+          <span class="placeholder-icono">📅</span>
+          <p>Selecciona un día en el calendario para ver tu registro emocional</p>
+        </div>
+
+        <!-- Resultado con datos -->
+        <div *ngIf="resultado" class="resultado-card">
+          <div class="resultado-fecha">
+            <span class="resultado-icono">✨</span>
+            <div>
+              <h3>{{ resultado.fecha | date:'fullDate' }}</h3>
+              <p>Tu registro emocional de este día</p>
+            </div>
+          </div>
+
+          <div class="resultado-emocion">
+            <span class="emoji">{{ resultado.emoji }}</span>
+            <div>
+              <p class="titulo-emocion">Te sentiste</p>
+              <h2>{{ resultado.nombreEmocion }}</h2>
+            </div>
+          </div>
+
+          <p class="texto-registro">{{ resultado.texto_Usuario }}</p>
+        </div>
+
+        <!-- Sin datos -->
+        <div *ngIf="resultado === null && fechaSeleccionada !== ''" class="sin-datos-card">
+          <span>😢</span>
+          <p>No hay registro para ese día</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>

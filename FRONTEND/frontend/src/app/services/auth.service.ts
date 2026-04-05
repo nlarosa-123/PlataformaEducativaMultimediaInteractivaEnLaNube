@@ -29,5 +29,23 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('usuarioId');
+  }
+
+  setUsuarioId(usuarioId: number) {
+    localStorage.setItem('usuarioId', usuarioId.toString());
+  }
+
+  getUsuarioId(): number | null {
+    const id = localStorage.getItem('usuarioId');
+    return id ? parseInt(id) : null;
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('token', token);
   }
 }

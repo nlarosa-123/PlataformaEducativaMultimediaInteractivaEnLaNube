@@ -53,6 +53,6 @@ export class MiEspacioComponent implements OnInit {
         this.progresos = res;
       },
       error: (err) => console.error(err)
-    });
-}
+      });
+  }
 }

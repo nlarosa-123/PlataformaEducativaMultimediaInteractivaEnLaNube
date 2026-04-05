@@ -1,7 +1,190 @@
-.card {
-  background: #ff9800;
-  padding: 20px;
-  border-radius: 12px;
-  color: white;
-  text-align: center;
+.ia-page {
+    min-height: 100vh;
+    padding: 96px 20px 40px;
+    background:
+        radial-gradient(circle at top left, rgba(195, 141, 158, 0.14), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(173, 193, 120, 0.12), transparent 30%),
+        #F9F3E9;
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+}
+
+.cabecera {
+    text-align: center;
+    margin-bottom: 40px;
+
+    .eyebrow {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(195, 141, 158, 0.14);
+        color: #C38D9E;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        font-size: 0.82rem;
+    }
+
+    h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        color: #4a4a4a;
+        line-height: 1.1;
+    }
+
+    .descripcion {
+        margin: 0 auto;
+        max-width: 600px;
+        color: #71706b;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+}
+
+.placeholder-card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(195, 141, 158, 0.2);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(100, 80, 90, 0.10);
+    padding: 56px 28px;
+    text-align: center;
+    color: #7a6d5d;
+    max-width: 500px;
+    margin: 0 auto;
+
+    .placeholder-icono {
+        font-size: 3.5rem;
+        display: block;
+        margin-bottom: 18px;
+        animation: pulse-icon 2s ease-in-out infinite;
+    }
+
+    p {
+        font-size: 1.05rem;
+        margin: 0;
+    }
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 28px;
+    padding: 32px 28px;
+    box-shadow: 0 16px 40px rgba(100, 80, 90, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 50px rgba(100, 80, 90, 0.16);
+    }
+
+    .card-icono {
+        font-size: 2.2rem;
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 20px;
+    }
+
+    .card-label {
+        margin: 0 0 10px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .card-valor {
+        margin: 0 0 8px;
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1;
+        color: #4a4a4a;
+
+        .unidad {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        &.card-valor--texto {
+            font-size: 1.6rem;
+            line-height: 1.2;
+        }
+    }
+
+    .card-descripcion {
+        margin: 0 0 20px;
+        color: #7a6d5d;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
+
+// Card individual: Coincidencia IA
+.card-coincidencia {
+    border-top: 4px solid #C38D9E;
+
+    .card-icono { background: rgba(195, 141, 158, 0.12); }
+    .card-label { color: #C38D9E; }
+    .card-valor { color: #C38D9E; }
+}
+
+.barra-progreso {
+    height: 10px;
+    background: rgba(195, 141, 158, 0.15);
+    border-radius: 999px;
+    overflow: hidden;
+
+    .barra-relleno {
+        height: 100%;
+        background: linear-gradient(90deg, #E8A87C, #C38D9E);
+        border-radius: 999px;
+        transition: width 1s ease;
+    }
+}
+
+// Card individual: Emoción más frecuente
+.card-emocion {
+    border-top: 4px solid #ADC178;
+
+    .card-icono { background: rgba(173, 193, 120, 0.14); }
+    .card-label { color: #6f8441; }
+    .card-valor { color: #4a4a4a; }
+}
+
+// Card individual: Racha
+.card-racha {
+    border-top: 4px solid #E8A87C;
+
+    .card-icono { background: rgba(232, 168, 124, 0.14); }
+    .card-label { color: #c07d4a; }
+    .card-valor { color: #E8A87C; }
+}
+
+@keyframes pulse-icon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+@media (max-width: 768px) {
+    .ia-page {
+        padding: 84px 12px 28px;
+    }
+
+    .stat-card {
+        padding: 24px 20px;
+        border-radius: 22px;
+    }
 }
