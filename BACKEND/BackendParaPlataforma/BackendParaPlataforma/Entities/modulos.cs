@@ -12,9 +12,8 @@ namespace BackendParaPlataforma.Entities
         public string Descripcion { get; set; }
 
         //Constructor principal 
-        public Modulos(int id, string nombre, string descr)
+        public Modulos(string nombre, string descr)
         {
-            IdModulo = id;
             Titulo = nombre;
             Descripcion = descr;
         }

@@ -13,16 +13,30 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Estadisticas>> GetAllAsync()
+        public async Task<List<EstadisticaUsuario>> GetAllAsync()
         {
-            return await _context.Estadisticas
+            return await _context.Stats
                 .ToListAsync();
         }
 
-        public async Task AddAsync(Estadisticas stats)
+        public async Task<EstadisticaUsuario?> GetByIdAsync(int id)
         {
-            await _context.Estadisticas.AddAsync(stats);
+            return await _context.Stats
+                .FirstOrDefaultAsync(s => s.IdUsuario == id);
         }
+
+
+        public async Task AddAsync(EstadisticaUsuario stats)
+        {
+            await _context.Stats.AddAsync(stats);
+        }
+
+        public async Task DeleteAsync(EstadisticaUsuario stats)
+        {
+            _context.Stats.Remove(stats);
+            await Task.CompletedTask;
+        }
+
 
 
         public async Task SaveChangesAsync()
@@ -31,7 +45,4 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         }
 
     }
-
-
-
 }

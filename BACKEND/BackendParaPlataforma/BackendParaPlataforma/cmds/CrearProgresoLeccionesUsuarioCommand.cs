@@ -1,6 +1,6 @@
 namespace BackendParaPlataforma.cmds
 {
-    class CrearProgresoLeccionesCommand
+    public class CrearProgresoLeccionesCommand
     { 
         public bool Completada { get; set; }
 

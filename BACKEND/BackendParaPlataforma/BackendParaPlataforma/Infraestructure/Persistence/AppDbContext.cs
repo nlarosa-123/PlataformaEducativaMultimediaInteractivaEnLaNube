@@ -7,9 +7,9 @@ namespace BackendParaPlataforma.Infraestructure.Persistence
     {
         public DbSet<Usuario> Usuarios => Set<Usuario>();
         public DbSet<Emociones> Emociones => Set<Emociones>();
-        public DbSet<Estadisticas> Estadisticas => Set<Estadisticas>(); 
-
-
+        public DbSet<EstadisticaUsuario> Stats => Set<EstadisticaUsuario>();
+        public DbSet<Modulos> Modulos => Set<Modulos>();
+        public DbSet<ProgresoLeccionesUsuario> ProgresoLecciones => Set<ProgresoLeccionesUsuario>();
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {

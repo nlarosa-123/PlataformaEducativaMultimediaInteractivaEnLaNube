@@ -1,6 +1,6 @@
 namespace BackendParaPlataforma.Entities
 {
-    public class ProgresoLeccionesUsuarioCommand
+    public class ProgresoLeccionesUsuario
     {
         public int Id { get; set; }
         public int IdUsuario { get; set; }
@@ -14,7 +14,7 @@ namespace BackendParaPlataforma.Entities
 
 
         //Constructor vacio 
-        public ProgresoLeccionesUsuarioCommand () {
+        public ProgresoLeccionesUsuario () {
             Completada = false;
             TiempoVisualizado = 0; 
         }

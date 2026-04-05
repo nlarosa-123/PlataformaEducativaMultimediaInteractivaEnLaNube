@@ -4,13 +4,13 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
 {
     public interface IEstadisticasRepository
     {
-        Task<List<Estadisticas>> GetAllAsync();
+        Task<List<EstadisticaUsuario>> GetAllAsync();
 
-        Task<Estadisticas?> GetByIdAsync(int id);
+        Task<EstadisticaUsuario?> GetByIdAsync(int id);
 
-        Task AddAsync(Estadisticas stats);
+        Task AddAsync(EstadisticaUsuario stats);
 
-        Task DeleteAsync(Estadisticas stats);
+        Task DeleteAsync(EstadisticaUsuario stats);
 
         Task SaveChangesAsync();
     }
