@@ -15,5 +15,6 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         Task<ProgresoLeccionUsuario> CreateAsync(ProgresoLeccionUsuario progreso);
         Task<bool> UpdateAsync(ProgresoLeccionUsuario progreso);
         Task<bool> DeleteAsync(int id);
+        Task<ProgresoLeccionUsuario> UpsertAsync(ProgresoLeccionUsuario progreso);
     }
 }

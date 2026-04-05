@@ -21,6 +21,7 @@ export class ModuloDetalleComponent implements OnInit {
   preguntas: { [key: number]: any[] } = {}; 
   opciones: { [key: number]: any[] } = {};
   respuestas: { [key: number]: number } = {};
+  leccionesCompletadas: { [key: number]: boolean } = {};
 
   constructor(
     private http: HttpClient,
@@ -99,5 +100,27 @@ export class ModuloDetalleComponent implements OnInit {
 }
   yaRespondida(idPregunta: number): boolean {
   return this.respuestas[idPregunta] !== undefined;
+}
+  completarLeccion(idLeccion: number) {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+  const payload = {
+    id_Usuario: user.id,
+    id_Leccion: idLeccion,
+    completado: true,
+    fecha_Completado: new Date().toISOString(),
+    tiempo_Visualizado: 120 // 👈 puedes calcularlo luego
+  };
+
+  this.http.post(`http://localhost:5169/api/ProgresoLeccionUsuario`, payload)
+    .subscribe({
+      next: () => {
+        console.log('✅ Lección completada');
+
+        // marcar como completada en UI
+        this.leccionesCompletadas[idLeccion] = true;
+      },
+      error: (err) => console.error(err)
+    });
 }
 }

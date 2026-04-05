@@ -72,8 +72,9 @@ namespace BackendParaPlataforma.Controllers
 
             try
             {
-                var created = await _repository.CreateAsync(progreso);
-                return CreatedAtAction(nameof(GetById), new { id = created.Id_Progreso }, created);
+                var result = await _repository.UpsertAsync(progreso);
+
+                return Ok(result); // 👈 ya no Created siempre
             }
             catch (Exception ex)
             {

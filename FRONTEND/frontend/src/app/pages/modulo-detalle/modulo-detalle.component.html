@@ -7,6 +7,15 @@
 <div *ngFor="let leccion of lecciones">
   <h3>{{ leccion.titulo }}</h3>
   <p>{{ leccion.contenidoTxt }}</p>
+  
+<!--boton-->
+<button 
+  class="btn-completar"
+  (click)="completarLeccion(leccion.id)"
+  [disabled]="leccionesCompletadas[leccion.id]"
+>
+  ✅ Marcar como completada
+</button>  
 
   <!-- QUIZ -->
   <div *ngIf="quizzes[leccion.id] as quiz">

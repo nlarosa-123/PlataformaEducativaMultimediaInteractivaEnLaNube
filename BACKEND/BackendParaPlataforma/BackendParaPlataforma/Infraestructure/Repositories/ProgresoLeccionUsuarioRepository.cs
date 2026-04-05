@@ -107,5 +107,31 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+    
+    public async Task<ProgresoLeccionUsuario> UpsertAsync(ProgresoLeccionUsuario progreso)
+        {
+            var existente = await _context.ProgresoLeccionUsuario
+                .FirstOrDefaultAsync(p =>
+                    p.Id_Usuario == progreso.Id_Usuario &&
+                    p.Id_Leccion == progreso.Id_Leccion);
+
+            if (existente != null)
+            {
+                // 🔄 UPDATE
+                existente.Completado = progreso.Completado;
+                existente.Fecha_Completado = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
+                return existente;
+            }
+
+            // ➕ CREATE
+            progreso.Fecha_Completado = DateTime.UtcNow;
+
+            await _context.ProgresoLeccionUsuario.AddAsync(progreso);
+            await _context.SaveChangesAsync();
+
+            return progreso;
+        }
     }
 }
