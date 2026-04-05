@@ -64,6 +64,9 @@ export class DiarioEmocionalIAComponent implements OnInit {
       next: () => {
         console.log('✅ Respuesta guardada');
 
+        //NUEVO: actualizar estadísticas
+        this.actualizarEstadistica();
+
         // opcional: feedback visual
         alert('Respuesta guardada correctamente');
       },
@@ -87,5 +90,21 @@ export class DiarioEmocionalIAComponent implements OnInit {
         return this.tono;
     }
   }
+
+  actualizarEstadistica() {
+  const idUsuario = 1002;
+
+  this.http.post(
+    `http://localhost:5169/api/EstadisticaUsuario/actualizar/${idUsuario}`,
+    {}, // 👈 vacío
+    { responseType: 'text' } // 👈 porque backend devuelve string
+  )
+  .subscribe({
+    next: (res) => {
+      console.log('📊 Estadística actualizada', res);
+    },
+    error: (err) => console.error(err)
+  });
+}
 
 }
