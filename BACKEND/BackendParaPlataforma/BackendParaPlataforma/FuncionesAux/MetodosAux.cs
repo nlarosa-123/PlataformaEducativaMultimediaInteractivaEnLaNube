@@ -126,5 +126,53 @@ namespace BackendParaPlataforma.FuncionesAux
 
             return racha;
         }
+
+        public async Task CalcularPorcentajeModulo(int modId, int userId)
+        {
+            //Obtener todas las lecciones de un modulo
+            var lecciones = await ObtenerLeccionesModulo(modId);
+
+            List<int> idLecciones = lecciones.Select(l => l.Id).ToList(); 
+
+            //Obtener el progreso de las lecciones de un usuario en ese modulo 
+            var progresoLecciones = await ObtenerProgresoLecciones(idLecciones, userId);
+
+            //Calcular el porcentaje de lecciones completadas
+            double porcentaje = CalcularPorcentajeCompletados(progresoLecciones);
+
+            //Actualizar la tabla con el nuevo valor de Porcentaje
+            var progresoModulo  = await _context.ProgresoModuloUsuarios.
+                FirstOrDefaultAsync(p => p.IdUsuario == userId && p.IdModulo == modId);
+
+            progresoModulo.Porcentaje = (decimal) porcentaje;
+
+            if (porcentaje ==  100.0)
+            {
+                progresoModulo.Completado = true; 
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task <List<Lecciones>> ObtenerLeccionesModulo(int modId)
+        {
+            return await _context.Lecciones
+                .Where(l => l.IdModulo == modId)
+                .ToListAsync();
+        }
+
+        public async Task <List<ProgresoLeccionUsuario>> ObtenerProgresoLecciones(List<int> idLecciones, int userId)
+        {
+            return await _context.ProgresoLeccionUsuario
+                .Where(plu => idLecciones.Contains(plu.Id_Leccion) && plu.Id_Usuario == userId)
+                .ToListAsync(); 
+        }
+
+        public double CalcularPorcentajeCompletados (List<ProgresoLeccionUsuario> pLecciones)
+        {
+            var completados = pLecciones.Count(p => p.Completado == true);
+
+            return (double)completados / pLecciones.Count * 100; 
+        }
     }
 }
