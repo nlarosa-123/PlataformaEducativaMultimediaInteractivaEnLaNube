@@ -17,5 +17,7 @@
         public string? ConfiguracionVoz { get; set; }
 
         public bool Activo { get; set; }
+
+        public EstadisticaUsuarioDto EstadisticaUsuario { get; set; }
     }
 }

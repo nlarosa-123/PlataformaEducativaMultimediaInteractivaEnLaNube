@@ -10,8 +10,8 @@ namespace BackendParaPlataforma.Entities
         public bool Correcta { get; set; }
         public DateTime FechaRespuesta { get; set; }
 
-        public PreguntaQuiz Pregunta { get; set; }
-        public Usuario Usuario { get; set; }
-        public OpcionRespuesta OpcionRespuesta { get; set; }
+        public PreguntaQuiz? Pregunta { get; set; }
+        public Usuario? Usuario { get; set; }
+        public OpcionRespuesta? OpcionRespuesta { get; set; }
     }
 }

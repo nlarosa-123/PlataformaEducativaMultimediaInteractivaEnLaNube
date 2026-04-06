@@ -11,183 +11,110 @@ namespace BackendParaPlataforma.Controllers
     public class ProgresoModuloUsuarioController : ControllerBase
     {
         private readonly IProgresoModuloUsuarioRepository _repository;
-        private readonly IUsuarioRepository _usuarioRepository;
 
-        public ProgresoModuloUsuarioController(
-    IProgresoModuloUsuarioRepository repository,
-    IUsuarioRepository usuarioRepository)
+        public ProgresoModuloUsuarioController(IProgresoModuloUsuarioRepository repository)
         {
             _repository = repository;
-            _usuarioRepository = usuarioRepository;
         }
 
-        // GET: api/progresomodulousuario
+        // 🔹 GET: api/progresomodulousuario
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProgresoModuloUsuarioDto>>> ObtenerTodos()
+        public async Task<IActionResult> GetAll()
         {
-            var lista = await _repository.ObtenerTodosAsync();
-
-            var dtos = lista.Select(x => new ProgresoModuloUsuarioDto
-            {
-                Id = x.Id,
-                IdUsuario = x.IdUsuario,
-                IdModulo = x.IdModulo,
-                Porcentaje = x.Porcentaje,
-                Completado = x.Completado,
-                UltimaLeccion = x.UltimaLeccion
-            });
-
-            return Ok(dtos);
+            var progresos = await _repository.GetAllAsync();
+            return Ok(progresos);
         }
 
-        // GET: api/progresomodulousuario/5
+        // 🔹 GET: api/progresomodulousuario/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProgresoModuloUsuarioDto>> ObtenerPorId(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var progreso = await _repository.ObtenerPorIdAsync(id);
+            var progreso = await _repository.GetByIdAsync(id);
 
             if (progreso == null)
-                return NotFound();
+                return NotFound(new { message = "Progreso no encontrado" });
 
-            var dto = new ProgresoModuloUsuarioDto
-            {
-                Id = progreso.Id,
-                IdUsuario = progreso.IdUsuario,
-                IdModulo = progreso.IdModulo,
-                Porcentaje = progreso.Porcentaje,
-                Completado = progreso.Completado,
-                UltimaLeccion = progreso.UltimaLeccion
-            };
-
-            return Ok(dto);
+            return Ok(progreso);
         }
 
-        // POST: api/progresomodulousuario
+        // 🔹 GET: api/progresomodulousuario/usuario/{usuarioId}
+        [HttpGet("usuario/{usuarioId}")]
+        public async Task<IActionResult> GetByUsuario(int usuarioId)
+        {
+            var progresos = await _repository.GetByUsuarioIdAsync(usuarioId);
+            return Ok(progresos);
+        }
+
+        // 🔹 GET: api/progresomodulousuario/usuario/{usuarioId}/modulo/{moduloId}
+        [HttpGet("usuario/{usuarioId}/modulo/{moduloId}")]
+        public async Task<IActionResult> GetByUsuarioModulo(int usuarioId, int moduloId)
+        {
+            var progreso = await _repository.GetByUsuarioModuloAsync(usuarioId, moduloId);
+
+            if (progreso == null)
+                return NotFound(new { message = "Progreso no encontrado para este usuario y módulo" });
+
+            return Ok(progreso);
+        }
+
+        // 🔹 POST: api/progresomodulousuario
         [HttpPost]
-        public async Task<ActionResult<ProgresoModuloUsuarioDto>> Crear(
-    [FromBody] CrearProgresoModuloUsuarioCommand cmd)
+        public async Task<IActionResult> Create([FromBody] ProgresoModuloUsuario progreso)
         {
-            var usuario = await _usuarioRepository.GetByIdAsync(cmd.IdUsuario);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            if (usuario == null)
-                return BadRequest("El usuario no existe");
+            var created = await _repository.CreateAsync(progreso);
 
-            var entidad = new ProgresoModuloUsuario
-            {
-                IdUsuario = cmd.IdUsuario,
-                IdModulo = cmd.IdModulo,
-                Porcentaje = cmd.Porcentaje,
-                UltimaLeccion = cmd.UltimaLeccion,
-                Completado = cmd.Porcentaje >= 100
-            };
-
-            await _repository.CrearAsync(entidad);
-            await _repository.SaveChangesAsync();
-
-            var dto = new ProgresoModuloUsuarioDto
-            {
-                Id = entidad.Id,
-                IdUsuario = entidad.IdUsuario,
-                IdModulo = entidad.IdModulo,
-                Porcentaje = entidad.Porcentaje,
-                Completado = entidad.Completado,
-                UltimaLeccion = entidad.UltimaLeccion
-            };
-
-            return CreatedAtAction(nameof(ObtenerPorId), new { id = entidad.Id }, dto);
+            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
-        // PUT: api/progresomodulousuario/5
+        // 🔹 PUT: api/progresomodulousuario/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProgresoModuloUsuarioDto>> Actualizar(
-            int id,
-            [FromBody] CrearProgresoModuloUsuarioCommand cmd)
+        public async Task<IActionResult> Update(int id, [FromBody] ProgresoModuloUsuario progreso)
         {
-            var progreso = await _repository.ObtenerPorIdAsync(id);
+            if (id != progreso.Id)
+                return BadRequest(new { message = "El ID no coincide" });
 
-            if (progreso == null)
-                return NotFound();
+            var updated = await _repository.UpdateAsync(progreso);
 
-            progreso.IdUsuario = cmd.IdUsuario;
-            progreso.IdModulo = cmd.IdModulo;
-            progreso.Porcentaje = cmd.Porcentaje;
-            progreso.UltimaLeccion = cmd.UltimaLeccion;
-            progreso.Completado = cmd.Porcentaje >= 100;
+            if (!updated)
+                return NotFound(new { message = "Progreso no encontrado" });
 
-            _repository.Actualizar(progreso);
-            await _repository.SaveChangesAsync();
-
-            var dto = new ProgresoModuloUsuarioDto
-            {
-                Id = progreso.Id,
-                IdUsuario = progreso.IdUsuario,
-                IdModulo = progreso.IdModulo,
-                Porcentaje = progreso.Porcentaje,
-                Completado = progreso.Completado,
-                UltimaLeccion = progreso.UltimaLeccion
-            };
-
-            return Ok(dto);
+            return Ok(new { message = "Progreso actualizado correctamente" });
         }
 
-        // DELETE: api/progresomodulousuario/5
+        // 🔹 PUT: api/progresomodulousuario/actualizar-progreso
+        // 👉 endpoint más "inteligente"
+        [HttpPut("actualizar-progreso")]
+        public async Task<IActionResult> ActualizarProgreso(
+            int usuarioId,
+            int moduloId,
+            decimal porcentaje,
+            int ultimaLeccion)
+        {
+            var progreso = await _repository.GetByUsuarioModuloAsync(usuarioId, moduloId);
+
+            if (progreso == null)
+                return NotFound(new { message = "Progreso no encontrado" });
+
+            progreso.ActualizarProgreso(porcentaje, ultimaLeccion);
+
+            await _repository.UpdateAsync(progreso);
+
+            return Ok(progreso);
+        }
+
+        // 🔹 DELETE: api/progresomodulousuario/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Eliminar(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var progreso = await _repository.ObtenerPorIdAsync(id);
+            var deleted = await _repository.DeleteAsync(id);
 
-            if (progreso == null)
-                return NotFound();
+            if (!deleted)
+                return NotFound(new { message = "Progreso no encontrado" });
 
-            _repository.Eliminar(progreso);
-            await _repository.SaveChangesAsync();
-
-            return NoContent();
+            return Ok(new { message = "Progreso eliminado correctamente" });
         }
-
-        #region usuario
-
-        // progreso de todos los módulos de un usuario
-        [HttpGet("usuario/{idUsuario}")]
-        public async Task<ActionResult<IEnumerable<ProgresoModuloUsuarioDto>>> ObtenerPorUsuario(int idUsuario)
-        {
-            var lista = await _repository.ObtenerPorUsuarioAsync(idUsuario);
-
-            var dtos = lista.Select(x => new ProgresoModuloUsuarioDto
-            {
-                Id = x.Id,
-                IdUsuario = x.IdUsuario,
-                IdModulo = x.IdModulo,
-                Porcentaje = x.Porcentaje,
-                Completado = x.Completado,
-                UltimaLeccion = x.UltimaLeccion
-            });
-
-            return Ok(dtos);
-        }
-
-        // progreso de un usuario en un módulo específico
-        [HttpGet("{idUsuario}/{idModulo}")]
-        public async Task<ActionResult<ProgresoModuloUsuarioDto>> Obtener(int idUsuario, int idModulo)
-        {
-            var progreso = await _repository.ObtenerAsync(idUsuario, idModulo);
-
-            if (progreso == null)
-                return NotFound();
-
-            var dto = new ProgresoModuloUsuarioDto
-            {
-                Id = progreso.Id,
-                IdUsuario = progreso.IdUsuario,
-                IdModulo = progreso.IdModulo,
-                Porcentaje = progreso.Porcentaje,
-                Completado = progreso.Completado,
-                UltimaLeccion = progreso.UltimaLeccion
-            };
-
-            return Ok(dto);
-        }
-
-        #endregion
     }
 }

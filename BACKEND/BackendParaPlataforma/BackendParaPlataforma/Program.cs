@@ -1,9 +1,10 @@
+using BackendParaPlataforma.FuncionesAux;
 using BackendParaPlataforma.Infraestructure.Mappings;
-using BackendParaPlataforma.Infraestructure.Repositories;
 using BackendParaPlataforma.Infraestructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using BackendParaPlataforma.Infraestructure.Repositories;
 using BackendParaPlataforma.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
@@ -29,21 +30,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         )
     };
 });
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-   options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IEmocionesRepository, EmocionesRepository>();
-builder.Services.AddScoped<IProgresoModuloUsuarioRepository, ProgresoModuloUsuarioRepository>();
+builder.Services.AddScoped<IProgresoUsuarioRepository, ProgresoUsuarioRepository>();
 builder.Services.AddScoped<IDiarioEmocionalRepository, DiarioEmocionalRepository>();
 builder.Services.AddScoped<IAnalisisIARepository, AnalisisIARepository>();
 builder.Services.AddScoped<IReflexionMejoraRepository, ReflexionMejoraRepository>();
-builder.Services.AddScoped<IProgresoRepository, ProgresoRepository>();
 builder.Services.AddScoped<IEstadisticaUsuarioRepository, EstadisticaUsuarioRepository>();
-
+builder.Services.AddScoped<IModulosRepository, ModulosRepository>();
+builder.Services.AddScoped<ILeccionesRepository, LeccionesRepository>();
+builder.Services.AddScoped<IPreguntaQuizRepository, PreguntaQuizRepository>();
+builder.Services.AddScoped<IRespuestaUsuarioQuizRepository, RespuestaUsuarioQuizRepository>();
+builder.Services.AddScoped<IProgresoModuloUsuarioRepository, ProgresoModuloUsuarioRepository>();
+builder.Services.AddScoped<IProgresoLeccionUsuarioRepository, ProgresoLeccionUsuarioRepository>();
+builder.Services.AddScoped<IQuizRepository, QuizRepository>();
+builder.Services.AddScoped<IOpcionRespuestaRepository, OpcionRespuestaRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+builder.Services.AddScoped<MetodosAux>();
 
 builder.Services.AddCors(options =>
 {

@@ -1,12 +1,16 @@
-﻿namespace BackendParaPlataforma.Infraestructure.Repositories
-{
-    //public interface IPreguntaQuizRepository
-    //{
+﻿using BackendParaPlataforma.Entities;
 
-    //    Task<int> CreateAsync(PreguntaQuiz pregunta);
-    //    Task<PreguntaQuiz> GetByIdAsync(int id);
-    //    Task<IEnumerable<PreguntaQuiz>> GetByQuizIdAsync(int idQuiz);
-    //    Task UpdateAsync(PreguntaQuiz pregunta);
-    //    Task DeleteAsync(int id);
-    //}
+namespace BackendParaPlataforma.Infraestructure.Repositories
+{
+    public interface IPreguntaQuizRepository
+    {
+        Task<IEnumerable<PreguntaQuiz>> GetAllAsync();
+        Task<PreguntaQuiz?> GetByIdAsync(int id);
+
+        Task<IEnumerable<PreguntaQuiz>> GetByQuizIdAsync(int quizId);
+
+        Task<PreguntaQuiz> CreateAsync(PreguntaQuiz pregunta);
+        Task<bool> UpdateAsync(PreguntaQuiz pregunta);
+        Task<bool> DeleteAsync(int id);
+    }
 }

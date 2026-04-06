@@ -9,5 +9,6 @@
         public decimal Porcentaje { get; set; }
         public bool Completado { get; set; }
         public int? UltimaLeccion { get; set; }
+        public string TituloModulo { get; set; }
     }
 }

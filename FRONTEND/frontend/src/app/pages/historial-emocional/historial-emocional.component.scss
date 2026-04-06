@@ -1,0 +1,319 @@
+.historial-page {
+    min-height: 100vh;
+    padding: 96px 20px 40px;
+    background:
+        radial-gradient(circle at top left, rgba(173, 193, 120, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(232, 196, 160, 0.18), transparent 28%),
+        #f4f8e8;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+// ---- Cabecera ----
+.cabecera {
+    text-align: center;
+    margin-bottom: 32px;
+
+    .eyebrow {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(173, 193, 120, 0.16);
+        color: #6f8441;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        color: #df9364;
+        line-height: 1.1;
+    }
+}
+
+// ---- Layout dos columnas ----
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+// ---- Panel izquierdo: Calendario ----
+.panel-calendario {
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(173, 193, 120, 0.25);
+    border-radius: 28px;
+    box-shadow: 0 20px 48px rgba(100, 112, 91, 0.12);
+    padding: 28px;
+}
+
+.mes-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+
+    .nombre-mes {
+        margin: 0;
+        font-size: 1.3rem;
+        color: #4a4a4a;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    .btn-nav {
+        width: 42px;
+        height: 42px;
+        border: 2px solid #d6e1bc;
+        border-radius: 12px;
+        background: #fff;
+        color: #6f8441;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: #adc178;
+            border-color: #adc178;
+            color: #fff;
+        }
+    }
+}
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+
+    span {
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #6f8441;
+        padding: 4px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+}
+
+.dias-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.celda-vacia {
+    aspect-ratio: 1;
+}
+
+.celda-dia {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: #f9fbf3;
+    cursor: pointer;
+    gap: 2px;
+    padding: 3px;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+
+    .numero-dia {
+        font-size: 0.85rem;
+        color: #4a4a4a;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    .emoji-dia {
+        font-size: 0.95rem;
+        line-height: 1;
+    }
+
+    &:hover {
+        background: rgba(173, 193, 120, 0.22);
+        border-color: #adc178;
+        transform: scale(1.06);
+    }
+
+    &.con-entrada {
+        background: rgba(173, 193, 120, 0.13);
+        border-color: rgba(173, 193, 120, 0.45);
+    }
+
+    &.seleccionado {
+        background: #adc178;
+        border-color: #8fa65e;
+        transform: scale(1.08);
+        box-shadow: 0 6px 16px rgba(143, 166, 94, 0.35);
+
+        .numero-dia {
+            color: #fff;
+        }
+    }
+}
+
+// ---- Panel derecho: Detalle ----
+.panel-detalle {
+    position: sticky;
+    top: 100px;
+}
+
+.detalle-placeholder {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(173, 193, 120, 0.22);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(100, 112, 91, 0.10);
+    padding: 56px 28px;
+    text-align: center;
+    color: #7a6d5d;
+
+    .placeholder-icono {
+        font-size: 3.5rem;
+        display: block;
+        margin-bottom: 18px;
+    }
+
+    p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+.resultado-card {
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(173, 193, 120, 0.25);
+    border-radius: 28px;
+    box-shadow: 0 20px 48px rgba(100, 112, 91, 0.12);
+    padding: 28px;
+}
+
+.resultado-fecha {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+
+    .resultado-icono {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 1.35rem;
+        background: #f4f8e8;
+        flex-shrink: 0;
+    }
+
+    h3 {
+        margin: 0 0 4px;
+        font-size: 1.3rem;
+        color: #4a4a4a;
+    }
+
+    p {
+        margin: 0;
+        color: #71806a;
+        font-size: 0.92rem;
+    }
+}
+
+.resultado-emocion {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(173, 193, 120, 0.16), rgba(244, 248, 232, 0.9));
+    margin-bottom: 18px;
+
+    .emoji {
+        font-size: 3rem;
+        line-height: 1;
+    }
+
+    .titulo-emocion {
+        margin: 0 0 4px;
+        color: #6f8441;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.78rem;
+    }
+
+    h2 {
+        margin: 0;
+        color: #4a4a4a;
+        font-size: 1.5rem;
+    }
+}
+
+.texto-registro {
+    margin: 0;
+    color: #55614d;
+    font-size: 1rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+.sin-datos-card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(173, 193, 120, 0.22);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(100, 112, 91, 0.10);
+    padding: 40px 28px;
+    text-align: center;
+    color: #7a6d5d;
+    font-weight: 600;
+
+    span {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+// ---- Responsive ----
+@media (max-width: 900px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-detalle {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .historial-page {
+        padding: 84px 12px 28px;
+    }
+
+    .panel-calendario,
+    .resultado-card,
+    .sin-datos-card,
+    .detalle-placeholder {
+        border-radius: 22px;
+        padding: 20px;
+    }
+}

@@ -1,83 +1,95 @@
-﻿using BackendParaPlataforma.Infraestructure.Persistence;
+﻿using BackendParaPlataforma.Entities;
+using BackendParaPlataforma.Infraestructure.Persistence;
 using BackendParaPlataforma.Infraestructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackendParaPlataforma.Infraestructure.Repositories
 {
-    //public class PreguntaQuizRepository : IPreguntaQuizRepository
-    //{
-    //    private readonly AppDbContext _context;
+    public class PreguntaQuizRepository : IPreguntaQuizRepository
+    {
+        private readonly AppDbContext _context;
 
-    //    public PreguntaQuizRepository(AppDbContext context)
-    //    {
-    //        _context = context;
-    //    }
+        public PreguntaQuizRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
-    //    public async Task<int> CreateAsync(PreguntaQuiz pregunta)
-    //    {
-    //        await _context.PreguntasQuiz.AddAsync(pregunta);
-    //        await _context.SaveChangesAsync();
-    //        return pregunta.IdPregunta;
-    //    }
+        // 🔹 Obtener todas las preguntas
+        public async Task<IEnumerable<PreguntaQuiz>> GetAllAsync()
+        {
+            return await _context.PreguntasQuiz
+                .Include(p => p.Quiz)
+                .Include(p => p.Opciones)
+                .ToListAsync();
+        }
 
-    //    public async Task<PreguntaQuiz> GetByIdAsync(int id)
-    //    {
-    //        return await _context.PreguntasQuiz
-    //            .Include(p => p.Opciones)
-    //            .FirstOrDefaultAsync(p => p.IdPregunta == id);
-    //    }
+        // 🔹 Obtener por ID
+        public async Task<PreguntaQuiz?> GetByIdAsync(int id)
+        {
+            return await _context.PreguntasQuiz
+                .Include(p => p.Quiz)
+                .Include(p => p.Opciones)
+                .Include(p => p.respuestaUsuarioQuizzes)
+                .FirstOrDefaultAsync(p => p.IdPregunta == id);
+        }
 
-    //    public async Task<IEnumerable<PreguntaQuiz>> GetByQuizIdAsync(int idQuiz)
-    //    {
-    //        return await _context.PreguntasQuiz
-    //            .Where(p => p.IdQuiz == idQuiz)
-    //            .Include(p => p.Opciones)
-    //            .ToListAsync();
-    //    }
+        // 🔹 Obtener preguntas por quiz (ordenadas)
+        public async Task<IEnumerable<PreguntaQuiz>> GetByQuizIdAsync(int quizId)
+        {
+            return await _context.PreguntasQuiz
+                .Where(p => p.IdQuiz == quizId)
+                .Include(p => p.Opciones)
+                .OrderBy(p => p.Orden)
+                .ToListAsync();
+        }
 
-    //    public async Task UpdateAsync(PreguntaQuiz pregunta)
-    //    {
-    //        // Manejo simple: reemplaza opciones
-    //        var existing = await _context.PreguntasQuiz
-    //            .Include(p => p.Opciones)
-    //            .FirstOrDefaultAsync(p => p.IdPregunta == pregunta.IdPregunta);
+        // 🔹 Crear pregunta
+        public async Task<PreguntaQuiz> CreateAsync(PreguntaQuiz pregunta)
+        {
+            // 🔥 Auto-asignar orden si no viene
+            if (pregunta.Orden == 0)
+            {
+                var ultimoOrden = await _context.PreguntasQuiz
+                    .Where(p => p.IdQuiz == pregunta.IdQuiz)
+                    .MaxAsync(p => (int?)p.Orden) ?? 0;
 
-    //        if (existing != null)
-    //        {
-    //            existing.Pregunta = pregunta.Pregunta;
-    //            existing.Orden = pregunta.Orden;
+                pregunta.Orden = ultimoOrden + 1;
+            }
 
-    //            // Reemplazar opciones
-    //            _context.OpcionesRespuesta.RemoveRange(existing.Opciones);
-    //            existing.Opciones = pregunta.Opciones;
+            await _context.PreguntasQuiz.AddAsync(pregunta);
+            await _context.SaveChangesAsync();
+            return pregunta;
+        }
 
-    //            await _context.SaveChangesAsync();
-    //        }
-    //    }
+        // 🔹 Actualizar pregunta
+        public async Task<bool> UpdateAsync(PreguntaQuiz pregunta)
+        {
+            var existing = await _context.PreguntasQuiz
+                .FirstOrDefaultAsync(p => p.IdPregunta == pregunta.IdPregunta);
 
-    //    public async Task DeleteAsync(int id)
-    //    {
-    //        var pregunta = await _context.PreguntasQuiz.FindAsync(id);
-    //        if (pregunta != null)
-    //        {
-    //            _context.PreguntasQuiz.Remove(pregunta);
-    //            await _context.SaveChangesAsync();
-    //        }
-    //    }
-    //    #region obtner quizzes
-    //    public async Task<PreguntaQuiz> GetByIdWithQuizAsync(int id)
-    //    {
-    //        return await _context.PreguntasQuiz
-    //            .Include(p => p.Quiz)      // <-- carga el Quiz asociado
-    //            .Include(p => p.Opciones)  // <-- opcional: carga opciones
-    //            .FirstOrDefaultAsync(p => p.IdPregunta == id);
-    //    }
-    //    public async Task<IEnumerable<PreguntaQuiz>> GetAllWithQuizAsync()
-    //    {
-    //        return await _context.PreguntasQuiz
-    //            .Include(p => p.Quiz)
-    //            .Include(p => p.Opciones)
-    //            .ToListAsync();
-    //    }
-    //    #endregion 
-    //}
+            if (existing == null)
+                return false;
+
+            existing.Pregunta = pregunta.Pregunta;
+            existing.Orden = pregunta.Orden;
+
+            _context.PreguntasQuiz.Update(existing);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        // 🔹 Eliminar pregunta
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var pregunta = await _context.PreguntasQuiz
+                .FirstOrDefaultAsync(p => p.IdPregunta == id);
+
+            if (pregunta == null)
+                return false;
+
+            _context.PreguntasQuiz.Remove(pregunta);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+    }
 }

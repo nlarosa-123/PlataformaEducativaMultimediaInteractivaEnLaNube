@@ -1,34 +1,69 @@
-<p>miespacio works!</p>
-<p>miespacio works!</p>
-<p>miespacio works!</p>
-<p>miespacio works!</p>
-<p>miespacio works!</p>
-<textarea [(ngModel)]="textoUsuario" placeholder="Escribe cómo te sientes..."></textarea>
+<div class="diary">
+    <div class="container">
+        <h1>Mi Diario Emocional</h1>
 
+        <!-- Selector de emociones -->
+        <div class="seccion-emociones">
+            <h2>¿Cómo te sientes hoy?</h2>
+            <div class="emojis-grid">
+                <button
+                    *ngFor="let emocion of emociones"
+                    type="button"
+                    class="emoji-btn"
+                    [class.seleccionado]="emocionSeleccionada == emocion.idEmocion"
+                    (click)="emocionSeleccionada = emocion.idEmocion"
+                    [title]="emocion.nombre">
+                    <span class="emoji-symbol">{{ emocion.emoji }}</span>
+                    <span class="emoji-nombre">{{ emocion.nombre }}</span>
+                </button>
+            </div>
+        </div>
 
-<br><br>
+        <!-- Formulario de entrada -->
+        <div class="seccion-formulario">
+            <h2>Comparte tus sentimientos</h2>
 
-<label>Selecciona tu emoción:</label>
+            <!-- Textarea para escribir -->
+            <div class="textarea-container">
+                <textarea
+                    [(ngModel)]="textoUsuario"
+                    placeholder="Escribe cómo te sientes, qué pasó hoy, tus pensamientos, miedos o alegrías..."
+                    class="textarea-contenido"
+                    rows="8"></textarea>
 
-<select [(ngModel)]="emocionSeleccionada" class="form-select">
-  <option *ngFor="let emocion of emociones" [value]="emocion.idEmocion">
-    {{ emocion.emoji }} {{ emocion.nombre }} ({{ emocion.valor }})
-  </option>
-</select>
+                <!-- Botones de micrófono -->
+                <div class="botones-microfono">
+                    <button
+                        (click)="startRecording()"
+                        class="btn-microfono"
+                        title="Iniciar grabación"
+                        type="button">
+                        <span class="icono-microfono">🎤 Grabar</span>
+                    </button>
+                    <button
+                        (click)="stopRecording()"
+                        class="btn-microfono btn-detener"
+                        title="Detener grabación"
+                        type="button">
+                        <span class="icono-microfono">⏹ Detener</span>
+                    </button>
+                </div>
+            </div>
 
-<br><br>
+            <!-- Transcripción -->
+            <div *ngIf="transcription" class="transcripcion">
+                <p>{{ transcription }}</p>
+            </div>
 
-
-<button (click)="startRecording()">🎤 Grabar</button>
-<button (click)="stopRecording()">⏹ Detener</button>
-
-<p>{{ transcription }}</p>
-
-
-<br><br>
-
-
-
-<button (click)="guardarDiario()" [disabled]="!textoUsuario && !transcription">
-  💾 Guardar
-</button>
+            <!-- Botón guardar -->
+            <div class="botones-container">
+                <button
+                    (click)="guardarDiario()"
+                    [disabled]="!textoUsuario && !transcription"
+                    class="btn-guardar">
+                    💾 Guardar Entrada
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

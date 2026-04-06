@@ -8,9 +8,9 @@ namespace BackendParaPlataforma.Entities
         public string Pregunta { get; set; }
         public int Orden { get; set; }
 
-        public Quiz Quiz { get; set; }
-        public ICollection<OpcionRespuesta> Opciones { get; set; }
-        public ICollection<RespuestaUsuarioQuiz> respuestaUsuarioQuizzes { get; set; }
+        public Quiz? Quiz { get; set; }
+        public ICollection<OpcionRespuesta>? Opciones { get; set; }
+        public ICollection<RespuestaUsuarioQuiz>? respuestaUsuarioQuizzes { get; set; }
 
 
     }

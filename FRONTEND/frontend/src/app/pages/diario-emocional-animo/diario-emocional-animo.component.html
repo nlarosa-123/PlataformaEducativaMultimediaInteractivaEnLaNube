@@ -1,28 +1,67 @@
-<p>diario-emocional-animo works!</p>
-<p>diario-emocional-animo works!</p>
-<p>diario-emocional-animo works!</p>
-<p>diario-emocional-animo works!</p>
-<p>diario-emocional-animo works!</p>
-<p>diario-emocional-animo works!</p>
+<div class="animo">
+    <div class="container">
+        <h1>Mi Estado de Ánimo</h1>
 
-<label>
-  Añade qué te sirvió para seguir sintiéndote bien hoy o qué te hizo mejorar tu estado de ánimo.
-</label>
+        <!-- Banner motivacional -->
+        <div class="seccion-banner">
+            <span class="banner-icono">✨</span>
+            <p>Añade qué te sirvió para seguir sintiéndote bien hoy o qué te hizo mejorar tu estado de ánimo.</p>
+        </div>
 
-<br><br>
+        <!-- Formulario de reflexión -->
+        <div class="seccion-formulario">
+            <h2>Tu reflexión de hoy</h2>
 
-<textarea [(ngModel)]="textoUsuario" placeholder="Escribe cómo te sientes..."></textarea>
+            <!-- Barra de progreso de ánimo (decorativa) -->
+            <div class="animo-indicador">
+                <span>😔</span>
+                <div class="barra-animo">
+                    <div class="barra-relleno"></div>
+                </div>
+                <span>😄</span>
+            </div>
 
-<br><br>
+            <!-- Textarea para escribir -->
+            <div class="textarea-container">
+                <textarea
+                    [(ngModel)]="textoUsuario"
+                    placeholder="¿Qué pasó hoy que mejoró tu ánimo? ¿Qué estrategia te funcionó? Escribe libremente..."
+                    class="textarea-contenido"
+                    rows="8"></textarea>
+            </div>
 
-<button (click)="startRecording()">🎤 Grabar</button>
-<button (click)="stopRecording()">⏹ Detener</button>
+            <!-- Botones de grabación -->
+            <div class="botones-microfono">
+                <button
+                    (click)="startRecording()"
+                    class="btn-microfono"
+                    title="Iniciar grabación"
+                    type="button">
+                    🎤 Grabar voz
+                </button>
+                <button
+                    (click)="stopRecording()"
+                    class="btn-microfono btn-detener"
+                    title="Detener grabación"
+                    type="button">
+                    ⏹ Detener
+                </button>
+            </div>
 
-<p>{{ transcription }}</p>
+            <!-- Transcripción -->
+            <div *ngIf="transcription" class="transcripcion">
+                <p>{{ transcription }}</p>
+            </div>
 
-<br><br>
-
-<button (click)="guardarReflexion()" 
-        [disabled]="!textoUsuario && !transcription">
-  💾 Guardar reflexión
-</button>
+            <!-- Botón guardar -->
+            <div class="botones-container">
+                <button
+                    (click)="guardarReflexion()"
+                    [disabled]="!textoUsuario && !transcription"
+                    class="btn-guardar">
+                    💾 Guardar reflexión
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

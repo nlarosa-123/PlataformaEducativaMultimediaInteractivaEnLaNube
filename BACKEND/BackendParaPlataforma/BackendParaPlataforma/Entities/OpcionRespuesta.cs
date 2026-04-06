@@ -8,7 +8,7 @@ namespace BackendParaPlataforma.Entities
         public string TextoOpcion { get; set; }
         public bool EsCorrecta { get; set; }
 
-        public PreguntaQuiz Pregunta { get; set; }
-        public ICollection<RespuestaUsuarioQuiz> respuestaUsuarioQuizzes { get; set; }
+        public PreguntaQuiz? Pregunta { get; set; }
+        public ICollection<RespuestaUsuarioQuiz>? respuestaUsuarioQuizzes { get; set; }
     }
 }
