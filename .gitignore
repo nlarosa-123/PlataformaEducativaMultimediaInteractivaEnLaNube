@@ -45,3 +45,4 @@ Thumbs.db
 # SQL Configurations
 /BACKEND/BackendParaPlataforma/BackEndParaPlataforma/Migrations
 #/BACKEND/BackendParaPlataforma/BackendParaPlataforma/Program.cs
+/BACKEND/BackendParaPlataforma/BackendParaPlataforma/Controllers/AnalisisIAController.cs

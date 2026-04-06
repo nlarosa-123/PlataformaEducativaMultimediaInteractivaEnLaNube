@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,58 +14,87 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
             _context = context;
         }
 
-        public async Task<List<ProgresoModuloUsuario>> ObtenerTodosAsync()
+        // 🔹 Obtener todos
+        public async Task<IEnumerable<ProgresoModuloUsuario>> GetAllAsync()
         {
             return await _context.ProgresoModuloUsuarios
-                .Include(x => x.Usuario)
+                .Include(p => p.Usuario)
+                .Include(p => p.Modulos)
                 .ToListAsync();
         }
 
-        public async Task<ProgresoModuloUsuario?> ObtenerPorIdAsync(int id)
+        // 🔹 Obtener por ID
+        public async Task<ProgresoModuloUsuario?> GetByIdAsync(int id)
         {
             return await _context.ProgresoModuloUsuarios
-                .Include(x => x.Usuario)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .Include(p => p.Usuario)
+                .Include(p => p.Modulos)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
-        #region usuario
-        public async Task<List<ProgresoModuloUsuario>> ObtenerPorUsuarioAsync(int idUsuario)
-        {
-            return await _context.ProgresoModuloUsuarios
-                .Where(x => x.IdUsuario == idUsuario)
-                .Include(x => x.Usuario)
-                .ToListAsync();
-        }
-        
 
-        public async Task<ProgresoModuloUsuario?> ObtenerAsync(int idUsuario, int idModulo)
+        // 🔹 Obtener progreso por usuario
+        public async Task<IEnumerable<ProgresoModuloUsuarioDto>> GetByUsuarioIdAsync(int usuarioId)
         {
             return await _context.ProgresoModuloUsuarios
-                .Include(x => x.Usuario)
-                .FirstOrDefaultAsync(x =>
-                    x.IdUsuario == idUsuario &&
-                    x.IdModulo == idModulo);
+        .Where(p => p.IdUsuario == usuarioId)
+        .Select(p => new ProgresoModuloUsuarioDto
+        {
+            IdUsuario = p.IdUsuario,
+            NombreUsuario = p.Usuario.Nombre,
+            IdModulo = p.IdModulo,
+            Porcentaje = p.Porcentaje,
+            Completado = p.Completado,
+            UltimaLeccion = p.UltimaLeccion,
+            TituloModulo = p.Modulos.Titulo
+        })
+        .ToListAsync();
+        }
+
+        // 🔹 Obtener progreso específico (usuario + módulo)
+        public async Task<ProgresoModuloUsuario?> GetByUsuarioModuloAsync(int usuarioId, int moduloId)
+        {
+            return await _context.ProgresoModuloUsuarios
+                .Include(p => p.Modulos)
+                .FirstOrDefaultAsync(p => p.IdUsuario == usuarioId && p.IdModulo == moduloId);
         }
         #endregion
 
-        public async Task<ProgresoModuloUsuario> CrearAsync(ProgresoModuloUsuario progreso)
+        // 🔹 Crear progreso
+        public async Task<ProgresoModuloUsuario> CreateAsync(ProgresoModuloUsuario progreso)
         {
             await _context.ProgresoModuloUsuarios.AddAsync(progreso);
+            await _context.SaveChangesAsync();
             return progreso;
         }
 
-        public void Actualizar(ProgresoModuloUsuario progreso)
+        // 🔹 Actualizar progreso
+        public async Task<bool> UpdateAsync(ProgresoModuloUsuario progreso)
         {
-            _context.ProgresoModuloUsuarios.Update(progreso);
-        }
+            var existing = await _context.ProgresoModuloUsuarios.FindAsync(progreso.Id);
 
-        public void Eliminar(ProgresoModuloUsuario progreso)
-        {
-            _context.ProgresoModuloUsuarios.Remove(progreso);
-        }
+            if (existing == null)
+                return false;
 
-        public async Task SaveChangesAsync()
-        {
+            existing.Porcentaje = progreso.Porcentaje;
+            existing.Completado = progreso.Completado;
+            existing.UltimaLeccion = progreso.UltimaLeccion;
+
+            _context.ProgresoModuloUsuarios.Update(existing);
             await _context.SaveChangesAsync();
+            return true;
+        }
+
+        // 🔹 Eliminar progreso
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var progreso = await _context.ProgresoModuloUsuarios.FindAsync(id);
+
+            if (progreso == null)
+                return false;
+
+            _context.ProgresoModuloUsuarios.Remove(progreso);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

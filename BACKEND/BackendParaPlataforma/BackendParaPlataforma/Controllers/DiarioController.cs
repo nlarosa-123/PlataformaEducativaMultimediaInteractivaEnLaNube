@@ -1,5 +1,6 @@
 using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
+using BackendParaPlataforma.FuncionesAux;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,12 @@ namespace BackendParaPlataforma.API.Controllers
     public class DiarioEmocionalController : ControllerBase
     {
         private readonly IDiarioEmocionalRepository _repository;
+        private readonly MetodosAux _metodosAux;
 
-        public DiarioEmocionalController(IDiarioEmocionalRepository repository)
+        public DiarioEmocionalController(IDiarioEmocionalRepository repository, MetodosAux metodosAux)
         {
             _repository = repository;
+            _metodosAux = metodosAux;
         }
 
         // 📌 GET: api/DiarioEmocional
@@ -75,6 +78,8 @@ namespace BackendParaPlataforma.API.Controllers
 
             var created = await _repository.CreateAsync(diario);
 
+            await _metodosAux.CrearActualizarEstUsuario(created.Id_Usuario);
+
             return CreatedAtAction(nameof(GetById), new { id = created.Id_Diario }, created);
         }
 
@@ -90,6 +95,8 @@ namespace BackendParaPlataforma.API.Controllers
             if (!updated)
                 return NotFound($"No se encontró el diario con ID {id}");
 
+            await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario); 
+            
             return NoContent();
         }
 
@@ -97,10 +104,16 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            var diario = await _repository.GetByIdAsync(id); 
             var deleted = await _repository.DeleteAsync(id);
 
             if (!deleted)
                 return NotFound($"No se encontró el diario con ID {id}");
+
+            if (diario != null)
+            {
+                await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario);
+            }
 
             return NoContent();
         }

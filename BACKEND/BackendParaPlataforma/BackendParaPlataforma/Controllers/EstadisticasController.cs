@@ -1,4 +1,5 @@
 using BackendParaPlataforma.Entities;
+using BackendParaPlataforma.FuncionesAux;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,19 @@ namespace BackendParaPlataforma.API.Controllers
     public class EstadisticaUsuarioController : ControllerBase
     {
         private readonly IEstadisticaUsuarioRepository _repository;
+        private readonly MetodosAux _metodosAux;
 
-        public EstadisticaUsuarioController(IEstadisticaUsuarioRepository repository)
+        public EstadisticaUsuarioController(IEstadisticaUsuarioRepository repository, MetodosAux metodosAux)
         {
             _repository = repository;
+            _metodosAux = metodosAux;
+        }
+
+        [HttpPost("actualizar/{idUsuario}")]
+        public async Task<IActionResult> ActualizarEstadisticas(int idUsuario)
+        {
+            await _metodosAux.CrearActualizarEstUsuario(idUsuario);
+            return Ok("Estadísticas recalculadas correctamente");
         }
 
         // ?? GET: api/EstadisticaUsuario
@@ -39,6 +49,8 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpGet("usuario/{usuarioId}")]
         public async Task<ActionResult<EstadisticaUsuario>> GetByUsuario(int usuarioId)
         {
+            await _metodosAux.CrearActualizarEstUsuario(usuarioId);
+
             var estadistica = await _repository.GetByUsuarioIdAsync(usuarioId);
 
             if (estadistica == null)

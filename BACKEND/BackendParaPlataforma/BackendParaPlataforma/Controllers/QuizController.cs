@@ -3,115 +3,123 @@ using System.Linq;
 using System.Threading.Tasks;
 using BackendParaPlataforma.cmds;
 using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Quic;
 
-[ApiController]
-[Route("api/[controller]")]
-public class QuizController : ControllerBase
+namespace BackendParaPlataforma.API.Controllers
 {
-    //private readonly IQuizRepository _repository;
+    [ApiController]
+    [Route("api/[controller]")]
+    public class QuizController : ControllerBase
+    {
+        private readonly IQuizRepository _repository;
 
-    //public QuizController(IQuizRepository repository)
-    //{
-    //    _repository = repository;
-    //}
+        public QuizController(IQuizRepository repository)
+        {
+            _repository = repository;
+        }
 
-    // ? CREATE
-    //[HttpPost]
-    //public async Task<ActionResult<QuizDto>> Create(CreateQuizCommand command)
-    //{
-    //    var quiz = new Quiz
-    //    {
-    //        IdLeccion = command.IdLeccion,
-    //        Titulo = command.Titulo,
-    //        Descripcion = command.Descripcion,
-    //        Preguntas = command.Preguntas?.Select(p => new PreguntaQuiz
-    //        {
-    //            Texto = p.Texto
-    //        }).ToList()
-    //    };
+        // ?? GET: api/quiz
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var quizzes = await _repository.GetAllAsync();
+            return Ok(quizzes);
+        }
 
-    //    var id = await _repository.CreateAsync(quiz);
+        // ?? GET: api/quiz/{id}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var quiz = await _repository.GetByIdAsync(id);
 
-    //    var result = MapToDto(quiz);
+            if (quiz == null)
+                return NotFound(new { message = "Quiz no encontrado" });
 
-    //    return CreatedAtAction(nameof(GetById), new { id }, result);
-    //}
+            return Ok(quiz);
+        }
 
-    //// ? READ BY ID
-    //[HttpGet("{id}")]
-    //public async Task<ActionResult<QuizDto>> GetById(int id)
-    //{
-    //    var quiz = await _repository.GetByIdAsync(id);
+        // ?? GET: api/quiz/leccion/{leccionId}
+        [HttpGet("leccion/{leccionId}")]
+        public async Task<IActionResult> GetByLeccion(int leccionId)
+        {
+            var quiz = await _repository.GetByLeccionIdAsync(leccionId);
 
-    //    if (quiz == null)
-    //        return NotFound();
+            if (quiz == null)
+                return NotFound();
 
-    //    return Ok(MapToDto(quiz));
-    //}
+            var dto = new QuizDto
+            {
+                IdQuiz = quiz.IdQuiz,
+                Titulo = quiz.Titulo,
+                Descripcion = quiz.Descripcion,
+                Preguntas = quiz.PreguntaQuizzes.Select(p => new PreguntaQuizDto
+                {
+                    IdPregunta = p.IdPregunta,
+                    IdQuiz = p.IdQuiz
+                }).ToList()
+            };
 
-    //// ? READ ALL
-    //[HttpGet]
-    //public async Task<ActionResult<IEnumerable<QuizDto>>> GetAll()
-    //{
-    //    var quizzes = await _repository.GetAllAsync();
+            return Ok(dto);
+        }
 
-    //    return Ok(quizzes.Select(q => MapToDto(q)));
-    //}
+        // ?? POST: api/quiz
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Quiz quiz)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-    // ? UPDATE
-    //[HttpPut("{id}")]
-    //public async Task<ActionResult<QuizDto>> Update(int id, CreateQuizCommand command)
-    //{
-    //    var quiz = await _repository.GetByIdAsync(id);
+            try
+            {
+                var created = await _repository.CreateAsync(quiz);
+                return CreatedAtAction(nameof(GetById), new { id = created.IdQuiz }, created);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
-    //    if (quiz == null)
-    //        return NotFound();
+        // ?? PUT: api/quiz/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Quiz quiz)
+        {
+            if (id != quiz.IdQuiz)
+                return BadRequest(new { message = "El ID no coincide" });
 
-    //    quiz.IdLeccion = command.IdLeccion;
-    //    quiz.Titulo = command.Titulo;
-    //    quiz.Descripcion = command.Descripcion;
+            var updated = await _repository.UpdateAsync(quiz);
 
-    //    // Manejo simple de preguntas (reemplazo completo)
-    //    quiz.Preguntas = command.Preguntas?.Select(p => new PreguntaQuiz
-    //    {
-    //        Texto = p.Texto
-    //    }).ToList();
+            if (!updated)
+                return NotFound(new { message = "Quiz no encontrado" });
 
-    //    await _repository.UpdateAsync(quiz);
+            return Ok(new { message = "Quiz actualizado correctamente" });
+        }
 
-    //    return Ok(MapToDto(quiz));
-    //}
+        // ?? DELETE: api/quiz/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _repository.DeleteAsync(id);
 
-    // ? DELETE
-    //[HttpDelete("{id}")]
-    //public async Task<IActionResult> Delete(int id)
-    //{
-    //    var quiz = await _repository.GetByIdAsync(id);
+            if (!deleted)
+                return NotFound(new { message = "Quiz no encontrado" });
 
-    //    if (quiz == null)
-    //        return NotFound();
+            return Ok(new { message = "Quiz eliminado correctamente" });
+        }
 
-    //    await _repository.DeleteAsync(id);
+        [HttpPost("resolver")]
+        public IActionResult ResolverQuiz(int quizId, Dictionary<int, int> respuestas)
+        {
+            // clave = preguntaId
+            // valor = respuestaId seleccionada
 
-    //    return NoContent();
-    //}
+            // ?? aquí validarías respuestas correctas
+            // ?? calcular score
 
-    // ?? Mapper manual (Entidad ? DTO)
-    //private QuizDto MapToDto(Quiz quiz)
-    //{
-    //    return new QuizDto
-    //    {
-    //        IdQuiz = quiz.IdQuiz,
-    //        IdLeccion = quiz.IdLeccion,
-    //        Titulo = quiz.Titulo,
-    //        Descripcion = quiz.Descripcion,
-    //        Preguntas = quiz.Preguntas?.Select(p => new PreguntaQuizDto
-    //        {
-    //            IdPreguntaQuiz = p.IdPreguntaQuiz,
-    //            Texto = p.Texto
-    //        }).ToList()
-    //    };
-    //}
+            return Ok(new { score = 80, aprobado = true });
+        }
+    }
 }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-mi-espacio',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './mi-espacio.component.html',
   styleUrl: './mi-espacio.component.scss'
 })
@@ -16,6 +17,7 @@ export class MiEspacioComponent implements OnInit {
   estadoEmocional: string = '';
   emoji: string = '';
   tono: string = '';
+  progresos: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -28,6 +30,7 @@ export class MiEspacioComponent implements OnInit {
 
       // 🔥 LLAMAR AL BACKEND
       this.cargarEstado(parsed.id);
+      this.cargarProgreso(parsed.id);
     }
   }
 
@@ -42,6 +45,15 @@ export class MiEspacioComponent implements OnInit {
         error: (err) => {
           console.error('Error cargando estado emocional', err);
         }
+      });
+  }
+  cargarProgreso(userId: number) {
+  this.http.get<any[]>(`http://localhost:5169/api/ProgresoModuloUsuario/usuario/${userId}`)
+    .subscribe({
+      next: (res) => {
+        this.progresos = res;
+      },
+      error: (err) => console.error(err)
       });
   }
 }
