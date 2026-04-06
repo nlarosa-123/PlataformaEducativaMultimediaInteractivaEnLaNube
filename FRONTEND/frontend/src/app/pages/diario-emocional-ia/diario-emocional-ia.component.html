@@ -1,32 +1,74 @@
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
+<section class="diario-ia-page">
+  <header class="diario-ia-hero">
+    <span class="eyebrow">Análisis emocional con IA</span>
+    <h1>Diario Emocional IA</h1>
+    <p>
+      Revisa la lectura automática de tu diario y confirma si la interpretación coincide con lo que realmente sentiste.
+    </p>
+  </header>
 
+  <ng-container *ngIf="analisis; else emptyState">
+    <section class="stats-grid">
+      <article class="glass-card accent-blue">
+        <span class="card-label">Tono detectado</span>
+        <strong class="card-value">{{ getTextoTono() }}</strong>
+        <p>Este es el tono predominante que la IA encontró en tu texto.</p>
+      </article>
 
-<div class="container text-center mt-5" *ngIf="analisis">
+      <article class="glass-card accent-green">
+        <span class="card-label">Emoción principal</span>
+        <strong class="card-value">{{ analisis.emocion_Detectada_IA || 'No disponible' }}</strong>
+        <p>La emoción con mayor peso dentro del análisis realizado.</p>
+      </article>
 
-  <h2>Progreso personal / Recomendaciones automáticas</h2>
+      <article class="glass-card accent-amber">
+        <span class="card-label">Confianza</span>
+        <strong class="card-value">{{ analisis.confianza || 0 }}%</strong>
+        <div class="progress-bar" aria-hidden="true">
+          <span [style.width.%]="analisis.confianza || 0"></span>
+        </div>
+      </article>
+    </section>
 
-  <p class="mt-4 texto-ia">
-    El sistema detecta que el texto tiene un tono algo 
-    <strong>{{ getTextoTono() }}</strong>.
-    ¿Crees que refleja cómo te sientes?
-  </p>
+    <section class="glass-panel">
+      <div class="panel-top">
+        <div>
+          <span class="card-label">Tu confirmación</span>
+          <h2>¿La interpretación coincide contigo?</h2>
+        </div>
 
-  <div class="mt-4">
-    <button class="btn btn-success me-3" (click)="responder(true)">Sí</button>
-    <button class="btn btn-outline-danger" (click)="responder(false)">No</button>
-    </div>
+        <div class="status-pill" [class.ok]="analisis.coincide_Usuario === true" [class.no]="analisis.coincide_Usuario === false">
+          <span *ngIf="analisis.coincide_Usuario === true">Coincide</span>
+          <span *ngIf="analisis.coincide_Usuario === false">No coincide</span>
+          <span *ngIf="analisis.coincide_Usuario !== true && analisis.coincide_Usuario !== false">Pendiente</span>
+        </div>
+      </div>
 
-    <p *ngIf="analisis.coincide_Usuario === true" class="text-success">
-  👍 Coincide contigo
-</p>
+      <p class="panel-copy">
+        Tu respuesta ayuda a mejorar la precisión del seguimiento emocional y las recomendaciones futuras.
+      </p>
 
-<p *ngIf="analisis.coincide_Usuario === false" class="text-danger">
-  👎 No coincide contigo
-</p>
+      <div class="actions">
+        <button class="btn btn-success action-btn" (click)="responder(true)">Sí, coincide</button>
+        <button class="btn btn-outline-danger action-btn" (click)="responder(false)">No, no coincide</button>
+      </div>
 
-</div>
+      <div *ngIf="analisis.coincide_Usuario === true" class="feedback success">
+        La interpretación quedó marcada como correcta.
+      </div>
+
+      <div *ngIf="analisis.coincide_Usuario === false" class="feedback danger">
+        La interpretación quedó marcada como incorrecta.
+      </div>
+    </section>
+  </ng-container>
+
+  <ng-template #emptyState>
+    <section class="glass-panel empty-state">
+      <h2>Aún no hay análisis disponible</h2>
+      <p>
+        Cuando guardes un diario, aquí se mostrará el tono detectado, la emoción principal y la confianza estimada por la IA.
+      </p>
+    </section>
+  </ng-template>
+</section>

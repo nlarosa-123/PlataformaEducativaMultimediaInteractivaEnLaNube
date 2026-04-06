@@ -1,0 +1,142 @@
+:host {
+	display: block;
+}
+
+.modulos-page {
+	min-height: calc(100vh - 72px);
+	padding: 5.5rem 1rem 3rem;
+	background:
+		radial-gradient(circle at top left, rgba(195, 141, 158, 0.18), transparent 28%),
+		radial-gradient(circle at top right, rgba(232, 196, 160, 0.22), transparent 26%),
+		linear-gradient(180deg, #f9f3e9 0%, #f4eadc 100%);
+}
+
+.modulos-hero,
+.modulos-grid,
+.empty-state {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.modulos-hero {
+	padding-bottom: 1.5rem;
+}
+
+.eyebrow {
+	display: inline-block;
+	margin-bottom: 0.9rem;
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #c38d9e;
+}
+
+.modulos-hero h1,
+.empty-state h2,
+.modulo-card h2 {
+	margin: 0;
+	color: #4a4a4a;
+	font-weight: 900;
+	letter-spacing: -0.03em;
+}
+
+.modulos-hero h1 {
+	font-size: clamp(2.4rem, 5vw, 4.4rem);
+	line-height: 0.95;
+}
+
+.modulos-hero p,
+.modulo-description,
+.empty-state p {
+	color: #5f5a57;
+	line-height: 1.7;
+}
+
+.modulos-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.modulo-card,
+.empty-state {
+	border: 1px solid rgba(195, 141, 158, 0.16);
+	border-radius: 26px;
+	background: rgba(255, 250, 243, 0.82);
+	backdrop-filter: blur(12px);
+	box-shadow: 0 18px 45px rgba(74, 74, 74, 0.08);
+}
+
+.modulo-card {
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.modulo-badge {
+	align-self: flex-start;
+	display: inline-flex;
+	padding: 0.45rem 0.8rem;
+	border-radius: 999px;
+	background: rgba(173, 193, 120, 0.22);
+	color: #5f6f3c;
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.modulo-card h2 {
+	margin-top: 1rem;
+	font-size: 1.6rem;
+}
+
+.modulo-description {
+	margin: 0.75rem 0 0;
+	flex: 1;
+}
+
+.modulo-footer {
+	margin-top: 1.25rem;
+}
+
+.modulo-btn {
+	width: 100%;
+	border: 0;
+	border-radius: 999px;
+	padding: 0.95rem 1.15rem;
+	background: #c38d9e;
+	color: #fff;
+	font-weight: 800;
+	letter-spacing: 0.02em;
+	transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.modulo-btn:hover {
+	transform: translateY(-1px);
+	background: #b87f91;
+}
+
+.empty-state {
+	padding: 2rem;
+	text-align: center;
+}
+
+@media (max-width: 992px) {
+	.modulos-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 576px) {
+	.modulos-page {
+		padding-top: 4.75rem;
+	}
+
+	.modulo-card,
+	.empty-state {
+		border-radius: 22px;
+	}
+}

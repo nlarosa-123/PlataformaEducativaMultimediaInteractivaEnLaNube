@@ -1,13 +1,29 @@
-<p>modulos works!</p>
-<p>modulos works!</p>
-<p>modulos works!</p>
-<p>modulos works!</p>
-<p>modulos works!</p>
+<section class="modulos-page">
+  <header class="modulos-hero">
+    <span class="eyebrow">Ruta de aprendizaje</span>
+    <h1>Módulos</h1>
+    <p>
+      Explora los módulos disponibles y entra a cada uno para ver sus lecciones.
+    </p>
+  </header>
 
-<div *ngFor="let modulo of modulos">
-  <h2>{{ modulo.titulo }}</h2>
-  <h3>{{ modulo.descripcion }}</h3>
-  <button [routerLink]="['/modulos', modulo.idModulo]">
-    Ver lecciones
-  </button>
-</div>
+  <section class="modulos-grid" *ngIf="modulos.length > 0; else emptyState">
+    <article class="modulo-card" *ngFor="let modulo of modulos">
+      <div class="modulo-badge">Módulo</div>
+      <h2>{{ modulo.titulo }}</h2>
+      <p class="modulo-description">{{ modulo.descripcion }}</p>
+      <div class="modulo-footer">
+        <button class="modulo-btn" [routerLink]="['/modulos', modulo.idModulo]">
+          Ver lecciones
+        </button>
+      </div>
+    </article>
+  </section>
+
+  <ng-template #emptyState>
+    <article class="empty-state">
+      <h2>No hay módulos disponibles</h2>
+      <p>Cuando el backend devuelva contenido, aparecerá aquí la lista completa.</p>
+    </article>
+  </ng-template>
+</section>

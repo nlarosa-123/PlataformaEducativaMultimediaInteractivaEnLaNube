@@ -16,7 +16,7 @@ namespace BackendParaPlataforma.Controllers
         public ProgresoModuloUsuarioController(IProgresoModuloUsuarioRepository repository)
         {
             _repository = repository;
-            _usuarioRepository = usuarioRepository;
+            _usuarioRepository = _usuarioRepository;
         }
 
         // 🔹 GET: api/progresomodulousuario
@@ -119,6 +119,6 @@ namespace BackendParaPlataforma.Controllers
             return Ok(new { message = "Progreso eliminado correctamente" });
         }
 
-        #endregion
+        //#endregion
     }
 }

@@ -167,15 +167,6 @@
   ],
   "logs": [
     {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problema al leer el archivo de caché C:\\Users\\irema\\Documents\\MyRepo\\UniAccount\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "C:\\Users\\irema\\Documents\\MyRepo\\UniAccount\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\irema\\Documents\\MyRepo\\UniAccount\\PlataformaEducativaMultimediaInteractivaEnLaNube\\BACKEND\\BackendParaPlataforma\\BackendParaPlataforma\\BackendParaPlataforma.csproj",
-      "targetGraphs": []
-    },
-    {
       "code": "NU1903",
       "level": "Warning",
       "message": "El paquete \"AutoMapper\" 12.0.1 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",

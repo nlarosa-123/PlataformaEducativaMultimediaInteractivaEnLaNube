@@ -57,7 +57,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
                 .Include(p => p.Modulos)
                 .FirstOrDefaultAsync(p => p.IdUsuario == usuarioId && p.IdModulo == moduloId);
         }
-        #endregion
+        //#endregion
 
         // 🔹 Crear progreso
         public async Task<ProgresoModuloUsuario> CreateAsync(ProgresoModuloUsuario progreso)

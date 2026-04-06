@@ -1009,8 +1009,6 @@
         }
       }
     },
-<<<<<<< HEAD
-=======
     "/api/EstadisticaUsuario/actualizar/{idUsuario}": {
       "post": {
         "tags": [
@@ -1034,7 +1032,6 @@
         }
       }
     },
->>>>>>> main
     "/api/EstadisticaUsuario": {
       "get": {
         "tags": [
@@ -1291,12 +1288,6 @@
         }
       }
     },
-<<<<<<< HEAD
-    "/api/progreso": {
-      "post": {
-        "tags": [
-          "Progreso"
-=======
     "/api/Lecciones": {
       "get": {
         "tags": [
@@ -1311,35 +1302,22 @@
       "post": {
         "tags": [
           "Lecciones"
->>>>>>> main
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/ProgresoUsuario"
-=======
                 "$ref": "#/components/schemas/Lecciones"
->>>>>>> main
               }
             },
             "text/json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/ProgresoUsuario"
-=======
                 "$ref": "#/components/schemas/Lecciones"
->>>>>>> main
               }
             },
             "application/*+json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/ProgresoUsuario"
-=======
                 "$ref": "#/components/schemas/Lecciones"
->>>>>>> main
               }
             }
           }
@@ -1351,16 +1329,6 @@
         }
       }
     },
-<<<<<<< HEAD
-    "/api/progreso/{idUsuario}/{modulo}": {
-      "get": {
-        "tags": [
-          "Progreso"
-        ],
-        "parameters": [
-          {
-            "name": "idUsuario",
-=======
     "/api/Lecciones/{id}": {
       "get": {
         "tags": [
@@ -1975,6 +1943,68 @@
         }
       }
     },
+    "/api/progreso": {
+      "post": {
+        "tags": [
+          "Progreso"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgresoUsuario"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgresoUsuario"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgresoUsuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/progreso/{idUsuario}/{modulo}": {
+      "get": {
+        "tags": [
+          "Progreso"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "modulo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/ProgresoLeccionUsuario": {
       "get": {
         "tags": [
@@ -2154,7 +2184,6 @@
         "parameters": [
           {
             "name": "usuarioId",
->>>>>>> main
             "in": "path",
             "required": true,
             "schema": {
@@ -2163,13 +2192,6 @@
             }
           },
           {
-<<<<<<< HEAD
-            "name": "modulo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-=======
             "name": "leccionId",
             "in": "path",
             "required": true,
@@ -2214,7 +2236,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
->>>>>>> main
             }
           }
         ],
@@ -2232,37 +2253,7 @@
         ],
         "responses": {
           "200": {
-<<<<<<< HEAD
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                  }
-                }
-              }
-            }
-=======
             "description": "OK"
->>>>>>> main
           }
         }
       },
@@ -2274,57 +2265,24 @@
           "content": {
             "application/json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/CrearProgresoModuloUsuarioCommand"
-=======
                 "$ref": "#/components/schemas/ProgresoModuloUsuario"
->>>>>>> main
               }
             },
             "text/json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/CrearProgresoModuloUsuarioCommand"
-=======
                 "$ref": "#/components/schemas/ProgresoModuloUsuario"
->>>>>>> main
               }
             },
             "application/*+json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/CrearProgresoModuloUsuarioCommand"
-=======
                 "$ref": "#/components/schemas/ProgresoModuloUsuario"
->>>>>>> main
               }
             }
           }
         },
         "responses": {
           "200": {
-<<<<<<< HEAD
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              }
-            }
-=======
             "description": "OK"
->>>>>>> main
           }
         }
       }
@@ -2347,28 +2305,7 @@
         ],
         "responses": {
           "200": {
-<<<<<<< HEAD
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              }
-            }
-=======
             "description": "OK"
->>>>>>> main
           }
         }
       },
@@ -2391,57 +2328,24 @@
           "content": {
             "application/json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/CrearProgresoModuloUsuarioCommand"
-=======
                 "$ref": "#/components/schemas/ProgresoModuloUsuario"
->>>>>>> main
               }
             },
             "text/json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/CrearProgresoModuloUsuarioCommand"
-=======
                 "$ref": "#/components/schemas/ProgresoModuloUsuario"
->>>>>>> main
               }
             },
             "application/*+json": {
               "schema": {
-<<<<<<< HEAD
-                "$ref": "#/components/schemas/CrearProgresoModuloUsuarioCommand"
-=======
                 "$ref": "#/components/schemas/ProgresoModuloUsuario"
->>>>>>> main
               }
             }
           }
         },
         "responses": {
           "200": {
-<<<<<<< HEAD
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              }
-            }
-=======
             "description": "OK"
->>>>>>> main
           }
         }
       },
@@ -2467,22 +2371,14 @@
         }
       }
     },
-<<<<<<< HEAD
-    "/api/ProgresoModuloUsuario/usuario/{idUsuario}": {
-=======
     "/api/ProgresoModuloUsuario/usuario/{usuarioId}": {
->>>>>>> main
       "get": {
         "tags": [
           "ProgresoModuloUsuario"
         ],
         "parameters": [
           {
-<<<<<<< HEAD
-            "name": "idUsuario",
-=======
             "name": "usuarioId",
->>>>>>> main
             "in": "path",
             "required": true,
             "schema": {
@@ -2493,57 +2389,19 @@
         ],
         "responses": {
           "200": {
-<<<<<<< HEAD
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                  }
-                }
-              }
-            }
-=======
             "description": "OK"
->>>>>>> main
           }
         }
       }
     },
-<<<<<<< HEAD
-    "/api/ProgresoModuloUsuario/{idUsuario}/{idModulo}": {
-=======
     "/api/ProgresoModuloUsuario/usuario/{usuarioId}/modulo/{moduloId}": {
->>>>>>> main
       "get": {
         "tags": [
           "ProgresoModuloUsuario"
         ],
         "parameters": [
           {
-<<<<<<< HEAD
-            "name": "idUsuario",
-=======
             "name": "usuarioId",
->>>>>>> main
             "in": "path",
             "required": true,
             "schema": {
@@ -2552,11 +2410,7 @@
             }
           },
           {
-<<<<<<< HEAD
-            "name": "idModulo",
-=======
             "name": "moduloId",
->>>>>>> main
             "in": "path",
             "required": true,
             "schema": {
@@ -2567,23 +2421,6 @@
         ],
         "responses": {
           "200": {
-<<<<<<< HEAD
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProgresoModuloUsuarioDto"
-=======
             "description": "OK"
           }
         }
@@ -2972,19 +2809,15 @@
                 "additionalProperties": {
                   "type": "integer",
                   "format": "int32"
->>>>>>> main
                 }
               }
             }
           }
-<<<<<<< HEAD
-=======
         },
         "responses": {
           "200": {
             "description": "OK"
           }
->>>>>>> main
         }
       }
     },
@@ -3213,8 +3046,6 @@
         }
       }
     },
-<<<<<<< HEAD
-=======
     "/api/RespuestaUsuarioQuiz": {
       "get": {
         "tags": [
@@ -3447,7 +3278,6 @@
         }
       }
     },
->>>>>>> main
     "/api/Speech": {
       "post": {
         "tags": [
@@ -3683,32 +3513,6 @@
         },
         "additionalProperties": false
       },
-<<<<<<< HEAD
-      "CrearProgresoModuloUsuarioCommand": {
-        "type": "object",
-        "properties": {
-          "idUsuario": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idModulo": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "porcentaje": {
-            "type": "number",
-            "format": "double"
-          },
-          "ultimaLeccion": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-=======
->>>>>>> main
       "CrearUsuarioCommand": {
         "type": "object",
         "properties": {
@@ -3903,6 +3707,36 @@
           },
           "usuario": {
             "$ref": "#/components/schemas/Usuario"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EstadisticaUsuarioDto": {
+        "type": "object",
+        "properties": {
+          "idEstadistica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "porcentajeCoincidenciaIA": {
+            "type": "number",
+            "format": "double"
+          },
+          "emocionMasFrecuente": {
+            "type": "string",
+            "nullable": true
+          },
+          "rachaDiasRegistrados": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ultimaActualizacion": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -4150,43 +3984,6 @@
         },
         "additionalProperties": false
       },
-<<<<<<< HEAD
-      "ProgresoModuloUsuarioDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idUsuario": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nombreUsuario": {
-            "type": "string",
-            "nullable": true
-          },
-          "idModulo": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "porcentaje": {
-            "type": "number",
-            "format": "double"
-          },
-          "completado": {
-            "type": "boolean"
-          },
-          "ultimaLeccion": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-=======
->>>>>>> main
       "ProgresoUsuario": {
         "type": "object",
         "properties": {
@@ -4429,6 +4226,9 @@
           },
           "activo": {
             "type": "boolean"
+          },
+          "estadisticaUsuario": {
+            "$ref": "#/components/schemas/EstadisticaUsuarioDto"
           }
         },
         "additionalProperties": false
