@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -18,6 +19,22 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
+    if (!this.email.trim() || !this.password.trim()) {
+      alert('Completa el correo y la contraseña.');
+      return;
+    }
+
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+    if (!emailValido) {
+      alert('Introduce un email válido.');
+      return;
+    }
+
+    const passwordValida = /^(?=.*[!@#$%^&*]).{6,}$/.test(this.password);
+    if (!passwordValida) {
+      alert('La contraseña debe tener al menos 6 caracteres y un caracter especial.');
+      return;
+    }
 
     this.authService.login(this.email, this.password)
       .subscribe({
