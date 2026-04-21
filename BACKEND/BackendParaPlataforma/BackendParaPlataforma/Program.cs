@@ -50,6 +50,7 @@ builder.Services.AddScoped<IProgresoLeccionUsuarioRepository, ProgresoLeccionUsu
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
 builder.Services.AddScoped<IOpcionRespuestaRepository, OpcionRespuestaRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+builder.Services.AddScoped<BackendParaPlataforma.Azure.MétodosAzure>();
 builder.Services.AddScoped<MetodosAux>();
 
 builder.Services.AddCors(options =>

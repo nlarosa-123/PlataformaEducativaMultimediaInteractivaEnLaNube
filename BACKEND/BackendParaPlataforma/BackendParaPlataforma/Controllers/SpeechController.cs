@@ -17,7 +17,7 @@ namespace BackendParaPlataforma.Controllers
 
                 using var stream = file.OpenReadStream();
 
-                var azure = new BackendParaPlataforma.Azure.MétodosAzure();
+                var azure = new BackendParaPlataforma.Azure.MétodosAzure(null);
 
                 var text = await azure.ConvertSpeechToText(stream);
 

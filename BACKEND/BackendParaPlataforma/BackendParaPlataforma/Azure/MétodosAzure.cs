@@ -1,5 +1,9 @@
-﻿using Microsoft.CognitiveServices.Speech;
+﻿using Azure;
+using Azure.AI.TextAnalytics;
+using BackendParaPlataforma.dtos;
+using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
 namespace BackendParaPlataforma.Azure
@@ -8,6 +12,17 @@ namespace BackendParaPlataforma.Azure
     {
         static string speechKey = "";
         static string endpoint = "https://italynorth.api.cognitive.microsoft.com/";
+
+        TextAnalyticsClient clientSA;
+        public MétodosAzure(IConfiguration config)
+        {
+            var endpointSA = config["AzureAI:Endpoint"];
+            var keySA = config["AzureAI:Key"];
+            clientSA = new TextAnalyticsClient(
+                new Uri(endpointSA),
+                new AzureKeyCredential(keySA)
+            );
+        }
         public async Task<string> ConvertSpeechToText(Stream audioStream)
         {
             try
@@ -46,6 +61,18 @@ namespace BackendParaPlataforma.Azure
                 throw;
             }
 
+        }
+
+        public async Task<SentimentResultDto> Analyze(string text)
+        {
+            var response = clientSA.AnalyzeSentiment(text);
+            return new SentimentResultDto
+            {
+                Sentiment = response.Value.Sentiment.ToString(),
+                Positive = response.Value.ConfidenceScores.Positive,
+                Neutral = response.Value.ConfidenceScores.Neutral,
+                Negative = response.Value.ConfidenceScores.Negative
+            };
         }
     }
 }
