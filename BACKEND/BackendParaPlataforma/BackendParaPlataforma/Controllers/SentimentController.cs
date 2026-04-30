@@ -22,8 +22,8 @@ namespace BackendParaPlataforma.Controllers
         {
             var result = await _azure.Analyze(text);
 
-            //Probando si OpenAI funciona
-            _openAI.Test(); 
+            //Ahora analiza la frase openAI
+            var result2 = await _openAI.Analyze(text);
 
             return Ok(result);
         }
