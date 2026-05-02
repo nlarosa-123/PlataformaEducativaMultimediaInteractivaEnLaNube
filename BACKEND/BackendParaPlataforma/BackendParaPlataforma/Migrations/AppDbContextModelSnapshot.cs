@@ -143,6 +143,11 @@ namespace BackendParaPlataforma.Migrations
                         .HasPrecision(5, 2)
                         .HasColumnType("decimal(5,2)");
 
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("RachaDiasRegistrados")
                         .HasColumnType("int");
 
@@ -151,8 +156,7 @@ namespace BackendParaPlataforma.Migrations
 
                     b.HasKey("IdEstadistica");
 
-                    b.HasIndex("IdUsuario")
-                        .IsUnique();
+                    b.HasIndex("IdUsuario");
 
                     b.ToTable("estadisticas_usuario", (string)null);
                 });
@@ -626,8 +630,8 @@ namespace BackendParaPlataforma.Migrations
             modelBuilder.Entity("BackendParaPlataforma.Entities.EstadisticaUsuario", b =>
                 {
                     b.HasOne("BackendParaPlataforma.Entities.Usuario", "Usuario")
-                        .WithOne("EstadisticaUsuario")
-                        .HasForeignKey("BackendParaPlataforma.Entities.EstadisticaUsuario", "IdUsuario")
+                        .WithMany("EstadisticaUsuarios")
+                        .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -827,8 +831,7 @@ namespace BackendParaPlataforma.Migrations
                 {
                     b.Navigation("Diarios");
 
-                    b.Navigation("EstadisticaUsuario")
-                        .IsRequired();
+                    b.Navigation("EstadisticaUsuarios");
 
                     b.Navigation("ProgresosLecciones");
 

@@ -26,8 +26,8 @@
 
         public ICollection<DiarioEmocional> Diarios { get; set; }
         public ICollection<ProgresoLeccionUsuario> ProgresosLecciones { get; set; }
-        public EstadisticaUsuario EstadisticaUsuario { get; set; }
         public ICollection<RespuestaUsuarioQuiz> RespuestaUsuarioQuizzes { get; set; }
+        public ICollection<EstadisticaUsuario> EstadisticaUsuarios { get; set; }
 
         // Constructor principal
         public Usuario(string nombre, string email, string passwordHash)

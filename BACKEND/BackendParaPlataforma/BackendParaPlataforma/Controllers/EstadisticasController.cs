@@ -47,16 +47,16 @@ namespace BackendParaPlataforma.API.Controllers
 
         // ?? GET: api/EstadisticaUsuario/usuario/1
         [HttpGet("usuario/{usuarioId}")]
-        public async Task<ActionResult<EstadisticaUsuario>> GetByUsuario(int usuarioId)
+        public async Task<ActionResult<IEnumerable<EstadisticaUsuario>>> GetByUsuario(int usuarioId)
         {
             await _metodosAux.CrearActualizarEstUsuario(usuarioId);
 
-            var estadistica = await _repository.GetByUsuarioIdAsync(usuarioId);
+            var estadisticas = await _repository.GetByUsuarioIdAsync(usuarioId);
 
-            if (estadistica == null)
+            if (estadisticas == null || !estadisticas.Any())
                 return NotFound("El usuario aún no tiene estadísticas");
 
-            return Ok(estadistica);
+            return Ok(estadisticas);
         }
 
         // ?? POST: api/EstadisticaUsuario
@@ -108,6 +108,23 @@ namespace BackendParaPlataforma.API.Controllers
                 return NotFound($"No se encontró la estadística con ID {id}");
 
             return NoContent();
+        }
+        [HttpGet("usuario/{usuarioId}/provider/{provider}")]
+        public async Task<ActionResult<EstadisticaUsuario>> GetByUsuarioAndProvider(int usuarioId, string provider)
+        {
+            var estadistica = await _repository.GetByUsuarioAndProviderAsync(usuarioId, provider);
+
+            if (estadistica == null)
+                return NotFound($"No hay estadísticas para el provider {provider}");
+
+            return Ok(estadistica);
+        }
+        [HttpPost("actualizar/{idUsuario}/{provider}")]
+        public async Task<IActionResult> ActualizarEstadisticasPorProvider(int idUsuario, string provider)
+        {
+            await _metodosAux.CrearActualizarEstUsuario(idUsuario); // si luego separas por provider, lo mejoras
+
+            return Ok($"Estadísticas recalculadas para {provider}");
         }
     }
 }
