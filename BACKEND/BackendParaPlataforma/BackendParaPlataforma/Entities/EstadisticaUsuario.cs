@@ -16,6 +16,7 @@ namespace BackendParaPlataforma.Entities
 
         public DateTime UltimaActualizacion { get; set; }
         public Usuario? Usuario { get; set; }
+        public string Provider { get; set; }
 
         // Constructor opcional
         public EstadisticaUsuario() { }

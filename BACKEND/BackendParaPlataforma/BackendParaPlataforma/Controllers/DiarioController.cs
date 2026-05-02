@@ -1,3 +1,4 @@
+using BackendParaPlataforma.Azure;
 using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.FuncionesAux;
@@ -11,12 +12,19 @@ namespace BackendParaPlataforma.API.Controllers
     public class DiarioEmocionalController : ControllerBase
     {
         private readonly IDiarioEmocionalRepository _repository;
+        private readonly ISentimentResultRepository _sentimentResultrepository;
         private readonly MetodosAux _metodosAux;
+        private readonly MétodosAzure _azureService;
 
-        public DiarioEmocionalController(IDiarioEmocionalRepository repository, MetodosAux metodosAux)
+        public DiarioEmocionalController(IDiarioEmocionalRepository repository,
+            ISentimentResultRepository sentimentResultrepository,
+            MetodosAux metodosAux,
+            MétodosAzure azureService)
         {
             _repository = repository;
             _metodosAux = metodosAux;
+            _sentimentResultrepository = sentimentResultrepository;
+            _azureService = azureService;
         }
 
         // 📌 GET: api/DiarioEmocional
@@ -76,11 +84,42 @@ namespace BackendParaPlataforma.API.Controllers
             if (diario == null)
                 return BadRequest("Datos inválidos");
 
+            // ✅ 1. Guardar diario primero
             var created = await _repository.CreateAsync(diario);
 
+            #region resultado de análisis de diferentes IAs
+
+            // ✅ 2. Analizar con Azure
+            var resultadoAzure = await _azureService.Analyze(created.Texto_Usuario);
+
+            // ✅ 3. Guardar resultado
+            var sentimentResult = new SentimentResult()
+            {
+                Id_Diario = created.Id_Diario,
+                Fecha_Analisis = DateTime.UtcNow,
+                Provider = "Azure",
+                Sentiment = resultadoAzure.Sentiment,
+                Positive = resultadoAzure.Positive,
+                Neutral = resultadoAzure.Neutral,
+                Negative = resultadoAzure.Negative
+            };
+
+            await _sentimentResultrepository.UpsertAsync(sentimentResult);
+
+            #endregion resultado de análisis de diferentes IAs
+
+            // ✅ 4. Actualizar estadísticas
             await _metodosAux.CrearActualizarEstUsuario(created.Id_Usuario);
 
-            return CreatedAtAction(nameof(GetById), new { id = created.Id_Diario }, created);
+            return CreatedAtAction(nameof(GetById), new { id = created.Id_Diario }, new DiarioEmocionalResponseDto
+            {
+                Id_Diario = created.Id_Diario,
+                Id_Usuario = created.Id_Usuario,
+                Texto_Usuario = created.Texto_Usuario,
+                Fecha = created.Fecha,
+                Id_Emocion_Usuario = created.Id_Emocion_Usuario,
+                Audio_Url = created.Audio_Url
+            });
         }
 
         // 📌 PUT: api/DiarioEmocional/5
