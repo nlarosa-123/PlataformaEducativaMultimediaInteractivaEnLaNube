@@ -463,6 +463,71 @@ namespace BackendParaPlataforma.Migrations
                     b.ToTable("respuestas_usuario_quiz", (string)null);
                 });
 
+            modelBuilder.Entity("BackendParaPlataforma.Entities.SentimentResult", b =>
+                {
+                    b.Property<int>("Id_Analisis")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Analisis"));
+
+                    b.Property<bool>("Coincide_Usuario")
+                        .HasColumnType("bit");
+
+                    b.Property<double?>("Confidence")
+                        .HasPrecision(5, 4)
+                        .HasColumnType("float(5)");
+
+                    b.Property<string>("Explanation")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("Fecha_Analisis")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id_Diario")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Magnitude")
+                        .HasPrecision(5, 4)
+                        .HasColumnType("float(5)");
+
+                    b.Property<double?>("Negative")
+                        .HasPrecision(5, 4)
+                        .HasColumnType("float(5)");
+
+                    b.Property<double?>("Neutral")
+                        .HasPrecision(5, 4)
+                        .HasColumnType("float(5)");
+
+                    b.Property<double?>("Positive")
+                        .HasPrecision(5, 4)
+                        .HasColumnType("float(5)");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("RawJson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Score")
+                        .HasPrecision(5, 4)
+                        .HasColumnType("float(5)");
+
+                    b.Property<string>("Sentiment")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id_Analisis");
+
+                    b.HasIndex("Id_Diario");
+
+                    b.ToTable("sentiment_results", (string)null);
+                });
+
             modelBuilder.Entity("BackendParaPlataforma.Entities.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -700,11 +765,24 @@ namespace BackendParaPlataforma.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("BackendParaPlataforma.Entities.SentimentResult", b =>
+                {
+                    b.HasOne("BackendParaPlataforma.Entities.DiarioEmocional", "DiarioEmocional")
+                        .WithMany("SentimentResults")
+                        .HasForeignKey("Id_Diario")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DiarioEmocional");
+                });
+
             modelBuilder.Entity("BackendParaPlataforma.Entities.DiarioEmocional", b =>
                 {
                     b.Navigation("AnalisisIA");
 
                     b.Navigation("ReflexionMejora");
+
+                    b.Navigation("SentimentResults");
                 });
 
             modelBuilder.Entity("BackendParaPlataforma.Entities.Emociones", b =>
@@ -718,8 +796,7 @@ namespace BackendParaPlataforma.Migrations
                 {
                     b.Navigation("ProgresosUsuarios");
 
-                    b.Navigation("Quiz")
-                        .IsRequired();
+                    b.Navigation("Quiz");
                 });
 
             modelBuilder.Entity("BackendParaPlataforma.Entities.Modulos", b =>

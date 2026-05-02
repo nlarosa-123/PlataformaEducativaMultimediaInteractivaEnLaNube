@@ -19,6 +19,7 @@ namespace BackendParaPlataforma.Entities
         public DateTime Fecha_Creacion { get; set; }
 
         public AnalisisIA? AnalisisIA { get; set; }
+        public List<SentimentResult>? SentimentResults { get; set; }
 
         public ReflexionMejora? ReflexionMejora { get; set; }
     }

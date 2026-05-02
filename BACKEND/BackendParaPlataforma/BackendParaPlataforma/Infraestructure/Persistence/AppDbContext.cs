@@ -21,6 +21,7 @@ namespace BackendParaPlataforma.Infraestructure.Persistence {
         public DbSet<ProgresoLeccionUsuario> ProgresoLeccionUsuario => Set<ProgresoLeccionUsuario>(); 
         public DbSet<OpcionRespuesta> OpcionRespuestas => Set<OpcionRespuesta>(); 
         public DbSet<RespuestaUsuarioQuiz> RespuestaUsuarioQuizzes => Set<RespuestaUsuarioQuiz>(); 
+        public DbSet<SentimentResult> SentimentResults => Set<SentimentResult>(); 
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options)

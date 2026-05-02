@@ -49,6 +49,7 @@ builder.Services.AddScoped<IProgresoModuloUsuarioRepository, ProgresoModuloUsuar
 builder.Services.AddScoped<IProgresoLeccionUsuarioRepository, ProgresoLeccionUsuarioRepository>();
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
 builder.Services.AddScoped<IOpcionRespuestaRepository, OpcionRespuestaRepository>();
+builder.Services.AddScoped<ISentimentResultRepository, SentimentResultRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.AddScoped<BackendParaPlataforma.Azure.MétodosAzure>();
 builder.Services.AddScoped<MetodosAux>();
