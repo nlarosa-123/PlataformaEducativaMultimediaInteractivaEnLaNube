@@ -15,5 +15,11 @@ namespace BackendParaPlataforma.dtos
 
         [JsonRequired]
         public double Negative { get; set; }
+
+        [JsonRequired]
+        public double? Confidence { get; set; }
+
+        [JsonRequired]
+        public String? Explanation { get; set; }
     }
 }

@@ -31,11 +31,17 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         }
 
         // ?? Obtener por usuario (el más importante)
-        public async Task<EstadisticaUsuario?> GetByUsuarioIdAsync(int usuarioId)
+        public async Task<IEnumerable<EstadisticaUsuario?>> GetByUsuarioIdAsync(int usuarioId)
         {
             return await _context.EstadisticaUsuario
-                .FirstOrDefaultAsync(e => e.IdUsuario == usuarioId);
+                .Where(e => e.IdUsuario == usuarioId).ToListAsync(); 
         }
+
+        public async Task<IEnumerable<EstadisticaUsuario?>> GetByUsuarioAndProviderAsync(int usuarioId, string provider) {
+            return await _context.EstadisticaUsuario
+                .Where(e => e.IdUsuario == usuarioId && e.Provider == provider).ToListAsync(); 
+        }
+
 
         // ?? Crear
         public async Task<EstadisticaUsuario> CreateAsync(EstadisticaUsuario estadistica)

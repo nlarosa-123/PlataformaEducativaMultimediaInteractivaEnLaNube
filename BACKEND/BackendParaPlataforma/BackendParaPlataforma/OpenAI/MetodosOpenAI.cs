@@ -5,6 +5,7 @@ using System.Text.Json.Schema;
 using System.Text.Json.Nodes;
 using System.Text.Json;
 using System;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
 namespace BackendParaPlataforma.OpenAI
 {
     public class MetodosOpenAI
@@ -49,7 +50,7 @@ namespace BackendParaPlataforma.OpenAI
             ChatMessage peticion = new UserChatMessage(String.Format("Analiza las emociones del texto {0}", texto));
 
             //System Prompt
-            ChatMessage contexto = new SystemChatMessage("Eres un psicologo profesional experto en analizar las emociones de las palabras del paciente");
+            ChatMessage contexto = new SystemChatMessage("Eres un psicologo profesional experto en analizar las emociones. Hazlo a partir de la frase que introduce el usuario");
 
             //Salida estructurada 
             ChatCompletionOptions options = new()
