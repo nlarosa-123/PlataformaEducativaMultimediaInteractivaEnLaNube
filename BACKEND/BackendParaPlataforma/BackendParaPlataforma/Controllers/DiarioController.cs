@@ -92,6 +92,8 @@ namespace BackendParaPlataforma.API.Controllers
 
             #region resultado de análisis de diferentes IAs
 
+            #region Azure
+
             // ✅ 2. Analizar con Azure
             var resultadoAzure = await _azureService.Analyze(created.Texto_Usuario);
 
@@ -108,6 +110,10 @@ namespace BackendParaPlataforma.API.Controllers
             };
 
             await _sentimentResultrepository.UpsertAsync(sentimentResult);
+
+            #endregion Azure
+
+            #region OpenAI
 
             // Analizar con OpenAI 
             var resultadoOpenAI = await _openAIService.Analyze(created.Texto_Usuario);
@@ -126,6 +132,8 @@ namespace BackendParaPlataforma.API.Controllers
             };
 
             await _sentimentResultrepository.UpsertAsync(sentimentResult);
+
+            #endregion OpenAI
 
             #endregion resultado de análisis de diferentes IAs
 

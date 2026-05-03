@@ -10,5 +10,7 @@
         public double Neutral { get; set; }
         public double Negative { get; set; }
         public bool? Coincide_Usuario { get; set; }
+        public double? Confidence { get; set; }
+        public string? Explanation { get; set; }
     }
 }

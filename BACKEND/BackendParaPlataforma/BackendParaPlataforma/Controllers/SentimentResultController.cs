@@ -55,8 +55,10 @@ namespace BackendParaPlataforma.Controllers
                 Positive = x.Positive.Value,
                 Neutral = x.Neutral.Value,
                 Negative = x.Negative.Value,
-                Coincide_Usuario = x.Coincide_Usuario
-            });
+                Coincide_Usuario = x.Coincide_Usuario,
+                Confidence = x.Confidence,
+                Explanation = x.Explanation
+    });
 
             return Ok(dto);
         }
