@@ -111,7 +111,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
         {
             return await _context.DiariosEmocionales
                 .Where(d => d.Id_Usuario == usuarioId)
-                .OrderByDescending(d => d.Fecha)
+                .OrderByDescending(d => d.Fecha_Creacion)
                 .Select(d => new DiarioEmocionalDto
                 {
                     Id_Diario = d.Id_Diario,

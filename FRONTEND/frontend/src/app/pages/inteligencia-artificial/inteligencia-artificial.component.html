@@ -10,42 +10,47 @@
       </p>
     </section>
 
-    <!-- Estado de carga -->
-    <div *ngIf="!estadistica" class="placeholder-card">
-      <span class="placeholder-icono">🤖</span>
-      <p>Cargando tu análisis de IA...</p>
-    </div>
+<div class="cards-grid" *ngIf="estadisticas.length > 0">
 
-    <!-- Cards de estadísticas -->
-    <div *ngIf="estadistica" class="cards-grid">
-
-      <!-- Coincidencia IA -->
-      <div class="stat-card card-coincidencia">
-        <div class="card-icono">🤖</div>
-        <p class="card-label">Coincidencia con la IA</p>
-        <p class="card-valor">{{ estadistica.porcentajeCoincidenciaIA }}<span class="unidad">%</span></p>
-        <p class="card-descripcion">de los días, la IA acertó con tu estado emocional</p>
-        <div class="barra-progreso">
-          <div class="barra-relleno" [style.width.%]="estadistica.porcentajeCoincidenciaIA"></div>
-        </div>
-      </div>
-
-      <!-- Emoción más frecuente -->
-      <div class="stat-card card-emocion">
-        <div class="card-icono">💜</div>
-        <p class="card-label">Emoción más frecuente</p>
-        <p class="card-valor card-valor--texto">{{ estadistica.emocionMasFrecuente }}</p>
-        <p class="card-descripcion">Es la emoción que más veces has registrado en tu diario</p>
-      </div>
-
-      <!-- Racha de días -->
-      <div class="stat-card card-racha">
-        <div class="card-icono">🔥</div>
-        <p class="card-label">Racha actual</p>
-        <p class="card-valor">{{ estadistica.rachaDiasRegistrados }}<span class="unidad"> días</span></p>
-        <p class="card-descripcion">consecutivos registrando tu estado emocional</p>
-      </div>
-
-    </div>
+  <!-- 🏆 Mejor IA -->
+  <div class="stat-card destacada" *ngIf="mejorIA">
+    <h2>🏆 Mejor IA</h2>
+    <p class="ia-nombre">{{ mejorIA.provider }}</p>
+    <p class="porcentaje">{{ mejorIA.porcentajeCoincidenciaIA }}%</p>
+    <p>Es la IA que mejor coincide contigo</p>
   </div>
+
+  <!-- 🔵 Azure -->
+  <div class="stat-card" *ngIf="azure">
+    <h3>🔵 Azure</h3>
+    <p class="porcentaje">{{ azure.porcentajeCoincidenciaIA }}%</p>
+    <div class="barra">
+      <div class="relleno" [style.width.%]="azure.porcentajeCoincidenciaIA"></div>
+    </div>
+    <p>💜 {{ azure.emocionMasFrecuente }}</p>
+    <p>🔥 {{ azure.rachaDiasRegistrados }} días</p>
+  </div>
+
+  <!-- 🟣 OpenAI -->
+  <div class="stat-card" *ngIf="openai">
+    <h3>🟣 OpenAI</h3>
+    <p class="porcentaje">{{ openai.porcentajeCoincidenciaIA }}%</p>
+    <div class="barra">
+      <div class="relleno" [style.width.%]="openai.porcentajeCoincidenciaIA"></div>
+    </div>
+    <p>💜 {{ openai.emocionMasFrecuente }}</p>
+    <p>🔥 {{ openai.rachaDiasRegistrados }} días</p>
+  </div>
+
+  <!-- 🟠 AWS -->
+  <div class="stat-card" *ngIf="aws">
+    <h3>🟠 AWS</h3>
+    <p class="porcentaje">{{ aws.porcentajeCoincidenciaIA }}%</p>
+    <div class="barra">
+      <div class="relleno" [style.width.%]="aws.porcentajeCoincidenciaIA"></div>
+    </div>
+    <p>💜 {{ aws.emocionMasFrecuente }}</p>
+    <p>🔥 {{ aws.rachaDiasRegistrados }} días</p>
+  </div>
+
 </div>

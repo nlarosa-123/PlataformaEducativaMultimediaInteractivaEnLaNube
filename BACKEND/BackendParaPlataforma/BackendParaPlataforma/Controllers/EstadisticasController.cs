@@ -49,7 +49,7 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpGet("usuario/{usuarioId}")]
         public async Task<ActionResult<IEnumerable<EstadisticaUsuario>>> GetByUsuario(int usuarioId)
         {
-            await _metodosAux.CrearActualizarEstUsuario(usuarioId, null);
+            //await _metodosAux.CrearActualizarEstUsuario(usuarioId, null);
 
             var estadisticas = await _repository.GetByUsuarioIdAsync(usuarioId);
 

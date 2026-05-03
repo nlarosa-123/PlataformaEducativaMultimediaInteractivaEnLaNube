@@ -29,16 +29,30 @@ export class DiarioEmocionalIAComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-      const id = localStorage.getItem('idDiario');
 
-      if (!id) {
-        console.error('No hay idDiario');
-        return;
-      }
-
-      this.cargarAnalisis(Number(id));
-      console.log(Number(id));
+  const user = localStorage.getItem('user');
+  if (!user) {
+    console.error('No hay usuario');
+    return;
   }
+
+  const userId = JSON.parse(user).id;
+
+  this.http.get<any>(`http://localhost:5169/api/DiarioEmocional/usuario/${userId}/latest`)
+    .subscribe({
+      next: (diario) => {
+
+        if (!diario) {
+          console.warn('No hay diario');
+          return;
+        }
+
+        this.cargarAnalisis(diario.id_Diario);
+
+      },
+      error: (err) => console.error(err)
+    });
+}
 
   cargarAnalisis(idDiario: number) {
   this.http.get<any[]>(`http://localhost:5169/api/SentimentResult/diario/${idDiario}`)

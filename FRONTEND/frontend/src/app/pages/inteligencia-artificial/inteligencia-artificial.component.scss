@@ -188,3 +188,44 @@
         border-radius: 22px;
     }
 }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: #1e1e2f;
+  color: white;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.destacada {
+  background: linear-gradient(135deg, #6a5acd, #00c9ff);
+}
+
+.porcentaje {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.barra {
+  background: #444;
+  height: 8px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.relleno {
+  background: #00ffcc;
+  height: 100%;
+  border-radius: 10px;
+}

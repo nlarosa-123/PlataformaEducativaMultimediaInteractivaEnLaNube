@@ -11,7 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 export class InteligenciaArtificialComponent implements OnInit {
 
-  estadistica: any;
+  estadisticas: any[] = [];
+
+  azure: any;
+  openai: any;
+  aws: any;
+
+  mejorIA: any;
 
   constructor(private http: HttpClient) {}
 
@@ -20,18 +26,32 @@ export class InteligenciaArtificialComponent implements OnInit {
   }
 
   cargarEstadistica() {
-    const user = localStorage.getItem('user');
-    if (!user) return;
+  const user = localStorage.getItem('user');
+  if (!user) return;
 
-    const userId = JSON.parse(user).id;
+  const userId = JSON.parse(user).id;
 
-    this.http.get<any>(`http://localhost:5169/api/EstadisticaUsuario/usuario/${userId}`)
-      .subscribe({
-        next: (res) => {
-          this.estadistica = res;
-        },
-        error: (err) => console.error(err)
-      });
+  this.http.get<any[]>(`http://localhost:5169/api/EstadisticaUsuario/usuario/${userId}`)
+    .subscribe({
+      next: (res) => {
+        this.estadisticas = res;
+
+        // 🔥 filtrar por provider
+        this.azure = res.find(x => x.provider?.toLowerCase() === 'azure');
+        this.openai = res.find(x => x.provider?.toLowerCase() === 'openai');
+        this.aws = res.find(x => x.provider?.toLowerCase() === 'aws');
+
+  if (this.estadisticas.length > 0) {
+    this.mejorIA = this.estadisticas.reduce((a, b) =>
+      a.porcentajeCoincidenciaIA > b.porcentajeCoincidenciaIA ? a : b
+    );
   }
+      },
+      error: (err) => console.error(err)
+    });
+
+}
+
+
 
 }
