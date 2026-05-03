@@ -21,7 +21,7 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpPost("actualizar/{idUsuario}")]
         public async Task<IActionResult> ActualizarEstadisticas(int idUsuario)
         {
-            await _metodosAux.CrearActualizarEstUsuario(idUsuario);
+            await _metodosAux.CrearActualizarEstUsuario(idUsuario, null);
             return Ok("Estadísticas recalculadas correctamente");
         }
 
@@ -49,7 +49,7 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpGet("usuario/{usuarioId}")]
         public async Task<ActionResult<IEnumerable<EstadisticaUsuario>>> GetByUsuario(int usuarioId)
         {
-            await _metodosAux.CrearActualizarEstUsuario(usuarioId);
+            await _metodosAux.CrearActualizarEstUsuario(usuarioId, null);
 
             var estadisticas = await _repository.GetByUsuarioIdAsync(usuarioId);
 
@@ -122,7 +122,7 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpPost("actualizar/{idUsuario}/{provider}")]
         public async Task<IActionResult> ActualizarEstadisticasPorProvider(int idUsuario, string provider)
         {
-            await _metodosAux.CrearActualizarEstUsuario(idUsuario); // si luego separas por provider, lo mejoras
+            await _metodosAux.CrearActualizarEstUsuario(idUsuario, null); 
 
             return Ok($"Estadísticas recalculadas para {provider}");
         }

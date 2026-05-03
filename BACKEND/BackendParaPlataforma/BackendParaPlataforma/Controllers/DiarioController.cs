@@ -115,6 +115,8 @@ namespace BackendParaPlataforma.API.Controllers
 
             await _sentimentResultrepository.UpsertAsync(sentimentResult);
 
+            await _metodosAux.CrearActualizarEstUsuario(created.Id_Usuario, "Azure");
+
             #endregion Azure
 
             #region OpenAI
@@ -127,15 +129,17 @@ namespace BackendParaPlataforma.API.Controllers
                 Id_Diario = created.Id_Diario,
                 Fecha_Analisis = DateTime.UtcNow,
                 Provider = "OpenAI",
-                Sentiment = resultadoAzure.Sentiment,
-                Positive = resultadoAzure.Positive,
-                Neutral = resultadoAzure.Neutral,
-                Negative = resultadoAzure.Negative,
+                Sentiment = resultadoOpenAI.Sentiment,
+                Positive = resultadoOpenAI.Positive,
+                Neutral = resultadoOpenAI.Neutral,
+                Negative = resultadoOpenAI.Negative,
                 Confidence = resultadoOpenAI.Confidence,
                 Explanation = resultadoOpenAI.Explanation
             };
 
             await _sentimentResultrepository.UpsertAsync(sentimentResult);
+
+            await _metodosAux.CrearActualizarEstUsuario(created.Id_Usuario, "OpenAI");
 
             #endregion OpenAI
 
@@ -157,12 +161,11 @@ namespace BackendParaPlataforma.API.Controllers
 
             await _sentimentResultrepository.UpsertAsync(sentimentResult);
 
+            await _metodosAux.CrearActualizarEstUsuario(created.Id_Usuario, "AWS");
+
             #endregion AWS
 
             #endregion resultado de análisis de diferentes IAs
-
-            // ✅ 4. Actualizar estadísticas
-            await _metodosAux.CrearActualizarEstUsuario(created.Id_Usuario);
 
             return CreatedAtAction(nameof(GetById), new { id = created.Id_Diario }, new DiarioEmocionalResponseDto
             {
@@ -187,7 +190,7 @@ namespace BackendParaPlataforma.API.Controllers
             if (!updated)
                 return NotFound($"No se encontró el diario con ID {id}");
 
-            await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario); 
+            await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario, null); 
             
             return NoContent();
         }
@@ -204,7 +207,7 @@ namespace BackendParaPlataforma.API.Controllers
 
             if (diario != null)
             {
-                await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario);
+                await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario, null);
             }
 
             return NoContent();

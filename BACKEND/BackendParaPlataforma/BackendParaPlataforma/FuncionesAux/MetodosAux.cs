@@ -18,17 +18,18 @@ namespace BackendParaPlataforma.FuncionesAux
         }
 
         // MÉTODO PRINCIPAL
-        public async Task CrearActualizarEstUsuario(int idUsuario)
+        public async Task CrearActualizarEstUsuario(int idUsuario, string provider)
         {
             var diarios = await ObtenerDiariosUsuario(idUsuario);
-            var analisis = await ObtenerAnalisisDeDiarios(idUsuario);
+            var analisis = await ObtenerAnalisisDeDiarios(idUsuario, provider);
 
             double porcentajeIA = CalcularPorcentajeIA(analisis);
-            string emocionFrecuente = ObtenerEmocionMasFrecuente(diarios);
-            int racha = CalcularRacha(diarios);
+            string emocionFrecuente = ObtenerEmocionMasFrecuente(analisis);
+
+            int racha = CalcularRacha(analisis);
 
             var estadistica = await _context.EstadisticaUsuario
-                .FirstOrDefaultAsync(e => e.IdUsuario == idUsuario);
+                .FirstOrDefaultAsync(e => e.IdUsuario == idUsuario && e.Provider == provider);
 
             if (estadistica == null)
             {
@@ -38,7 +39,8 @@ namespace BackendParaPlataforma.FuncionesAux
                     PorcentajeCoincidenciaIA = (decimal)porcentajeIA,
                     EmocionMasFrecuente = emocionFrecuente,
                     RachaDiasRegistrados = racha,
-                    UltimaActualizacion = DateTime.Now
+                    UltimaActualizacion = DateTime.Now,
+                    Provider = provider
                 };
 
                 _context.EstadisticaUsuario.Add(estadistica);
@@ -49,6 +51,7 @@ namespace BackendParaPlataforma.FuncionesAux
                 estadistica.EmocionMasFrecuente = emocionFrecuente;
                 estadistica.RachaDiasRegistrados = racha;
                 estadistica.UltimaActualizacion = DateTime.Now;
+                estadistica.Provider = provider;
             }
 
             await _context.SaveChangesAsync();
@@ -63,15 +66,17 @@ namespace BackendParaPlataforma.FuncionesAux
         }
 
         // Obtener análisis IA
-        public async Task<List<AnalisisIA>> ObtenerAnalisisDeDiarios(int idUsuario)
+        public async Task<List<SentimentResult>> ObtenerAnalisisDeDiarios(int idUsuario, string provider)
         {
-            return await _context.AnalisisIA
-                .Where(a => a.DiarioEmocional != null && a.DiarioEmocional.Id_Usuario == idUsuario)
+            return await _context.SentimentResults
+                .Include(a => a.DiarioEmocional)
+                .Where(a => a.DiarioEmocional != null && a.DiarioEmocional.Id_Usuario == idUsuario &&
+                a.Provider == provider)
                 .ToListAsync();
         }
 
         // Porcentaje IA
-        public double CalcularPorcentajeIA(List<AnalisisIA> analisis)
+        public double CalcularPorcentajeIA(List<SentimentResult> analisis)
         {
             if (analisis.Count == 0) return 0;
 
@@ -81,22 +86,22 @@ namespace BackendParaPlataforma.FuncionesAux
         }
 
         // Emoción más frecuente
-        public string ObtenerEmocionMasFrecuente(List<DiarioEmocional> diarios)
+        public string ObtenerEmocionMasFrecuente(List<SentimentResult> analisis)
         {
-            if (!diarios.Any()) return "";
+            if (!analisis.Any()) return "";
 
-            return diarios
-                .GroupBy(d => d.Id_Emocion_Usuario)
+            return analisis
+                .GroupBy(d => d.Sentiment)
                 .OrderByDescending(g => g.Count())
                 .Select(g => g.Key.ToString())
                 .FirstOrDefault() ?? "";
         }
 
         // Racha
-        public int CalcularRacha(List<DiarioEmocional> diarios)
+        public int CalcularRacha(List<SentimentResult> diarios)
         {
             var fechas = diarios
-                .Select(d => d.Fecha.Date)
+                .Select(d => d.Fecha_Analisis)
                 .Distinct()
                 .OrderByDescending(f => f)
                 .ToList();
