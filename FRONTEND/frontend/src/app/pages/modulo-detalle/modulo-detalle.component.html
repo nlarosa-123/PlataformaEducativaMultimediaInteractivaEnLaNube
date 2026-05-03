@@ -1,45 +1,143 @@
-<p>modulo-detalle works!</p>
-<p>modulo-detalle works!</p>
-<p>modulo-detalle works!</p>
-<p>modulo-detalle works!</p>
-<p>modulo-detalle works!</p>
+<section class="modulo-detalle-page">
+  <header class="hero-card">
+    <div class="hero-copy">
+      <a class="back-link" routerLink="/modulos">← Volver a módulos</a>
+      <span class="eyebrow">Detalle del módulo</span>
+      <h1>{{ modulo?.titulo || ('Módulo ' + idModulo) }}</h1>
+      <p>
+        {{
+          modulo?.descripcion ||
+          'Avanza a tu ritmo, revisa cada lección y refuerza lo aprendido con actividades rápidas.'
+        }}
+      </p>
 
-<div *ngFor="let leccion of lecciones">
-  <h3>{{ leccion.titulo }}</h3>
-  <p>{{ leccion.contenidoTxt }}</p>
-  
-<!--boton-->
-<button 
-  class="btn-completar"
-  (click)="completarLeccion(leccion.id)"
-  [disabled]="leccionesCompletadas[leccion.id]"
->
-  ✅ Marcar como completada
-</button>  
-
-  <!-- QUIZ -->
-  <div *ngIf="quizzes[leccion.id] as quiz">
-    <h4>{{ quiz.titulo }}</h4>
-
-    <div *ngFor="let pregunta of preguntas[quiz.idQuiz]">
-      <p><strong>{{ pregunta.pregunta }}</strong></p>
-
-      <!-- OPCIONES -->
-      <div *ngFor="let op of opciones[pregunta.idPregunta]">
-  <button 
-  (click)="responder(pregunta, op)"
-  [disabled]="yaRespondida(pregunta.idPregunta)"
-  [ngClass]="{
-    'correcta': op.esCorrecta && yaRespondida(pregunta.idPregunta),
-    'incorrecta': respuestas[pregunta.idPregunta] === op.idOpcion && !op.esCorrecta
-  }"
->
-  {{ op.textoOpcion }}
-</button>
-</div>
-
+      <div class="progress-strip" *ngIf="lecciones.length > 0">
+        <div class="progress-strip__bar">
+          <span [style.width.%]="getProgressPercent()"></span>
+        </div>
+        <small>{{ getProgressPercent() }}% completado</small>
+      </div>
     </div>
-  </div>
 
-  <hr>
-</div>
+    <div class="hero-stats">
+      <article class="stat-card">
+        <strong>{{ lecciones.length }}</strong>
+        <span>Lecciones</span>
+      </article>
+
+      <article class="stat-card">
+        <strong>{{ getQuizCount() }}</strong>
+        <span>Quizzes</span>
+      </article>
+
+      <article class="stat-card accent">
+        <strong>{{ getCompletedCount() }}</strong>
+        <span>Completadas</span>
+      </article>
+    </div>
+  </header>
+
+  <article class="status-card" *ngIf="cargando || error">
+    <p *ngIf="cargando">Cargando el contenido del módulo...</p>
+    <p *ngIf="!cargando && error">{{ error }}</p>
+  </article>
+
+  <section class="lecciones-stack" *ngIf="!cargando && lecciones.length > 0; else emptyState">
+    <article class="leccion-card" *ngFor="let leccion of lecciones; let i = index">
+      <div class="leccion-top">
+        <span class="leccion-index">Lección {{ i + 1 }}</span>
+
+        <div class="leccion-tags">
+          <span>{{ leccion.tipoContenido || 'Contenido guiado' }}</span>
+          <span *ngIf="leccion.duracion">{{ leccion.duracion }} min</span>
+          <span class="tag-success" *ngIf="leccionesCompletadas[leccion.id]">Completada</span>
+        </div>
+      </div>
+
+      <h2>{{ leccion.titulo }}</h2>
+      <p class="leccion-body">
+        {{ leccion.contenidoTxt || 'Esta lección tendrá su contenido disponible muy pronto.' }}
+      </p>
+
+      <div class="resource-links" *ngIf="leccion.urlVideo || leccion.urlAudio">
+        <a *ngIf="leccion.urlVideo" [href]="leccion.urlVideo" target="_blank" rel="noopener noreferrer">
+          🎥 Ver video
+        </a>
+        <a *ngIf="leccion.urlAudio" [href]="leccion.urlAudio" target="_blank" rel="noopener noreferrer">
+          🎧 Escuchar audio
+        </a>
+      </div>
+
+      <div class="leccion-actions">
+        <button
+          class="btn-completar"
+          (click)="completarLeccion(leccion.id)"
+          [disabled]="leccionesCompletadas[leccion.id]"
+        >
+          {{ leccionesCompletadas[leccion.id] ? 'Lección completada' : 'Marcar como completada' }}
+        </button>
+      </div>
+
+      <section class="quiz-box" *ngIf="quizzes[leccion.id] as quiz">
+        <div class="quiz-header">
+          <div>
+            <span class="quiz-badge">Mini quiz</span>
+            <h3>{{ quiz.titulo || 'Comprueba lo aprendido' }}</h3>
+            <p>
+              {{
+                quiz.descripcion ||
+                'Responde las siguientes preguntas para reforzar esta lección.'
+              }}
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntas-list" *ngIf="preguntas[quiz.idQuiz]?.length; else quizPlaceholder">
+          <article class="pregunta-card" *ngFor="let pregunta of preguntas[quiz.idQuiz]; let j = index">
+            <span class="pregunta-index">Pregunta {{ j + 1 }}</span>
+            <h4>{{ pregunta.pregunta }}</h4>
+
+            <div class="opciones-grid">
+              <button
+                *ngFor="let op of opciones[pregunta.idPregunta]"
+                class="opcion-btn"
+                (click)="responder(pregunta, op)"
+                [disabled]="yaRespondida(pregunta.idPregunta)"
+                [class.selected]="esSeleccionada(pregunta.idPregunta, op.idOpcion)"
+                [ngClass]="{
+                  'correcta': op.esCorrecta && yaRespondida(pregunta.idPregunta),
+                  'incorrecta': respuestas[pregunta.idPregunta] === op.idOpcion && !op.esCorrecta
+                }"
+              >
+                {{ op.textoOpcion }}
+              </button>
+            </div>
+
+            <p
+              class="respuesta-msg"
+              *ngIf="yaRespondida(pregunta.idPregunta)"
+              [class.ok]="esRespuestaCorrecta(pregunta.idPregunta)"
+            >
+              {{
+                esRespuestaCorrecta(pregunta.idPregunta)
+                  ? '¡Muy bien! Tu respuesta fue correcta.'
+                  : 'Respuesta guardada. Sigue avanzando en el módulo.'
+              }}
+            </p>
+          </article>
+        </div>
+
+        <ng-template #quizPlaceholder>
+          <p class="quiz-placeholder">Este quiz se está preparando o aún no tiene preguntas.</p>
+        </ng-template>
+      </section>
+    </article>
+  </section>
+
+  <ng-template #emptyState>
+    <article class="empty-state" *ngIf="!cargando">
+      <h2>Aún no hay lecciones en este módulo</h2>
+      <p>Cuando el backend tenga contenido disponible, aparecerá aquí organizado y listo para estudiar.</p>
+    </article>
+  </ng-template>
+</section>

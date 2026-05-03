@@ -1,0 +1,212 @@
+:host {
+	display: block;
+}
+
+.diario-ia-page {
+	min-height: calc(100vh );
+	padding: 5.5rem 1rem 3rem;
+	background:
+		radial-gradient(circle at top left, rgba(195, 141, 158, 0.18), transparent 28%),
+		radial-gradient(circle at top right, rgba(232, 196, 160, 0.22), transparent 26%),
+		linear-gradient(180deg, #f9f3e9 0%, #f4eadc 100%);
+}
+
+.diario-ia-hero,
+.stats-grid,
+.glass-panel {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.diario-ia-hero {
+	padding-bottom: 1.5rem;
+}
+
+.eyebrow,
+.card-label {
+	display: inline-block;
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.eyebrow {
+	color: #4a4a4a;
+	margin-bottom: 0.9rem;
+}
+
+.diario-ia-hero h1,
+.glass-panel h2 {
+	margin: 0;
+	color: #c46f8b;
+	font-weight: 900;
+	letter-spacing: -0.03em;
+}
+
+.diario-ia-hero h1 {
+	font-size: clamp(2.4rem, 5vw, 4.4rem);
+	line-height: 0.95;
+}
+
+.diario-ia-hero p,
+.glass-card p,
+.panel-copy,
+.empty-state p {
+	color: #5f5a57;
+	line-height: 1.7;
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.glass-card,
+.glass-panel {
+	border: 1px solid rgba(233, 92, 137, 0.384);
+	border-radius: 26px;
+	background: rgba(255, 250, 243, 0.82);
+	backdrop-filter: blur(12px);
+	box-shadow: 0 18px 45px rgba(74, 74, 74, 0.08);
+}
+
+.glass-card {
+	padding: 1.4rem;
+}
+
+.accent-blue {
+	background: linear-gradient(135deg, rgba(221, 80, 124, 0.623), rgba(249, 243, 233, 0.88));
+}
+
+.accent-green {
+	background: linear-gradient(135deg, rgba(174, 193, 120, 0.438), rgba(249, 243, 233, 0.88));
+}
+
+.accent-amber {
+	background: linear-gradient(135deg, rgba(232, 167, 124, 0.466), rgba(249, 243, 233, 0.88));
+}
+
+.card-value {
+	display: block;
+	margin-top: 0.35rem;
+	font-size: 1.55rem;
+	font-weight: 900;
+	color: #4a4a4a;
+}
+
+.progress-bar {
+	height: 10px;
+	border-radius: 999px;
+	overflow: hidden;
+	margin-top: 1rem;
+	background: rgba(195, 141, 158, 0.18);
+}
+
+.progress-bar span {
+	display: block;
+	height: 100%;
+	border-radius: inherit;
+	background: linear-gradient(90deg, #c38d9e, #e8a87c);
+}
+
+.glass-panel {
+	padding: 1.6rem;
+}
+
+.panel-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+.glass-panel h2 {
+	font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+	margin-top: 0.35rem;
+}
+
+.status-pill {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 120px;
+	padding: 0.8rem 1rem;
+	border-radius: 999px;
+	font-size: 0.95rem;
+	font-weight: 800;
+	background: rgba(232, 196, 160, 0.3);
+	color: #815656;
+}
+
+.status-pill.ok {
+	background: rgba(173, 193, 120, 0.28);
+	color: #5f6f3c;
+}
+
+.status-pill.no {
+	background: rgba(195, 141, 158, 0.22);
+	color: #8c5a69;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.85rem;
+	margin-top: 1.35rem;
+}
+
+.action-btn {
+	min-width: 180px;
+	border-radius: 999px;
+	padding: 0.85rem 1.2rem;
+	font-weight: 700;
+}
+
+.feedback {
+	margin-top: 1rem;
+	padding: 0.95rem 1rem;
+	border-radius: 16px;
+	font-weight: 700;
+}
+
+.feedback.success {
+	background: rgba(173, 193, 120, 0.2);
+	color: #5f6f3c;
+}
+
+.feedback.danger {
+	background: rgba(195, 141, 158, 0.18);
+	color: #8c5a69;
+}
+
+.empty-state {
+	text-align: center;
+}
+
+@media (max-width: 992px) {
+	.stats-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.panel-top {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 576px) {
+	.diario-ia-page {
+		padding-top: 4.75rem;
+	}
+
+	.glass-panel,
+	.glass-card {
+		border-radius: 22px;
+	}
+
+	.action-btn {
+		width: 100%;
+	}
+}

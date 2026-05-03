@@ -1,6 +1,8 @@
 ﻿using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
+using BackendParaPlataforma.FuncionesAux;
 using BackendParaPlataforma.Infraestructure.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -11,10 +13,16 @@ namespace BackendParaPlataforma.Controllers
     public class SentimentResultController : ControllerBase
     {
         private readonly ISentimentResultRepository _repository;
+        private readonly IDiarioEmocionalRepository _diarioRepository;
+        private readonly MetodosAux _metodosAux;
 
-        public SentimentResultController(ISentimentResultRepository repository)
+        public SentimentResultController(ISentimentResultRepository repository,
+            IDiarioEmocionalRepository diarioRepository,
+            MetodosAux metodosAux)
         {
             _repository = repository;
+            _diarioRepository = diarioRepository;
+            _metodosAux = metodosAux;
         }
 
         // 🔹 GET: api/SentimentResult
@@ -122,6 +130,10 @@ namespace BackendParaPlataforma.Controllers
 
             if (!updated)
                 return NotFound($"No se encontró el análisis con ID {id}");
+
+            DiarioEmocional? diarioEmocional = await _diarioRepository.GetByIdAsync(sentiment.Id_Diario);
+
+            await _metodosAux.CrearActualizarEstUsuario(diarioEmocional.Id_Usuario, sentiment.Provider);
 
             return NoContent();
         }

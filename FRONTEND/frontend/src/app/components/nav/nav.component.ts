@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; // <--- IMPORTANTE para el *ngIf
 
 @Component({
   selector: 'app-nav',
   standalone: true, // Asegúrate de que sea standalone si usas imports aquí
-  imports: [RouterLink, RouterLinkActive, CommonModule], // <--- Añade CommonModule aquí
+  imports: [RouterLink, CommonModule], // <--- Añade CommonModule aquí
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
