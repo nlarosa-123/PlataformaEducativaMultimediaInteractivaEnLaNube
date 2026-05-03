@@ -27,5 +27,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
 
         // ?? UPSERT (crear o actualizar por provider)
         Task<bool> UpsertAsync(EstadisticaUsuario estadistica);
+
+     
     }
 }

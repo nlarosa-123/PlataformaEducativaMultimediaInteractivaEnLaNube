@@ -47,6 +47,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
                     e.Provider == provider);
         }
 
+
         // ?? Crear
         public async Task<EstadisticaUsuario> CreateAsync(EstadisticaUsuario estadistica)
         {

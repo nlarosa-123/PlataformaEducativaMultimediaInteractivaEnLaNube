@@ -3,6 +3,7 @@ using BackendParaPlataforma.dtos;
 using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.FuncionesAux;
 using BackendParaPlataforma.Infraestructure.Repositories;
+using BackendParaPlataforma.OpenAI;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendParaPlataforma.API.Controllers
@@ -15,16 +16,18 @@ namespace BackendParaPlataforma.API.Controllers
         private readonly ISentimentResultRepository _sentimentResultrepository;
         private readonly MetodosAux _metodosAux;
         private readonly MétodosAzure _azureService;
-
+        private readonly MetodosOpenAI _openAIService; 
         public DiarioEmocionalController(IDiarioEmocionalRepository repository,
             ISentimentResultRepository sentimentResultrepository,
             MetodosAux metodosAux,
-            MétodosAzure azureService)
+            MétodosAzure azureService,
+            MetodosOpenAI openAIService)
         {
             _repository = repository;
             _metodosAux = metodosAux;
             _sentimentResultrepository = sentimentResultrepository;
             _azureService = azureService;
+            _openAIService = openAIService;
         }
 
         // 📌 GET: api/DiarioEmocional
@@ -102,6 +105,24 @@ namespace BackendParaPlataforma.API.Controllers
                 Positive = resultadoAzure.Positive,
                 Neutral = resultadoAzure.Neutral,
                 Negative = resultadoAzure.Negative
+            };
+
+            await _sentimentResultrepository.UpsertAsync(sentimentResult);
+
+            // Analizar con OpenAI 
+            var resultadoOpenAI = await _openAIService.Analyze(created.Texto_Usuario);
+
+            sentimentResult = new SentimentResult()
+            {
+                Id_Diario = created.Id_Diario,
+                Fecha_Analisis = DateTime.UtcNow,
+                Provider = "OpenAI",
+                Sentiment = resultadoAzure.Sentiment,
+                Positive = resultadoAzure.Positive,
+                Neutral = resultadoAzure.Neutral,
+                Negative = resultadoAzure.Negative,
+                Confidence = resultadoOpenAI.Confidence,
+                Explanation = resultadoOpenAI.Explanation
             };
 
             await _sentimentResultrepository.UpsertAsync(sentimentResult);
