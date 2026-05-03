@@ -30,11 +30,21 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
                 .FirstOrDefaultAsync(e => e.IdEstadistica == id);
         }
 
-        // ?? Obtener por usuario (el más importante)
-        public async Task<EstadisticaUsuario?> GetByUsuarioIdAsync(int usuarioId)
+        // ?? Obtener TODAS las estadísticas de un usuario
+        public async Task<List<EstadisticaUsuario>> GetByUsuarioIdAsync(int usuarioId)
         {
             return await _context.EstadisticaUsuario
-                .FirstOrDefaultAsync(e => e.IdUsuario == usuarioId);
+                .Where(e => e.IdUsuario == usuarioId)
+                .ToListAsync();
+        }
+
+        // ?? Obtener por usuario + provider
+        public async Task<EstadisticaUsuario?> GetByUsuarioAndProviderAsync(int usuarioId, string provider)
+        {
+            return await _context.EstadisticaUsuario
+                .FirstOrDefaultAsync(e =>
+                    e.IdUsuario == usuarioId &&
+                    e.Provider == provider);
         }
 
         // ?? Crear
@@ -60,6 +70,7 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
             existing.PorcentajeCoincidenciaIA = estadistica.PorcentajeCoincidenciaIA;
             existing.EmocionMasFrecuente = estadistica.EmocionMasFrecuente;
             existing.RachaDiasRegistrados = estadistica.RachaDiasRegistrados;
+            existing.Provider = estadistica.Provider;
             existing.UltimaActualizacion = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
@@ -80,11 +91,13 @@ namespace BackendParaPlataforma.Infraestructure.Repositories
             return true;
         }
 
-        // ?? UPSERT (crear o actualizar automáticamente)
+        // ?? UPSERT CORRECTO (clave del sistema)
         public async Task<bool> UpsertAsync(EstadisticaUsuario estadistica)
         {
             var existing = await _context.EstadisticaUsuario
-                .FirstOrDefaultAsync(e => e.IdUsuario == estadistica.IdUsuario);
+                .FirstOrDefaultAsync(e =>
+                    e.IdUsuario == estadistica.IdUsuario &&
+                    e.Provider == estadistica.Provider);
 
             if (existing == null)
             {

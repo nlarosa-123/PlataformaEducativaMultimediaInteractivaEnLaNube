@@ -13,8 +13,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DiarioEmocionalIAComponent implements OnInit {
 
-  analisis: any;
-  tono: string = '';
+  analisisList: any[] = [];
+  azureAnalisis: any;
+  tonoAzure: string = '';
+  tonoAzureTexto: string = '';
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
@@ -31,67 +33,61 @@ export class DiarioEmocionalIAComponent implements OnInit {
   }
 
   cargarAnalisis(idDiario: number) {
-    this.http.get<any[]>(`http://localhost:5169/api/AnalisisIA/diario/${idDiario}`)
-      .subscribe({
-        next: (res) => {
-          if (res.length > 0) {
-            this.analisis = res[0];
-            this.tono = this.analisis.tono_Detectado.toLowerCase();
-          }
-        },
-        error: (err) => console.error(err)
-      });
-      console.log(this.analisis);
-      console.log(this.tono);
-  }
+  this.http.get<any[]>(`http://localhost:5169/api/SentimentResult/diario/${idDiario}`)
+    .subscribe({
+      next: (res) => {
+        this.analisisList = res;
 
-  //region actualizar analisisIA
-  responder(valor: boolean) {
-  if (!this.analisis) return;
+        // 🔥 separar Azure del resto
+        this.azureAnalisis = res.find(x => x.provider === 'Azure');
+        this.tonoAzure = this.azureAnalisis?.sentiment?.toLowerCase();
+        this.tonoAzureTexto = this.getTextoTonoAzure();
+
+        console.log(this.analisisList);
+      },
+      error: (err) => console.error(err)
+    });
+}
+
+  //region actualizar analisisIA de Azure
+  responderAzure(valor: boolean) {
+  if (!this.azureAnalisis) return;
 
   const payload = {
-    id_Analisis: this.analisis.id_Analisis,
-    id_Diario: this.analisis.id_Diario,
-    emocion_Detectada_IA: this.analisis.emocion_Detectada_IA,
-    tono_Detectado: this.analisis.tono_Detectado,
-    confianza: this.analisis.confianza,
+    ...this.azureAnalisis,
     coincide_Usuario: valor,
     fecha_Analisis: new Date().toISOString()
   };
 
-  this.http.put(`http://localhost:5169/api/AnalisisIA/${this.analisis.id_Analisis}`, payload)
-    .subscribe({
-      next: () => {
-        console.log('✅ Respuesta guardada');
-
-        //NUEVO: actualizar estadísticas
-        this.actualizarEstadistica();
-
-        // opcional: feedback visual
-        alert('Respuesta guardada correctamente');
-      },
-      error: (err) => {
-        console.error('❌ Error actualizando análisis', err);
-      }
-    });
+  this.http.put(
+    `http://localhost:5169/api/SentimentResult/${this.azureAnalisis.id_Analisis}`,
+    payload
+  ).subscribe({
+    next: () => {
+      this.azureAnalisis.coincide_Usuario = valor;
+    },
+    error: (err) => {
+  console.error(err);
 }
-  //endregion actualizar analisisIA
-    getTextoTono(): string {
-    switch (this.tono) {
-      case 'positivo':
-        return 'positivo 😊';
-      case 'neutral':
-        return 'neutral 😐';
-      case 'negativo':
-        return 'negativo 😞';
-      case 'mixto':
-        return 'mixto 🤔';
-      default:
-        return this.tono;
-    }
-  }
+  });
+}
 
-  actualizarEstadistica() {
+  getTextoTonoAzure(): string {
+  switch (this.tonoAzure) {
+    case 'positive':
+      return 'positivo 😊';
+    case 'neutral':
+      return 'neutral 😐';
+    case 'negative':
+      return 'negativo 😞';
+    case 'mixed':
+      return 'mixto 🤔';
+    default:
+      return this.tonoAzure;
+  }
+}
+
+  /* actualizarEstadistica() {
   const idUsuario = 1002;
 
   this.http.post(
@@ -105,6 +101,6 @@ export class DiarioEmocionalIAComponent implements OnInit {
     },
     error: (err) => console.error(err)
   });
-}
+} */
 
 }

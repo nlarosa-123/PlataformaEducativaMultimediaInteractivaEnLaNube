@@ -25,8 +25,12 @@ namespace BackendParaPlataforma.Infraestructure.Persistence.Configurations
             builder.Property(e => e.UltimaActualizacion);
 
             builder.HasOne(a => a.Usuario)
-                   .WithOne(u => u.EstadisticaUsuario)
-                   .HasForeignKey<EstadisticaUsuario>(e => e.IdUsuario);
+                   .WithMany(u => u.EstadisticaUsuarios)
+                   .HasForeignKey(e => e.IdUsuario);
+
+            builder.Property(e => e.Provider)
+               .IsRequired()
+               .HasMaxLength(50);
         }
     }
 }

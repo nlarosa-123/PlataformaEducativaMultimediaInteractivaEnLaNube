@@ -1,4 +1,5 @@
-﻿using BackendParaPlataforma.Entities;
+﻿using BackendParaPlataforma.dtos;
+using BackendParaPlataforma.Entities;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -45,7 +46,19 @@ namespace BackendParaPlataforma.Controllers
             if (!result.Any())
                 return NotFound("No hay análisis para este diario");
 
-            return Ok(result);
+            var dto = result.Select(x => new SentimentResultCompleteDto
+            {
+                Id_Analisis = x.Id_Analisis,
+                Id_Diario = x.Id_Diario,
+                Provider = x.Provider,
+                Sentiment = x.Sentiment,
+                Positive = x.Positive.Value,
+                Neutral = x.Neutral.Value,
+                Negative = x.Negative.Value,
+                Coincide_Usuario = x.Coincide_Usuario
+            });
+
+            return Ok(dto);
         }
 
         // 🔹 GET: api/SentimentResult/diario/10/latest
