@@ -5,6 +5,7 @@ using BackendParaPlataforma.FuncionesAux;
 using BackendParaPlataforma.Infraestructure.Repositories;
 using BackendParaPlataforma.OpenAI;
 using Microsoft.AspNetCore.Mvc;
+using BackendParaPlataforma.Services;
 
 namespace BackendParaPlataforma.API.Controllers
 {
@@ -16,18 +17,21 @@ namespace BackendParaPlataforma.API.Controllers
         private readonly ISentimentResultRepository _sentimentResultrepository;
         private readonly MetodosAux _metodosAux;
         private readonly MétodosAzure _azureService;
-        private readonly MetodosOpenAI _openAIService; 
+        private readonly MetodosOpenAI _openAIService;
+        private readonly ComprehendService _comprehendService;
         public DiarioEmocionalController(IDiarioEmocionalRepository repository,
             ISentimentResultRepository sentimentResultrepository,
             MetodosAux metodosAux,
             MétodosAzure azureService,
-            MetodosOpenAI openAIService)
+            MetodosOpenAI openAIService,
+            ComprehendService comprehendService)
         {
             _repository = repository;
             _metodosAux = metodosAux;
             _sentimentResultrepository = sentimentResultrepository;
             _azureService = azureService;
             _openAIService = openAIService;
+            _comprehendService = comprehendService;
         }
 
         // 📌 GET: api/DiarioEmocional
@@ -134,6 +138,26 @@ namespace BackendParaPlataforma.API.Controllers
             await _sentimentResultrepository.UpsertAsync(sentimentResult);
 
             #endregion OpenAI
+
+            #region AWS
+
+            // Analizar con AWS 
+            var resultadoAWS = await _comprehendService.Analizar(created.Texto_Usuario);
+
+            sentimentResult = new SentimentResult()
+            {
+                Id_Diario = created.Id_Diario,
+                Fecha_Analisis = DateTime.UtcNow,
+                Provider = "AWS",
+                Sentiment = resultadoAWS.Sentiment,
+                Positive = resultadoAWS.Positive,
+                Neutral = resultadoAWS.Neutral,
+                Negative = resultadoAWS.Negative
+            };
+
+            await _sentimentResultrepository.UpsertAsync(sentimentResult);
+
+            #endregion AWS
 
             #endregion resultado de análisis de diferentes IAs
 
