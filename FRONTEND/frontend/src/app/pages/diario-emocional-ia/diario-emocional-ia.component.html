@@ -30,3 +30,55 @@
   <p *ngIf="azureAnalisis.coincide_Usuario === false">👎 No coincide</p>
 
 </div>
+
+<div class="container text-center mt-5" *ngIf="openAIAnalisis">
+
+  <h3>🧠 Open AI</h3>
+
+  <p>
+    Detecta un tono:
+    <strong>{{ tonoOpenAITexto }}</strong>
+  </p>
+
+  <ul>
+  <li>😊 Positivo: {{ openAIAnalisis.positive }}</li>
+  <li>😐 Neutral: {{ openAIAnalisis.neutral }}</li>
+  <li>😞 Negativo: {{ openAIAnalisis.negative }}</li>
+  <li>📈 Confianza: {{ openAIAnalisis.confidence }}</li>
+  <li>🧠 Explicación: {{ openAIAnalisis.explanation }}</li>
+</ul>
+
+  <p>¿Coincide contigo?</p>
+
+  <button (click)="responderOpenAI(true)">Sí</button>
+  <button (click)="responderOpenAI(false)">No</button>
+
+  <p *ngIf="openAIAnalisis.coincide_Usuario === true">👍 Coincide</p>
+  <p *ngIf="openAIAnalisis.coincide_Usuario === false">👎 No coincide</p>
+
+</div>
+
+<div class="container text-center mt-5" *ngIf="AWSAnalisis">
+
+  <h3>🧠 AWS</h3>
+
+  <p>
+    Detecta un tono:
+    <strong>{{ tonoAWSTexto }}</strong>
+  </p>
+
+  <ul>
+    <li>👍 Positivo: {{ AWSAnalisis.positive }}</li>
+    <li>😐 Neutral: {{ AWSAnalisis.neutral }}</li>
+    <li>👎 Negativo: {{ AWSAnalisis.negative }}</li>
+  </ul>
+
+  <p>¿Coincide contigo?</p>
+
+  <button (click)="responderAWS(true)">Sí</button>
+  <button (click)="responderAWS(false)">No</button>
+
+  <p *ngIf="AWSAnalisis.coincide_Usuario === true">👍 Coincide</p>
+  <p *ngIf="AWSAnalisis.coincide_Usuario === false">👎 No coincide</p>
+
+</div>
