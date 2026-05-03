@@ -1,4 +1,5 @@
 ﻿using BackendParaPlataforma.Entities;
+using BackendParaPlataforma.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackendParaPlataforma.Infraestructure.Persistence {
@@ -13,6 +14,8 @@ namespace BackendParaPlataforma.Infraestructure.Persistence {
         public DbSet<ReflexionMejora> ReflexionesMejora => Set<ReflexionMejora>();
         public DbSet<ProgresoUsuario> ProgresoUsuarios => Set<ProgresoUsuario>();
         //public DbSet<Auditoria> Auditorias { get; set; }
+
+        public DbSet<RegistroSentimiento> Sentimientos { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

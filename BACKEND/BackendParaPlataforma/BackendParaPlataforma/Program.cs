@@ -38,6 +38,11 @@ builder.Services.AddScoped<IEmocionesRepository, EmocionesRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
+builder.Services.AddSingleton<ComprehendService>();
+builder.Services.AddScoped<ComprehendService>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirAngular",
