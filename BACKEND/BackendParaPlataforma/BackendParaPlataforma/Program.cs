@@ -54,6 +54,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.AddScoped<BackendParaPlataforma.Azure.MétodosAzure>();
 builder.Services.AddScoped<BackendParaPlataforma.OpenAI.MetodosOpenAI>();
 builder.Services.AddScoped<BackendParaPlataforma.Services.ComprehendService>();
+builder.Services.AddScoped<BackendParaPlataforma.Google.MétodosGoogle>();
 builder.Services.AddScoped<MetodosAux>();
 
 builder.Services.AddCors(options =>

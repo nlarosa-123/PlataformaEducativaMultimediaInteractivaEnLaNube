@@ -6,6 +6,7 @@ using BackendParaPlataforma.Infraestructure.Repositories;
 using BackendParaPlataforma.OpenAI;
 using Microsoft.AspNetCore.Mvc;
 using BackendParaPlataforma.Services;
+using BackendParaPlataforma.Google;
 
 namespace BackendParaPlataforma.API.Controllers
 {
@@ -19,12 +20,15 @@ namespace BackendParaPlataforma.API.Controllers
         private readonly MétodosAzure _azureService;
         private readonly MetodosOpenAI _openAIService;
         private readonly ComprehendService _comprehendService;
+        private readonly MétodosGoogle _googleService;
         public DiarioEmocionalController(IDiarioEmocionalRepository repository,
             ISentimentResultRepository sentimentResultrepository,
             MetodosAux metodosAux,
             MétodosAzure azureService,
             MetodosOpenAI openAIService,
-            ComprehendService comprehendService)
+            ComprehendService comprehendService,
+            MétodosGoogle googleService
+            )
         {
             _repository = repository;
             _metodosAux = metodosAux;
@@ -32,6 +36,7 @@ namespace BackendParaPlataforma.API.Controllers
             _azureService = azureService;
             _openAIService = openAIService;
             _comprehendService = comprehendService;
+            _googleService = googleService;
         }
 
         // 📌 GET: api/DiarioEmocional
@@ -165,6 +170,29 @@ namespace BackendParaPlataforma.API.Controllers
 
             #endregion AWS
 
+            #region Google
+
+            var resultadoGoogle = await _googleService.Analyze(created.Texto_Usuario);
+
+            sentimentResult = new SentimentResult()
+            {
+                Id_Diario = created.Id_Diario,
+                Fecha_Analisis = DateTime.UtcNow,
+                Provider = "Google",
+                Sentiment = resultadoGoogle.Sentiment,
+                Positive = resultadoGoogle.Positive,
+                Neutral = resultadoGoogle.Neutral,
+                Negative = resultadoGoogle.Negative,
+                Confidence = resultadoGoogle.Magnitude,
+                Explanation = $"Score: {resultadoGoogle.Score}, Magnitude: {resultadoGoogle.Magnitude}"
+            };
+
+            await _sentimentResultrepository.UpsertAsync(sentimentResult);
+            await _metodosAux.CrearActualizarEstUsuario(created.Id_Usuario, "Google");
+
+            #endregion Google
+
+
             #endregion resultado de análisis de diferentes IAs
 
             return CreatedAtAction(nameof(GetById), new { id = created.Id_Diario }, new DiarioEmocionalResponseDto
@@ -190,8 +218,8 @@ namespace BackendParaPlataforma.API.Controllers
             if (!updated)
                 return NotFound($"No se encontró el diario con ID {id}");
 
-            await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario, null); 
-            
+            await _metodosAux.CrearActualizarEstUsuario(diario.Id_Usuario, null);
+
             return NoContent();
         }
 
@@ -199,7 +227,7 @@ namespace BackendParaPlataforma.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var diario = await _repository.GetByIdAsync(id); 
+            var diario = await _repository.GetByIdAsync(id);
             var deleted = await _repository.DeleteAsync(id);
 
             if (!deleted)
@@ -222,6 +250,6 @@ namespace BackendParaPlataforma.API.Controllers
 
             return Ok(diario);
         }
-        
+
     }
 }
