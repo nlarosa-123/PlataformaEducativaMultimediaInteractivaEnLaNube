@@ -1239,17 +1239,26 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/EstadisticaUsuario"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EstadisticaUsuario"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EstadisticaUsuario"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EstadisticaUsuario"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EstadisticaUsuario"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EstadisticaUsuario"
+                  }
                 }
               }
             }
@@ -1281,6 +1290,85 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EstadisticaUsuario/usuario/{usuarioId}/provider/{provider}": {
+      "get": {
+        "tags": [
+          "EstadisticaUsuario"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadisticaUsuario"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadisticaUsuario"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadisticaUsuario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EstadisticaUsuario/actualizar/{idUsuario}/{provider}": {
+      "post": {
+        "tags": [
+          "EstadisticaUsuario"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -3216,6 +3304,438 @@
         }
       }
     },
+    "/api/Sentiment": {
+      "post": {
+        "tags": [
+          "Sentiment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/SentimentGoogle": {
+      "post": {
+        "tags": [
+          "SentimentGoogle"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/SentimentResult": {
+      "get": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SentimentResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SentimentResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SentimentResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SentimentResult/{id}": {
+      "get": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/SentimentResult/diario/{diarioId}": {
+      "get": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "parameters": [
+          {
+            "name": "diarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SentimentResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SentimentResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SentimentResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SentimentResult/diario/{diarioId}/latest": {
+      "get": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "parameters": [
+          {
+            "name": "diarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SentimentResult/diario/{diarioId}/provider/{provider}": {
+      "get": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "parameters": [
+          {
+            "name": "diarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SentimentResult/upsert": {
+      "post": {
+        "tags": [
+          "SentimentResult"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SentimentResult"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SentimentResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Speech": {
       "post": {
         "tags": [
@@ -3509,6 +4029,13 @@
           "analisisIA": {
             "$ref": "#/components/schemas/AnalisisIA"
           },
+          "sentimentResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SentimentResult"
+            },
+            "nullable": true
+          },
           "reflexionMejora": {
             "$ref": "#/components/schemas/ReflexionMejora"
           }
@@ -3645,6 +4172,40 @@
           },
           "usuario": {
             "$ref": "#/components/schemas/Usuario"
+          },
+          "provider": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EstadisticaUsuarioDto": {
+        "type": "object",
+        "properties": {
+          "idEstadistica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "porcentajeCoincidenciaIA": {
+            "type": "number",
+            "format": "double"
+          },
+          "emocionMasFrecuente": {
+            "type": "string",
+            "nullable": true
+          },
+          "rachaDiasRegistrados": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ultimaActualizacion": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -4016,6 +4577,76 @@
         },
         "additionalProperties": false
       },
+      "SentimentResult": {
+        "type": "object",
+        "properties": {
+          "id_Analisis": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_Diario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coincide_Usuario": {
+            "type": "boolean"
+          },
+          "fecha_Analisis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "diarioEmocional": {
+            "$ref": "#/components/schemas/DiarioEmocional"
+          },
+          "provider": {
+            "type": "string",
+            "nullable": true
+          },
+          "sentiment": {
+            "type": "string",
+            "nullable": true
+          },
+          "positive": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "neutral": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "negative": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "magnitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "confidence": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "explanation": {
+            "type": "string",
+            "nullable": true
+          },
+          "rawJson": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Usuario": {
         "type": "object",
         "properties": {
@@ -4087,13 +4718,17 @@
             },
             "nullable": true
           },
-          "estadisticaUsuario": {
-            "$ref": "#/components/schemas/EstadisticaUsuario"
-          },
           "respuestaUsuarioQuizzes": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RespuestaUsuarioQuiz"
+            },
+            "nullable": true
+          },
+          "estadisticaUsuarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EstadisticaUsuario"
             },
             "nullable": true
           }
@@ -4134,6 +4769,9 @@
           },
           "activo": {
             "type": "boolean"
+          },
+          "estadisticaUsuario": {
+            "$ref": "#/components/schemas/EstadisticaUsuarioDto"
           }
         },
         "additionalProperties": false

@@ -21,5 +21,13 @@ namespace BackendParaPlataforma.dtos
 
         [JsonRequired]
         public String? Explanation { get; set; }
+
+        [JsonIgnore]
+
+        public double? Score { get; set; }
+
+        [JsonIgnore]
+
+        public double? Magnitude { get; set; }
     }
 }
