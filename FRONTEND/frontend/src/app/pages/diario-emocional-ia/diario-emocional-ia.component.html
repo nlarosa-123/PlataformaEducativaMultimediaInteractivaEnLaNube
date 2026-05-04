@@ -1,84 +1,116 @@
 <p>diario-emocional-ia works!</p>
 <p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
-<p>diario-emocional-ia works!</p>
 
 
-<div class="container text-center mt-5" *ngIf="azureAnalisis">
+<div class="container mt-5">
 
-  <h3>🧠 Azure AI</h3>
+  <div class="row">
 
-  <p>
-    Detecta un tono:
-    <strong>{{ tonoAzureTexto }}</strong>
-  </p>
+    <!-- Azure -->
+    <div class="col-md-4" *ngIf="azureAnalisis">
+      <div class="card shadow-sm text-center p-3">
+        <h4 class="mb-3">🧠 Azure AI</h4>
 
-  <ul>
-    <li>👍 Positivo: {{ azureAnalisis.positive }}</li>
-    <li>😐 Neutral: {{ azureAnalisis.neutral }}</li>
-    <li>👎 Negativo: {{ azureAnalisis.negative }}</li>
-  </ul>
+        <p class="mb-2">
+          Tono: 
+          <span class="badge bg-primary">{{ tonoAzureTexto }}</span>
+        </p>
 
-  <p>¿Coincide contigo?</p>
+        <div class="mb-3">
+          <div>👍 {{ azureAnalisis.positive }}%</div>
+          <div class="progress">
+            <div class="progress-bar bg-success" [style.width.%]="azureAnalisis.positive"></div>
+          </div>
 
-  <button (click)="responderAzure(true)">Sí</button>
-  <button (click)="responderAzure(false)">No</button>
+          <div class="mt-2">😐 {{ azureAnalisis.neutral }}%</div>
+          <div class="progress">
+            <div class="progress-bar bg-secondary" [style.width.%]="azureAnalisis.neutral"></div>
+          </div>
 
-  <p *ngIf="azureAnalisis.coincide_Usuario === true">👍 Coincide</p>
-  <p *ngIf="azureAnalisis.coincide_Usuario === false">👎 No coincide</p>
+          <div class="mt-2">👎 {{ azureAnalisis.negative }}%</div>
+          <div class="progress">
+            <div class="progress-bar bg-danger" [style.width.%]="azureAnalisis.negative"></div>
+          </div>
+        </div>
 
-</div>
+        <p>¿Coincide contigo?</p>
 
-<div class="container text-center mt-5" *ngIf="openAIAnalisis">
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-success btn-sm" (click)="responderAzure(true)">Sí</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="responderAzure(false)">No</button>
+        </div>
 
-  <h3>🧠 Open AI</h3>
+        <p class="mt-2" *ngIf="azureAnalisis.coincide_Usuario !== undefined">
+          {{ azureAnalisis.coincide_Usuario ? '👍 Coincide' : '👎 No coincide' }}
+        </p>
+      </div>
+    </div>
 
-  <p>
-    Detecta un tono:
-    <strong>{{ tonoOpenAITexto }}</strong>
-  </p>
+    <!-- OpenAI -->
+    <div class="col-md-4" *ngIf="openAIAnalisis">
+      <div class="card shadow-sm text-center p-3">
+        <h4 class="mb-3">🧠 OpenAI</h4>
 
-  <ul>
-  <li>😊 Positivo: {{ openAIAnalisis.positive }}</li>
-  <li>😐 Neutral: {{ openAIAnalisis.neutral }}</li>
-  <li>😞 Negativo: {{ openAIAnalisis.negative }}</li>
-  <li>📈 Confianza: {{ openAIAnalisis.confidence }}</li>
-  <li>🧠 Explicación: {{ openAIAnalisis.explanation }}</li>
-</ul>
+        <p>
+          Tono:
+          <span class="badge bg-info">{{ tonoOpenAITexto }}</span>
+        </p>
 
-  <p>¿Coincide contigo?</p>
+        <ul class="list-unstyled small">
+          <li>😊 {{ openAIAnalisis.positive }}%</li>
+          <li>😐 {{ openAIAnalisis.neutral }}%</li>
+          <li>😞 {{ openAIAnalisis.negative }}%</li>
+        </ul>
 
-  <button (click)="responderOpenAI(true)">Sí</button>
-  <button (click)="responderOpenAI(false)">No</button>
+        <p class="small text-muted">
+          📈 Confianza: {{ openAIAnalisis.confidence }}
+        </p>
 
-  <p *ngIf="openAIAnalisis.coincide_Usuario === true">👍 Coincide</p>
-  <p *ngIf="openAIAnalisis.coincide_Usuario === false">👎 No coincide</p>
+        <p class="small fst-italic">
+          "{{ openAIAnalisis.explanation }}"
+        </p>
 
-</div>
+        <p>¿Coincide contigo?</p>
 
-<div class="container text-center mt-5" *ngIf="AWSAnalisis">
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-success btn-sm" (click)="responderOpenAI(true)">Sí</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="responderOpenAI(false)">No</button>
+        </div>
 
-  <h3>🧠 AWS</h3>
+        <p class="mt-2" *ngIf="openAIAnalisis.coincide_Usuario !== undefined">
+          {{ openAIAnalisis.coincide_Usuario ? '👍 Coincide' : '👎 No coincide' }}
+        </p>
+      </div>
+    </div>
 
-  <p>
-    Detecta un tono:
-    <strong>{{ tonoAWSTexto }}</strong>
-  </p>
+    <!-- AWS -->
+    <div class="col-md-4" *ngIf="AWSAnalisis">
+      <div class="card shadow-sm text-center p-3">
+        <h4 class="mb-3">🧠 AWS</h4>
 
-  <ul>
-    <li>👍 Positivo: {{ AWSAnalisis.positive }}</li>
-    <li>😐 Neutral: {{ AWSAnalisis.neutral }}</li>
-    <li>👎 Negativo: {{ AWSAnalisis.negative }}</li>
-  </ul>
+        <p>
+          Tono:
+          <span class="badge bg-warning text-dark">{{ tonoAWSTexto }}</span>
+        </p>
 
-  <p>¿Coincide contigo?</p>
+        <ul class="list-unstyled small">
+          <li>👍 {{ AWSAnalisis.positive }}%</li>
+          <li>😐 {{ AWSAnalisis.neutral }}%</li>
+          <li>👎 {{ AWSAnalisis.negative }}%</li>
+        </ul>
 
-  <button (click)="responderAWS(true)">Sí</button>
-  <button (click)="responderAWS(false)">No</button>
+        <p>¿Coincide contigo?</p>
 
-  <p *ngIf="AWSAnalisis.coincide_Usuario === true">👍 Coincide</p>
-  <p *ngIf="AWSAnalisis.coincide_Usuario === false">👎 No coincide</p>
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-success btn-sm" (click)="responderAWS(true)">Sí</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="responderAWS(false)">No</button>
+        </div>
 
+        <p class="mt-2" *ngIf="AWSAnalisis.coincide_Usuario !== undefined">
+          {{ AWSAnalisis.coincide_Usuario ? '👍 Coincide' : '👎 No coincide' }}
+        </p>
+      </div>
+    </div>
+
+  </div>
 </div>
